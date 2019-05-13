@@ -3,7 +3,7 @@
     "clientRootFolder": "",
     "relationships": [],
     "fields": [
-        {
+       {
             "fieldName": "nomeCartao",
             "fieldType": "String",
             "fieldValidateRules": [
@@ -14,14 +14,14 @@
             "fieldValidateRulesMinlength": "10",
             "fieldValidateRulesMaxlength": "40"
         },
-        {
+       {
             "fieldName": "numero",
             "fieldType": "String",
             "fieldValidateRules": [
                 "required"
-            ]
+            ],
         },
-        {
+       {
             "fieldName": "validade",
             "fieldType": "String",
             "fieldValidateRules": [
@@ -47,7 +47,7 @@
             "fieldValues": "ATIVO,INATIVO,CANCELADO,PENDENTE"
         }
     ],
-    "changelogDate": "20190513203550",
+  "changelogDate": "20190513201039",
     "dto": "no",
     "searchEngine": false,
     "service": "serviceImpl",

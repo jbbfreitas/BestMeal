@@ -1,0 +1,25 @@
+{
+  "bestMealApp": {
+    "cartaoRecompensa": {
+      "home": {
+        "title": "Cartao Recompensas",
+        "createLabel": "Criar novo Cartao Recompensa",
+        "createOrEditLabel": "Criar ou editar Cartao Recompensa"
+      },
+      "created": "Um novo Cartao Recompensa foi criado com o identificador {{ param }}",
+      "updated": "Um Cartao Recompensa foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Cartao Recompensa foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Cartao Recompensa {{ id }}?"
+      },
+      "detail": {
+        "title": "Cartao Recompensa"
+      },
+      "nomeCartao": "Nome Cartao",
+      "numero": "Numero",
+      "validade": "Validade",
+      "pontuacao": "Pontuacao",
+      "situacao": "Situacao"
+    }
+  }
+}

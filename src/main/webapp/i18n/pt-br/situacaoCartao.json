@@ -1,0 +1,11 @@
+{
+  "bestMealApp": {
+    "SituacaoCartao": {
+      "null": "",
+      "ATIVO": "ATIVO",
+      "INATIVO": "INATIVO",
+      "CANCELADO": "CANCELADO",
+      "PENDENTE": "PENDENTE"
+    }
+  }
+}
