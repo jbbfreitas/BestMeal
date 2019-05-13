@@ -1,0 +1,46 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipName": "logradouro",
+            "otherEntityName": "logradouro",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "nome"
+        },
+        {
+            "relationshipName": "municipio",
+            "otherEntityName": "municipio",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "nome"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "cep",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "pattern"
+            ],
+            "fieldValidateRulesPattern": "^[0-9]{2}.[0-9]{3}-[0-9]{3}$"
+        },
+        {
+            "fieldName": "complemento",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": 0,
+            "fieldValidateRulesMaxlength": "30"
+        }
+    ],
+    "changelogDate": "20190505184446",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "serviceImpl",
+    "entityTableName": "endereco",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

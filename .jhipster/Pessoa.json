@@ -1,0 +1,43 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipName": "nome",
+            "otherEntityName": "nome",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "primeiroNome"
+        },
+        {
+            "relationshipName": "endereco",
+            "otherEntityName": "endereco",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "tipo",
+            "fieldType": "TipoPessoa",
+            "fieldValues": "FISICA,JURIDICA"
+        },
+        {
+            "fieldName": "cpf",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "cnpj",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20190508003537",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "serviceImpl",
+    "entityTableName": "pessoa",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

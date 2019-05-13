@@ -1,0 +1,30 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "tipo",
+            "fieldType": "TipoLogradouro",
+            "fieldValues": "RUA,AVENIDA,TRAVESSA,QUADRA,BECO,ESTRADA,CHACARA,RODOVIA,VIADUTO,SITIO,FEIRA,SETOR,MORRO,LARGO,FAZENDA"
+        },
+        {
+            "fieldName": "nome",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": "5",
+            "fieldValidateRulesMaxlength": "100"
+        }
+    ],
+    "changelogDate": "20190505180933",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "serviceImpl",
+    "entityTableName": "logradouro",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

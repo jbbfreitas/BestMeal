@@ -1,0 +1,70 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "nome",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": "5",
+            "fieldValidateRulesMaxlength": "50"
+        },
+        {
+            "fieldName": "grupo",
+            "fieldType": "GrupoMenu",
+            "fieldValues": "ENTRADA,PRATOFRIO,PRATOQUENTE,SOBREMESA,VINHO,CERVEJA,DESTILADO,REFRIGERANTE,SUCO,COCKTAILSEMALCOOL,COCKTAILCOMALCOOL"
+        },
+        {
+            "fieldName": "valorNormal",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required",
+                "min",
+                "max"
+            ],
+            "fieldValidateRulesMin": 0,
+            "fieldValidateRulesMax": "20000"
+        },
+        {
+            "fieldName": "tempoPreparo",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required",
+                "min",
+                "max"
+            ],
+            "fieldValidateRulesMin": 0,
+            "fieldValidateRulesMax": "60"
+        },
+        {
+            "fieldName": "isDisponivel",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "valorReduzido",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required",
+                "min",
+                "max"
+            ],
+            "fieldValidateRulesMin": 0,
+            "fieldValidateRulesMax": "2000"
+        }
+    ],
+    "changelogDate": "20190505174757",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "serviceImpl",
+    "entityTableName": "menu",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

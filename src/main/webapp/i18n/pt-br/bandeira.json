@@ -1,0 +1,12 @@
+{
+  "bestMealApp": {
+    "Bandeira": {
+      "null": "",
+      "AMERICAN": "AMERICAN",
+      "DINERS": "DINERS",
+      "ELO": "ELO",
+      "MASTER": "MASTER",
+      "VISA": "VISA"
+    }
+  }
+}

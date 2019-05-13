@@ -1,0 +1,45 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "numero",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "validade",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": "5",
+            "fieldValidateRulesMaxlength": "5"
+        },
+        {
+            "fieldName": "pontuacao",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required",
+                "min",
+                "max"
+            ],
+            "fieldValidateRulesMin": "0",
+            "fieldValidateRulesMax": 100
+        },
+        {
+            "fieldName": "situacao",
+            "fieldType": "SituacaoCartao",
+            "fieldValues": "ATIVO,INATIVO,CANCELADO,PENDENTE"
+        }
+    ],
+    "changelogDate": "20190505173124",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "serviceImpl",
+    "entityTableName": "cartao_recompensa",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

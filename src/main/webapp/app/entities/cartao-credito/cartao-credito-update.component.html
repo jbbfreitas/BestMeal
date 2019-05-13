@@ -1,0 +1,94 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-cartao-credito-heading" jhiTranslate="bestMealApp.cartaoCredito.home.createOrEditLabel">Create or edit a Cartao Credito</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!cartaoCredito.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bestMealApp.cartaoCredito.nomeCartao" for="field_nomeCartao">Nome Cartao</label>
+                    <input type="text" class="form-control" name="nomeCartao" id="field_nomeCartao"
+                           formControlName="nomeCartao"/>
+                    <div *ngIf="editForm.get('nomeCartao').invalid && (editForm.get('nomeCartao').dirty || editForm.get('nomeCartao').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nomeCartao').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nomeCartao').errors.minlength" jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 10 }">
+                        This field is required to be at least 10 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nomeCartao').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 40 }">
+                        This field cannot be longer than 40 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bestMealApp.cartaoCredito.bandeira" for="field_bandeira">Bandeira</label>
+                    <select class="form-control" name="bandeira" formControlName="bandeira" id="field_bandeira">
+                        <option value="AMERICAN">{{'bestMealApp.Bandeira.AMERICAN' | translate}}</option>
+                        <option value="DINERS">{{'bestMealApp.Bandeira.DINERS' | translate}}</option>
+                        <option value="ELO">{{'bestMealApp.Bandeira.ELO' | translate}}</option>
+                        <option value="MASTER">{{'bestMealApp.Bandeira.MASTER' | translate}}</option>
+                        <option value="VISA">{{'bestMealApp.Bandeira.VISA' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bestMealApp.cartaoCredito.numero" for="field_numero">Numero</label>
+                    <input type="text" class="form-control" name="numero" id="field_numero"
+                           formControlName="numero"/>
+                    <div *ngIf="editForm.get('numero').invalid && (editForm.get('numero').dirty || editForm.get('numero').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('numero').errors.pattern" jhiTranslate="entity.validation.pattern" [translateValues]="{ pattern: 'Numero' }">
+                            This field should follow pattern for "Numero".
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bestMealApp.cartaoCredito.cvv" for="field_cvv">Cvv</label>
+                    <input type="text" class="form-control" name="cvv" id="field_cvv"
+                           formControlName="cvv"/>
+                    <div *ngIf="editForm.get('cvv').invalid && (editForm.get('cvv').dirty || editForm.get('cvv').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('cvv').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('cvv').errors.pattern" jhiTranslate="entity.validation.pattern" [translateValues]="{ pattern: 'Cvv' }">
+                            This field should follow pattern for "Cvv".
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bestMealApp.cartaoCredito.validade" for="field_validade">Validade</label>
+                    <input type="text" class="form-control" name="validade" id="field_validade"
+                           formControlName="validade"/>
+                    <div *ngIf="editForm.get('validade').invalid && (editForm.get('validade').dirty || editForm.get('validade').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('validade').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('validade').errors.pattern" jhiTranslate="entity.validation.pattern" [translateValues]="{ pattern: 'Validade' }">
+                            This field should follow pattern for "Validade".
+                        </small>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

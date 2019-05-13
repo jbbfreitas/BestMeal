@@ -1,0 +1,30 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "nome",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": "5",
+            "fieldValidateRulesMaxlength": "100"
+        },
+        {
+            "fieldName": "uf",
+            "fieldType": "UF",
+            "fieldValues": "MT,GO,MS,AM,PA,PR,RN,RS,MG,DF,PB,AL,SE,PI,MA,RO,RR,AP,AC,TO,ES,SC,BA,PE"
+        }
+    ],
+    "changelogDate": "20190505181358",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "serviceImpl",
+    "entityTableName": "municipio",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

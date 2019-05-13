@@ -1,0 +1,53 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "nomeCartao",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ],
+        },
+        {
+            "fieldName": "bandeira",
+            "fieldType": "Bandeira",
+            "fieldValues": "MASTER,VISA,ELO,AMERICAN,DINERS"
+        },
+        {
+            "fieldName": "numero",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "pattern"            
+            ],
+            "fieldValidateRulesPattern": "^[0-9]{3,4}$"
+        },
+        {
+            "fieldName": "cvv",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "pattern"
+            ],
+            "fieldValidateRulesPattern": "^[0-9]{3,4}$"
+        },
+         {
+            "fieldName": "validade",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "pattern"            
+            ],
+            "fieldValidateRulesPattern": "^(0[1-9]|1[0-2])\/?([0-9]{4}|[0-9]{2})$"
+        }
+    ],
+    "changelogDate": "20190513153801",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "serviceImpl",
+    "entityTableName": "cartao_credito",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}
