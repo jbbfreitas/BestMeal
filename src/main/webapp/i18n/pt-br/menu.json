@@ -1,0 +1,26 @@
+{
+  "bestMealApp": {
+    "menu": {
+      "home": {
+        "title": "Menus",
+        "createLabel": "Criar novo Menu",
+        "createOrEditLabel": "Criar ou editar Menu"
+      },
+      "created": "Um novo Menu foi criado com o identificador {{ param }}",
+      "updated": "Um Menu foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Menu foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Menu {{ id }}?"
+      },
+      "detail": {
+        "title": "Menu"
+      },
+      "nome": "Nome",
+      "grupo": "Grupo",
+      "valorNormal": "Valor Normal",
+      "tempoPreparo": "Tempo Preparo",
+      "isDisponivel": "Is Disponivel",
+      "valorReduzido": "Valor Reduzido"
+    }
+  }
+}

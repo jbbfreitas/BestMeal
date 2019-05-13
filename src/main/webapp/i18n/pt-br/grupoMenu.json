@@ -1,0 +1,18 @@
+{
+  "bestMealApp": {
+    "GrupoMenu": {
+      "null": "",
+      "ENTRADA": "ENTRADA",
+      "PRATOFRIO": "PRATOFRIO",
+      "PRATOQUENTE": "PRATOQUENTE",
+      "SOBREMESA": "SOBREMESA",
+      "VINHO": "VINHO",
+      "CERVEJA": "CERVEJA",
+      "DESTILADO": "DESTILADO",
+      "REFRIGERANTE": "REFRIGERANTE",
+      "SUCO": "SUCO",
+      "COCKTAILSEMALCOOL": "COCKTAILSEMALCOOL",
+      "COCKTAILCOMALCOOL": "COCKTAILCOMALCOOL"
+    }
+  }
+}
