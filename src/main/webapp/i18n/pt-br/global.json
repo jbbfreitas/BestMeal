@@ -120,7 +120,8 @@
       "pattern": "Este campo deve estar dentro do seguinte padrão {{ pattern }}.",
       "number": "Este campo é do tipo numérico.",
       "datetimelocal": "Este campo é do tipo data/hora.",
-      "patternLogin": "Este campo só pode conter letras, números e e-mail."
+      "patternLogin": "Este campo só pode conter letras, números e e-mail.",
+      "jhiForbiddenName": "Este campo não pode conter a palavra {{jhiForbiddenName}}"
     }
   },
   "error": {

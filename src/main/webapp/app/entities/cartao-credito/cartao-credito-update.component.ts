@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ICartaoCredito, CartaoCredito } from 'app/shared/model/cartao-credito.model';
 import { CartaoCreditoService } from './cartao-credito.service';
+import { forbiddenNameValidator } from '../../shared/validators/forbidden-name.directive';
 
 @Component({
   selector: 'jhi-cartao-credito-update',
@@ -16,7 +17,7 @@ export class CartaoCreditoUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
-    nomeCartao: [null, [Validators.required, Validators.minLength(10), Validators.maxLength(40)]],
+    nomeCartao: [null, [Validators.required, Validators.minLength(10), Validators.maxLength(40), forbiddenNameValidator(/bobó/i)]],
     bandeira: [],
     numero: [null, [Validators.pattern('^[0-9]{3,4}$')]],
     cvv: [null, [Validators.required, Validators.pattern('^[0-9]{3,4}$')]],
