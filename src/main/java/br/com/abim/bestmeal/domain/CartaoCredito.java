@@ -46,7 +46,7 @@ public class CartaoCredito implements Serializable {
     private String cvv;
 
     @NotNull
-    @Pattern(regexp = "^(0[1-9]|1[0-2])\\/?([0-9]{4}|[0-9]{2})$")
+    @Pattern(regexp = "^(0[1-9]|1[0-2])\\/?([0-9]{4})$")
     @Column(name = "validade", nullable = false)
     private String validade;
 

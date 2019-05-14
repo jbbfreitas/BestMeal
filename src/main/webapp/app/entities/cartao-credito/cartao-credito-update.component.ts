@@ -3,9 +3,11 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { ICartaoCredito, CartaoCredito } from 'app/shared/model/cartao-credito.model';
+import { ICartaoCredito, CartaoCredito } from '../../shared/model/cartao-credito.model';
 import { CartaoCreditoService } from './cartao-credito.service';
-import { forbiddenNameValidator } from '../../shared/validators/forbidden-name.directive';
+import { CustomNameValidatorService } from '../../shared/validators/custom-name.service';
+import { CustomDateValidatorService } from '../../shared/validators/custom-date-service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'jhi-cartao-credito-update',
@@ -14,10 +16,14 @@ import { forbiddenNameValidator } from '../../shared/validators/forbidden-name.d
 export class CartaoCreditoUpdateComponent implements OnInit {
   cartaoCredito: ICartaoCredito;
   isSaving: boolean;
+  mesano: string = moment().format('MM/YYYY');
 
   editForm = this.fb.group({
     id: [],
-    nomeCartao: [null, [Validators.required, Validators.minLength(10), Validators.maxLength(40), forbiddenNameValidator(/bobó/i)]],
+    nomeCartao: [
+      null,
+      [Validators.required, Validators.minLength(10), Validators.maxLength(40), this.nameValidatorService.forbiddenNameValidator(/bosco/i)]
+    ],
     bandeira: [],
     numero: [
       null,
@@ -28,10 +34,19 @@ export class CartaoCreditoUpdateComponent implements OnInit {
       ]
     ],
     cvv: [null, [Validators.required, Validators.pattern('^[0-9]{3,4}$')]],
-    validade: [null, [Validators.required, Validators.pattern('^(0[1-9]|1[0-2])/?([0-9]{4}|[0-9]{2})$')]]
+    validade: [
+      null,
+      [Validators.required, Validators.pattern('^(0[1-9]|1[0-2])/?([0-9]{4})$'), this.dateValidateService.expireDateValidator(this.mesano)]
+    ]
   });
 
-  constructor(protected cartaoCreditoService: CartaoCreditoService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
+  constructor(
+    protected cartaoCreditoService: CartaoCreditoService,
+    protected activatedRoute: ActivatedRoute,
+    private fb: FormBuilder,
+    protected nameValidatorService: CustomNameValidatorService,
+    protected dateValidateService: CustomDateValidatorService
+  ) {}
 
   ngOnInit() {
     this.isSaving = false;

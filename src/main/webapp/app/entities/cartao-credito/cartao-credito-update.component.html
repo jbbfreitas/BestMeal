@@ -26,10 +26,12 @@
                                *ngIf="editForm.get('nomeCartao').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 40 }">
                         This field cannot be longer than 40 characters.
                         </small>
+                        
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('nomeCartao').errors.jhiForbiddenName" jhiTranslate="entity.validation.jhiForbiddenName" [translateValues]="{ jhiForbiddenName: 'bobó' }">
+                               *ngIf="editForm.get('nomeCartao').errors.jhiForbiddenName" jhiTranslate="entity.validation.forbiddenName" [translateValues]="{ forbiddenName: 'bosco' }">
                         This field cannot be longer than 40 characters.
                         </small>
+                    
                     </div>
                 </div>
                 <div class="form-group">
@@ -63,7 +65,7 @@
                         This field is required.
                         </small>
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('cvv').errors.pattern" jhiTranslate="entity.validation.pattern" [translateValues]="{ pattern: 'Cvv' }">
+                               *ngIf="editForm.get('cvv').errors.pattern" jhiTranslate="entity.validation.pattern" [translateValues]="{ pattern: '999' }">
                             This field should follow pattern for "Cvv".
                         </small>
                     </div>
@@ -78,7 +80,11 @@
                         This field is required.
                         </small>
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('validade').errors.pattern" jhiTranslate="entity.validation.pattern" [translateValues]="{ pattern: 'Validade' }">
+                               *ngIf="editForm.get('validade').errors.pattern" jhiTranslate="entity.validation.pattern" [translateValues]="{ pattern: 'mm/yyyy' }">
+                            This field should follow pattern for "Validade".
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('validade').errors.validadeCart" jhiTranslate="entity.validation.validadeCart" [translateValues]="{ mesanoMin: mesano}">
                             This field should follow pattern for "Validade".
                         </small>
                     </div>

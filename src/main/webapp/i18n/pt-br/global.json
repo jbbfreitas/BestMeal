@@ -122,7 +122,8 @@
       "number": "Este campo é do tipo numérico.",
       "datetimelocal": "Este campo é do tipo data/hora.",
       "patternLogin": "Este campo só pode conter letras, números e e-mail.",
-      "jhiForbiddenName": "Este campo não pode conter a palavra {{jhiForbiddenName}}"
+      "forbiddenName": "Este campo não pode conter a palavra {{forbiddenName}}",
+      "validadeCart": "Mês e ano tem que ter um valor maior ou igual a {{mesanoMin}}"
     }
   },
   "error": {
