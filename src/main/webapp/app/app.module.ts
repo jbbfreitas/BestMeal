@@ -3,7 +3,7 @@ import './vendor.ts';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepickerConfig, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { NgJhipsterModule } from 'ng-jhipster';
 
@@ -18,6 +18,7 @@ import { BestMealHomeModule } from './home/home.module';
 import { BestMealAccountModule } from './account/account.module';
 import { BestMealEntityModule } from './entities/entity.module';
 import * as moment from 'moment';
+import { DateParserFormatter } from '../app/shared/util/date-parser.formatter';
 
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ActiveMenuDirective, ErrorComponent } from './layouts';
@@ -62,7 +63,8 @@ import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent
       provide: HTTP_INTERCEPTORS,
       useClass: NotificationInterceptor,
       multi: true
-    }
+    },
+    { provide: NgbDateParserFormatter, useClass: DateParserFormatter }
   ],
   bootstrap: [JhiMainComponent]
 })
