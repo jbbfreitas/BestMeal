@@ -10,6 +10,7 @@
         "cartaoCredito": "Cartao Credito",
         "cartaoRecompensa": "Cartao Recompensa",
         "menu": "Menu",
+        "produto": "Produto",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

@@ -1,0 +1,27 @@
+{
+  "bestMealApp": {
+    "produto": {
+      "home": {
+        "title": "Produtos",
+        "createLabel": "Criar novo Produto",
+        "createOrEditLabel": "Criar ou editar Produto"
+      },
+      "created": "Um novo Produto foi criado com o identificador {{ param }}",
+      "updated": "Um Produto foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Produto foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Produto {{ id }}?"
+      },
+      "detail": {
+        "title": "Produto"
+      },
+      "codigo": "Codigo",
+      "nome": "Nome",
+      "unidade": "Unidade",
+      "estoqueMinimo": "Estoque Minimo",
+      "estoqueAtual": "Estoque Atual",
+      "dataUltimaCompra": "Data Ultima Compra",
+      "valorUltimaCompra": "Valor Ultima Compra"
+    }
+  }
+}

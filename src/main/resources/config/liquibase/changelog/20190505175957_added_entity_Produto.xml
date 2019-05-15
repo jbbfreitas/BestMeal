@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+    <!--
+        Added the entity Produto.
+    -->
+    <changeSet id="20190505175957-1" author="jhipster">
+        <createTable tableName="produto">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="codigo" type="varchar(5)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="nome" type="varchar(50)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="unidade" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="estoque_minimo" type="integer">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="estoque_atual" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="data_ultima_compra" type="date">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="valor_ultima_compra" type="double">
+                <constraints nullable="true" />
+            </column>
+
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+
+    </changeSet>
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20190505175957-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/data/produto.csv"
+                  separator=";"
+                  tableName="produto"
+                  context="dev">
+            <column name="id" type="numeric"/>
+            <column name="codigo" type="string"/>
+            <column name="nome" type="string"/>
+            <column name="unidade" type="string"/>
+            <column name="estoque_minimo" type="numeric"/>
+            <column name="estoque_atual" type="numeric"/>
+            <column name="data_ultima_compra" type="date"/>
+            <column name="valor_ultima_compra" type="numeric"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="20190505175957-1-relations" author="jhipster">
+
+    </changeSet>
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
+</databaseChangeLog>

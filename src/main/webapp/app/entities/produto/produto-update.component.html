@@ -1,0 +1,107 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-produto-heading" jhiTranslate="bestMealApp.produto.home.createOrEditLabel">Create or edit a Produto</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!produto.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bestMealApp.produto.codigo" for="field_codigo">Codigo</label>
+                    <input type="text" class="form-control" name="codigo" id="field_codigo"
+                           formControlName="codigo"/>
+                    <div *ngIf="editForm.get('codigo').invalid && (editForm.get('codigo').dirty || editForm.get('codigo').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('codigo').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('codigo').errors.minlength" jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 5 }">
+                        This field is required to be at least 5 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('codigo').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 5 }">
+                        This field cannot be longer than 5 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bestMealApp.produto.nome" for="field_nome">Nome</label>
+                    <input type="text" class="form-control" name="nome" id="field_nome"
+                           formControlName="nome"/>
+                    <div *ngIf="editForm.get('nome').invalid && (editForm.get('nome').dirty || editForm.get('nome').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nome').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nome').errors.minlength" jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 3 }">
+                        This field is required to be at least 3 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nome').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 50 }">
+                        This field cannot be longer than 50 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bestMealApp.produto.unidade" for="field_unidade">Unidade</label>
+                    <input type="text" class="form-control" name="unidade" id="field_unidade"
+                           formControlName="unidade"/>
+                    <div *ngIf="editForm.get('unidade').invalid && (editForm.get('unidade').dirty || editForm.get('unidade').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('unidade').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bestMealApp.produto.estoqueMinimo" for="field_estoqueMinimo">Estoque Minimo</label>
+                    <input type="number" class="form-control" name="estoqueMinimo" id="field_estoqueMinimo"
+                           formControlName="estoqueMinimo"/>
+                    <div *ngIf="editForm.get('estoqueMinimo').invalid && (editForm.get('estoqueMinimo').dirty || editForm.get('estoqueMinimo').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('estoqueMinimo').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('estoqueMinimo')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bestMealApp.produto.estoqueAtual" for="field_estoqueAtual">Estoque Atual</label>
+                    <input type="number" class="form-control" name="estoqueAtual" id="field_estoqueAtual"
+                           formControlName="estoqueAtual"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bestMealApp.produto.dataUltimaCompra" for="field_dataUltimaCompra">Data Ultima Compra</label>
+                    <div class="input-group">
+                        <input id="field_dataUltimaCompra" type="text" class="form-control" name="dataUltimaCompra" ngbDatepicker  #dataUltimaCompraDp="ngbDatepicker" formControlName="dataUltimaCompra"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dataUltimaCompraDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bestMealApp.produto.valorUltimaCompra" for="field_valorUltimaCompra">Valor Ultima Compra</label>
+                    <input type="number" class="form-control" name="valorUltimaCompra" id="field_valorUltimaCompra"
+                           formControlName="valorUltimaCompra"/>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
