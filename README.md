@@ -78,7 +78,7 @@ the type of your field? String ? Do you want to add validation rules to your fie
 your entity? Yes ? What is the name of your field? cv ? What is the type of your field? String ? Do you want to add validation rules to your
 field? No 5. Gerando o campo #4 ? Do you want to add a field to your entity? Yes ? What is the name of your field? validade ? What is the
 type of your field? String ? Do you want to add validation rules to your field? Yes ? Which validation rules do you want to add? Required,
-Minimum length, Maximum l ength ? What is the minimum length of your field? 4 ? What is the maximum length of your field? 4 6. ? Do you want
+Minimum length, Maximum length ? What is the minimum length of your field? 4 ? What is the maximum length of your field? 4 6. ? Do you want
 to add a field to your entity? No 7. Generating relationships to other entities 8. ? Do you want to add a relationship to another entity? No
 ```
 
