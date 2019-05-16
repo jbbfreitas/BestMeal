@@ -63,3 +63,10 @@ Existem dois tipos de funções validadoras: validadores síncronos e validadore
 ::: :walking: Passo a passo :::
 
 1. Cria a estrutura de pastas conforme Figura 1
+
+<p align="center">
+  <img src="imagens/EstruturaValidators.png" alt="Estrutura de pastas para validadores">
+</p>
+<p align="center">
+   <strong>Figura 1- Imagem da estrutura de pastas para validadores</strong> 
+</p>
