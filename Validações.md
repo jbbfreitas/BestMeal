@@ -72,3 +72,51 @@ Existem dois tipos de funções validadoras: validadores síncronos e validadore
 </p>
 
 2. Na nova pasta, crie um novo arquivo denominado `custom-name.service.ts`, conforme Listagem 2
+
+```typescript
+import { AbstractControl, ValidatorFn } from '@angular/forms';
+import { Injectable } from '@angular/core';
+
+@Injectable({ providedIn: 'root' })
+export class CustomNameValidatorService {
+  forbiddenNameValidator(nameRe: RegExp): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } => {
+      const forbidden = nameRe.test(control.value);
+      return forbidden ? { jhiForbiddenName: { value: control.value } } : null;
+    };
+  }
+}
+```
+
+<p align="center">
+   <strong>Liustagem 2 -custom-name.service.ts </strong> 
+</p>
+
+3. Altere o arquivo denominado `custom-name.service.ts`, conforme Listagem 2
+
+```typescript
+...
+import { CustomNameValidatorService } from '../../shared/validators/custom-name.service'; // >>> Alterado aqui
+...
+
+@Component({
+  selector: 'jhi-cartao-credito-update',
+  templateUrl: './cartao-credito-update.component.html'
+})
+export class CartaoCreditoUpdateComponent implements OnInit {
+  cartaoCredito: ICartaoCredito;
+  isSaving: boolean;
+
+  editForm = this.fb.group({
+    id: [],
+    nomeCartao: [
+      null,
+      [Validators.required, Validators.minLength(10), Validators.maxLength(40)
+      ,this.nameValidatorService.forbiddenNameValidator(/bosco/i)] // >>> Alterado aqui
+    ],
+    bandeira: [],
+```
+
+<p align="center">
+   <strong>Listagem 3 -cartao-credito-update.components.ts </strong> 
+</p>
