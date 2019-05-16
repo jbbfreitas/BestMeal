@@ -236,7 +236,7 @@ export class CustomDateValidatorService {
    <strong>Listagem 6 -arquivo custom-date.service.ts </strong> 
 </p>
 
-3. Altere o arquivo denominado `cartao-credito-update.component.ts`, conforme Listagem 7
+2. Altere o arquivo denominado `cartao-credito-update.component.ts`, conforme Listagem 7
 
 ```typescript
 
@@ -263,7 +263,7 @@ export class CartaoCreditoUpdateComponent implements OnInit {
    <strong>Listagem 7 -cartao-credito-update.components.ts </strong> 
 </p>
 
-4. Altere o arquivo denominado `cartao-credito-update.component.html`, conforme Listagem 8
+3. Altere o arquivo denominado `cartao-credito-update.component.html`, conforme Listagem 8
 
 ```html
                 <div class="form-group">
@@ -285,7 +285,7 @@ export class CartaoCreditoUpdateComponent implements OnInit {
    <strong>Listagem 8 -cartao-credito-update.components.html </strong> 
 </p>
 
-5. Pronto. Execute agora a aplicação com
+4. Pronto. Execute agora a aplicação com
 
 ```java
 
@@ -293,7 +293,7 @@ mvn
 
 ```
 
-6. Testando a aplicação
+5. Testando a aplicação
 
 <p align="center">
   <img src="images/ValidacaoExpira.png" alt="Validação da data que o cartão expira">
