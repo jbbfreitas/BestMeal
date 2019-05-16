@@ -70,3 +70,5 @@ Existem dois tipos de funções validadoras: validadores síncronos e validadore
 <p align="center">
    <strong>Figura 1- Imagem da estrutura de pastas para validadores</strong> 
 </p>
+
+2. Na nova pasta, crie um novo arquivo denominado `custom-name.service.ts`, conforme Listagem 2
