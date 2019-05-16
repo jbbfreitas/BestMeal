@@ -159,9 +159,11 @@ export class CartaoCreditoUpdateComponent implements OnInit {
 ```json
     "validation": {
       "required": "O campo é obrigatório.",
-      ...
-      "forbiddenName": "Este campo não pode conter a palavra {{forbiddenName}}", // >> adicionado aqui
-      "validadeCart": "Mês e ano tem que ter um valor maior ou igual a {{mesanoMin}}" // >> adicionado aqui
+
+
+      // Adicionadas as 2 linhas abaixo
+      "forbiddenName": "Este campo não pode conter a palavra {{forbiddenName}}",
+      "validadeCart": "Mês e ano tem que ter um valor maior ou igual a {{mesanoMin}}"
     }
 ```
 
