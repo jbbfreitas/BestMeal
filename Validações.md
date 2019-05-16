@@ -58,7 +58,9 @@ Existem dois tipos de funções validadoras: validadores síncronos e validadore
 
 > Nota 2: o Jhipster a partir da versão 6.X usa `Reactive Forms` por padrão.
 
-#### Implementando um `Reactive Forms` na aplicação BestMeal
+#### Implementando a primeira validação do tipo `Reactive Forms` na aplicação BestMeal
+
+> A validação que iremos implementar, impede que uma determina string seja utilizada no nome.
 
 ::: :walking: Passo a passo :::
 
@@ -186,4 +188,50 @@ mvn
 </p>
 <p align="center">
    <strong>Figura 2- Imagem da Validação de nome no cartão</strong> 
+</p>
+
+#### Implementando a segunda validação do tipo `Reactive Forms` na aplicação BestMeal
+
+> A segunda validação que iremos implementar, verifica a validade do cartão de crédito.
+
+::: :walking: Passo a passo :::
+
+1. Na nova pasta `shared/validators`, crie um novo arquivo denominado `custom-date.service.ts`, conforme Listagem 6
+
+```typescript
+import { AbstractControl, ValidatorFn } from '@angular/forms';
+import { Injectable } from '@angular/core';
+
+/**
+ * Classe para fazer validações com datas
+ *
+ */
+
+@Injectable({ providedIn: 'root' })
+export class CustomDateValidatorService {
+  /**
+   *
+   * @param mesano //mes e ano mínimo
+   * Este método valida se mm/yyyy informado é maior ou igual a um mínimo
+   */
+  expireDateValidator(mesano: string): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } => {
+      const mesMin = mesano.substring(0, 2);
+      const anoMin = mesano.substring(3, 7);
+      if (control.value) {
+        // se nao for nulo
+        const mesInf = control.value.substring(0, 2);
+        const anoInf = control.value.substring(3, 7);
+        const isInvalid = anoInf < anoMin || (anoInf === anoMin && mesInf < mesMin);
+        return isInvalid ? { validadeCart: { value: control.value } } : null;
+      } else {
+        return null;
+      }
+    };
+  }
+}
+```
+
+<p align="center">
+   <strong>Listagem 6 -arquivo custom-date.service.ts </strong> 
 </p>
