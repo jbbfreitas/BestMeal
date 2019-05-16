@@ -299,5 +299,5 @@ mvn
   <img src="images/ValidacaoExpira.png" alt="Validação da data que o cartão expira">
 </p>
 <p align="center">
-   <strong>Figura 2- Imagem da Validação da data que o cartão expira</strong> 
+   <strong>Figura 2- Imagem da validação da data que o cartão expira</strong> 
 </p>
