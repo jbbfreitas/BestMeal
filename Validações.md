@@ -2,15 +2,46 @@
 
 ## Por que Validar no lado cliente?
 
-> "A validação do lado do cliente fornece ao usuário um feedback imediato, sem ter que esperar o carregamento da página. As aplicações cliente modernas fazem a validação imediata das entradas de dados, ou seja, à medida que os dados são gitados por você. Antigamente era preciso teclar um botão `gravar` ou `enviar` para que o lado cliente informasse quais os campos estavam inconsistentes. Infelizmente muitas aplicações ainda são até hoje!"
+> A validação do lado do cliente fornece ao usuário um feedback imediato, sem ter que esperar o carregamento da página. As aplicações cliente modernas fazem a validação imediata das entradas de dados, ou seja, à medida que os dados são digitados por você. Antigamente era preciso teclar um botão `gravar` ou `enviar` para que o lado cliente informasse quais os campos estavam inconsistentes. Infelizmente muitas aplicações ainda são até hoje!
 
 ## A validação do lado cliente é suficente?
 
-> "Não. Se o browser tiver os scripts desabilitado (por exemplo, JavaScript desabilitado), a validação não será disparada, e é por isso que você precisa do servidor para verificar os valores também.
+> Infelizmente não. Se o browser tiver os scripts desabilitado (por exemplo, JavaScript desabilitado), a validação não será disparada, e é por isso que você precisa do servidor para verificar os valores também.
 
-"
+## Quais os tipos de validação são utilizadas no Angular?
 
-### Preparação do ambiente para usar o Angular
+> O Angular permite duas formas de validação em formulários: `Template-driven` e `Reactive Forms`.
+
+> `Template-driven` usa atributos de validação exatamente como você como faria com a validação de formulário HTML nativo. Angular usa diretivas para combinar esses atributos com funções validadoras no framework. Toda vez que o valor de um controle de formulário for alterado, o Angular executa a validação e gera uma lista de erros de validação, que resulta em um status INVALID ou nulo.
+
+### Exemplo de `Template-drive`
+
+```typescript
+<input id="name" name="name" class="form-control"
+      required minlength="4" appForbiddenName="bob"
+      [(ngModel)]="hero.name" #name="ngModel" >
+
+<div *ngIf="name.invalid && (name.dirty || name.touched)"
+    class="alert alert-danger">
+
+  <div *ngIf="name.errors.required">
+    Name is required.
+  </div>
+  <div *ngIf="name.errors.minlength">
+    Name must be at least 4 characters long.
+  </div>
+  <div *ngIf="name.errors.forbiddenName">
+    Name cannot be Bob.
+  </div>
+
+</div>
+
+
+```
+
+> `Reactive Forms`
+
+Você pode então inspecionar o estado do controle exportando ngModel para uma variável de modelo local.
 
 #### 1. Instale o servidor Node.js
 
