@@ -178,3 +178,12 @@ export class CartaoCreditoUpdateComponent implements OnInit {
 mvn
 
 ```
+
+7. Testando a aplicação
+
+<p align="center">
+  <img src="images/ValidacaoNome.png" alt="Validação de nome no cartão">
+</p>
+<p align="center">
+   <strong>Figura 1- Imagem da Validação de nome no cartão</strong> 
+</p>
