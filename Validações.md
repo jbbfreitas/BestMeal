@@ -12,6 +12,8 @@
 
 > O Angular permite duas formas de validação em formulários: `Template-driven` e `Reactive Forms`.
 
+### Template-driven
+
 > `Template-driven` usa atributos de validação exatamente como você como faria com a validação de formulário HTML nativo. Angular usa diretivas para combinar esses atributos com funções validadoras no framework. Toda vez que o valor de um controle de formulário for alterado, o Angular executa a validação e gera uma lista de erros de validação, que resulta em um status INVALID ou nulo.
 
 ### Exemplo de `Template-drive`
@@ -38,6 +40,8 @@
 
 
 ```
+
+### Reactive Forms
 
 > `Reactive Forms` Nessa modalidade, em vez de adicionar validadores por meio de atributos no modelo, você adiciona funções do validador diretamente ao modelo de controle de formulário na classe do componente. Angular então chama essas funções sempre que o valor do controle é alterado.
 > Funções do validador
