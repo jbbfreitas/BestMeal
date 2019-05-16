@@ -92,7 +92,7 @@ export class CustomNameValidatorService {
    <strong>Liustagem 2 -custom-name.service.ts </strong> 
 </p>
 
-3. Altere o arquivo denominado `custom-name.service.ts`, conforme Listagem 2
+3. Altere o arquivo denominado `cartao-credito-update.component.ts`, conforme Listagem 3
 
 ```typescript
 ...
@@ -115,8 +115,56 @@ export class CartaoCreditoUpdateComponent implements OnInit {
       ,this.nameValidatorService.forbiddenNameValidator(/bosco/i)] // >>> Alterado aqui
     ],
     bandeira: [],
+...
+ constructor(
+    protected cartaoCreditoService: CartaoCreditoService,
+    protected activatedRoute: ActivatedRoute,
+    private fb: FormBuilder,
+    protected nameValidatorService: CustomNameValidatorService // >>> Alterado aqui
+  ) {}
+
+  ngOnInit() {
+  ...
 ```
 
 <p align="center">
    <strong>Listagem 3 -cartao-credito-update.components.ts </strong> 
+</p>
+
+4. Altere o arquivo denominado `cartao-credito-update.component.html`, conforme Listagem 4
+
+```html
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bestMealApp.cartaoCredito.nomeCartao" for="field_nomeCartao">Nome Cartao</label>
+                    <input type="text" class="form-control" name="nomeCartao" id="field_nomeCartao"
+                           formControlName="nomeCartao"/>
+                        ...
+                        <!-- bloco de código adicionado -->
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nomeCartao').errors.jhiForbiddenName" jhiTranslate="entity.validation.forbiddenName"
+                               [translateValues]="{ forbiddenName: 'bosco' }">
+                        This field cannot be longer than 40 characters.
+                        </small>
+                    </div>
+                </div>
+
+```
+
+<p align="center">
+   <strong>Listagem 4 -cartao-credito-update.components.html </strong> 
+</p>
+
+5. Altere o arquivo denominado `global.json`, conforme Listagem 5
+
+```json
+    "validation": {
+      "required": "O campo é obrigatório.",
+      ...
+      "forbiddenName": "Este campo não pode conter a palavra {{forbiddenName}}", // >> adicionado aqui
+      "validadeCart": "Mês e ano tem que ter um valor maior ou igual a {{mesanoMin}}" // >> adicionado aqui
+    }
+```
+
+<p align="center">
+   <strong>Listagem 5 -arquivo global.json </strong> 
 </p>
