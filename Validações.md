@@ -170,3 +170,11 @@ export class CartaoCreditoUpdateComponent implements OnInit {
 <p align="center">
    <strong>Listagem 5 -arquivo global.json </strong> 
 </p>
+
+6. Pronto. Execute agora a aplicação com
+
+```java
+
+mvn
+
+```
