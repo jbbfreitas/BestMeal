@@ -235,3 +235,69 @@ export class CustomDateValidatorService {
 <p align="center">
    <strong>Listagem 6 -arquivo custom-date.service.ts </strong> 
 </p>
+
+3. Altere o arquivo denominado `cartao-credito-update.component.ts`, conforme Listagem 7
+
+```typescript
+
+import { CustomDateValidatorService } from '../../shared/validators/custom-date-service';// >>> Alterado aqui
+
+...
+
+export class CartaoCreditoUpdateComponent implements OnInit {
+
+  mesano: string = moment().format('MM/YYYY'); // >> alterado aqui
+
+  editForm = this.fb.group({
+    id: [],
+    ...
+    validade: [
+      null,
+      this.dateValidateService.expireDateValidator(this.mesano)] // >> Alterado aqui
+    ]
+  });
+...
+```
+
+<p align="center">
+   <strong>Listagem 7 -cartao-credito-update.components.ts </strong> 
+</p>
+
+4. Altere o arquivo denominado `cartao-credito-update.component.html`, conforme Listagem 8
+
+```html
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bestMealApp.cartaoCredito.validade" for="field_validade">Validade</label>
+                    <input type="text" class="form-control" name="validade" id="field_validade"
+                           formControlName="validade"/>
+
+                        <!-- bloco de código adicionado -->
+                    <small class="form-text text-danger"
+                               *ngIf="editForm.get('validade').errors.validadeCart" jhiTranslate="entity.validation.validadeCart" [translateValues]="{ mesanoMin: mesano}">
+                            This field should follow pattern for "Validade".
+                    </small>
+                    </div>
+                </div>
+
+```
+
+<p align="center">
+   <strong>Listagem 8 -cartao-credito-update.components.html </strong> 
+</p>
+
+5. Pronto. Execute agora a aplicação com
+
+```java
+
+mvn
+
+```
+
+6. Testando a aplicação
+
+<p align="center">
+  <img src="images/ValidacaoExpira.png" alt="Validação da data que o cartão expira">
+</p>
+<p align="center">
+   <strong>Figura 2- Imagem da Validação da data que o cartão expira</strong> 
+</p>
