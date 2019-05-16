@@ -69,17 +69,45 @@ mvn
 
 ### Criação da primeira entidade : CartaoCredito
 
-```html
-1. Digite: jhipster:entity CartaoCredito 2. Gerando o campo #1 ? Do you want to add a field to your entity? Yes ? What is the name of your
-field? bandeira ? What is the type of your field? Enumeration (Java enum type) ? What is the class name of your enumeration? Bandeira ? What
-are the values of your enumeration (separated by comma, no spaces)? Maste er,Visa,Elo,American,Dinners ? Do you want to add validation rules
-to your field? No 3. Gerando o campo #2 ? Do you want to add a field to your entity? Yes ? What is the name of your field? numero ? What is
-the type of your field? String ? Do you want to add validation rules to your field? No 4. Gerando o campo #3 ? Do you want to add a field to
-your entity? Yes ? What is the name of your field? cv ? What is the type of your field? String ? Do you want to add validation rules to your
-field? No 5. Gerando o campo #4 ? Do you want to add a field to your entity? Yes ? What is the name of your field? validade ? What is the
-type of your field? String ? Do you want to add validation rules to your field? Yes ? Which validation rules do you want to add? Required,
-Minimum length, Maximum length ? What is the minimum length of your field? 4 ? What is the maximum length of your field? 4 6. ? Do you want
-to add a field to your entity? No 7. Generating relationships to other entities 8. ? Do you want to add a relationship to another entity? No
+```js
+
+1.  Digite: jhipster:entity CartaoCredito
+
+2. Gerando o campo #1 ?
+
+Do you want to add a field to your entity? Yes ?
+What is the name of your field? bandeira ?
+What is the type of your field? Enumeration (Java enum type) ?
+What is the class name of your enumeration? Bandeira ?
+What are the values of your enumeration (separated by comma, no spaces)? Maste er,Visa,Elo,American,Dinners ?
+Do you want to add validation rules to your field? No
+
+
+3. Gerando o campo #2 ? Do you want to add a field to your entity? Yes ?
+What is the name of your field? numero ?
+What is the type of your field? String ?
+Do you want to add validation rules to your field?
+
+No 4. Gerando o campo #3 ?
+Do you want to add a field to your entity? Yes ?
+What is the name of your field? cv ?
+What is the type of your field? String ?
+Do you want to add validation rules to your field? No
+
+5. Gerando o campo #4 ?
+Do you want to add a field to your entity? Yes ?
+What is the name of your field? validade ?
+What is the type of your field? String ?
+Do you want to add validation rules to your field? Yes ?
+Which validation rules do you want to add? Required, Minimum length, Maximum length ?
+What is the minimum length of your field? 4 ?
+What is the maximum length of your field? 4 6. ?
+
+Do you want to add a field to your entity? No
+
+7. Generating relationships to other entities
+8. ? Do you want to add a relationship to another entity? No
+
 ```
 
 ### Execute a aplicação e teste o CRUD do `CartaoCredito`
