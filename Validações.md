@@ -39,11 +39,20 @@
 
 ```
 
-> `Reactive Forms`
+> `Reactive Forms` Nessa modalidade, em vez de adicionar validadores por meio de atributos no modelo, você adiciona funções do validador diretamente ao modelo de controle de formulário na classe do componente. Angular então chama essas funções sempre que o valor do controle é alterado.
+> Funções do validador
 
-Você pode então inspecionar o estado do controle exportando ngModel para uma variável de modelo local.
+Existem dois tipos de funções validadoras: validadores síncronos e validadores assíncronos.
 
-#### 1. Instale o servidor Node.js
+    Validadores síncronos: retornam imediatamente um conjunto de erros de validação ou nulo.
+
+    Validadores assíncronos: retornam um Promise ou Observable que posteriormente emite um conjunto de erros de validação ou null.
+
+> Nota 1: por motivos de desempenho, o Angular só executa validadores assíncronos se todos os validadores de síncronos passarem. Cada um deve concluir antes que os erros sejam definidos.
+
+> Nota 2: o Jhipster a partir da versão 6.X usa `Reactive Forms` por padrão.
+
+#### Implementando um `Reactive Forms` na aplicação BestMeal
 
 ::: :walking: Passo a passo :::
 
