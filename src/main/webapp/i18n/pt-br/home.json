@@ -1,7 +1,7 @@
 {
   "home": {
-    "title": "Bem vindo, Java Hipster!",
-    "subtitle": "Esta é a página principal",
+    "title": "Bem Vindo ao BestMeal!",
+    "subtitle": "",
     "logged": {
       "message": "Você está logado como \"{{username}}\"."
     },

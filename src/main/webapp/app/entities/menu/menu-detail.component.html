@@ -5,41 +5,62 @@
             <hr>
             <jhi-alert-error></jhi-alert-error>
             <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="bestMealApp.menu.nome">Nome</span></dt>
-                <dd>
-                    <span>{{menu.nome}}</span>
-                </dd>
-                <dt><span jhiTranslate="bestMealApp.menu.grupo">Grupo</span></dt>
-                <dd>
-                    <span jhiTranslate="{{'bestMealApp.GrupoMenu.' + menu.grupo}}">{{menu.grupo}}</span>
-                </dd>
-                <dt><span jhiTranslate="bestMealApp.menu.valorNormal">Valor Normal</span></dt>
-                <dd>
-                    <span>{{menu.valorNormal}}</span>
-                </dd>
-                <dt><span jhiTranslate="bestMealApp.menu.tempoPreparo">Tempo Preparo</span></dt>
-                <dd>
-                    <span>{{menu.tempoPreparo}}</span>
-                </dd>
-                <dt><span jhiTranslate="bestMealApp.menu.isDisponivel">Is Disponivel</span></dt>
-                <dd>
-                    <span>{{menu.isDisponivel}}</span>
-                </dd>
-                <dt><span jhiTranslate="bestMealApp.menu.valorReduzido">Valor Reduzido</span></dt>
-                <dd>
-                    <span>{{menu.valorReduzido}}</span>
-                </dd>
-            </dl>
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <dt><span jhiTranslate="bestMealApp.menu.nome">Nome</span></dt>
+                        <dd>
+                            <span>{{menu.nome}}</span>
+                        </dd>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <dt><span jhiTranslate="bestMealApp.menu.grupo">Grupo</span></dt>
+                        <dd>
+                            <span jhiTranslate="{{'bestMealApp.GrupoMenu.' + menu.grupo}}">{{menu.grupo}}</span>
+                        </dd>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <dt><span jhiTranslate="bestMealApp.menu.tempoPreparo">Tempo Preparo</span></dt>
+                        <dd>
+                            <span>{{menu.tempoPreparo}}</span>
+                        </dd>
+                    </div>
+                </div>
 
-            <button type="submit"
-                    (click)="previousState()"
-                    class="btn btn-info">
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <dt><span jhiTranslate="bestMealApp.menu.valorNormal">Valor Normal</span></dt>
+                        <dd>
+                            <span>{{menu.valorNormal}}</span>
+                        </dd>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <dt><span jhiTranslate="bestMealApp.menu.valorReduzido">Valor Reduzido</span></dt>
+                        <dd>
+                            <span>{{menu.valorReduzido}}</span>
+                        </dd>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-2">
+
+                        <dt><span jhiTranslate="bestMealApp.menu.isDisponivel">Is Disponivel</span></dt>
+                        <dd>
+                            <span>
+                                <fa-icon [icon]="menu.isDisponivel ? 'check' : 'times'" aria-hidden="true"
+                                    class="{{menu.isDisponivel ? 'text-success' : 'text-danger'}}"></fa-icon>
+
+                            </span>
+                        </dd>
+                    </div>
+                </div>
+            </dl>
+            <button type="submit" (click)="previousState()" class="btn btn-info">
                 <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
             </button>
 
-            <button type="button"
-                    [routerLink]="['/menu', menu.id, 'edit']"
-                    class="btn btn-primary">
+            <button type="button" [routerLink]="['/menu', menu.id, 'edit']" class="btn btn-primary">
                 <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
             </button>
         </div>

@@ -1,11 +1,9 @@
 <div>
     <h2 id="page-heading">
-        <span jhiTranslate="bestMealApp.produto.home.title">Produtos</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-produto" [routerLink]="['/produto/new']">
+        <span jhiTranslate="bestMealApp.produto.home.title">Cartao Creditos</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-produto" 
+        [routerLink]="['/produto/new']" ngbTooltip="{{ 'bestMealApp.produto.home.createLabel' | translate }}">
             <fa-icon [icon]="'plus'"></fa-icon>
-            <span  jhiTranslate="bestMealApp.produto.home.createLabel">
-            Create new Produto
-            </span>
         </button>
     </h2>
     <jhi-alert></jhi-alert>
@@ -39,23 +37,20 @@
                     <div class="btn-group">
                         <button type="submit"
                                 [routerLink]="['/produto', produto.id, 'view' ]"
-                                class="btn btn-info btn-sm">
+                                class="btn btn-info btn-sm" ngbTooltip="{{ 'entity.action.view' | translate }}"> 
                             <fa-icon [icon]="'eye'"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/produto', produto.id, 'edit']"
-                                class="btn btn-primary btn-sm">
+                                class="btn btn-primary btn-sm" ngbTooltip="{{ 'entity.action.edit' | translate }}"> 
                             <fa-icon [icon]="'pencil-alt'"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
-                        </button>
+                        </button> 
                         <button type="submit"
                                 [routerLink]="['/', 'produto', { outlets: { popup: produto.id + '/delete'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
-                                class="btn btn-danger btn-sm">
+                                class="btn btn-danger btn-sm" ngbTooltip="{{ 'entity.action.delete' | translate }}"> 
                             <fa-icon [icon]="'times'"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
                         </button>
                     </div>
                 </td>

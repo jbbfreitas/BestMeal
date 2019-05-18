@@ -7,8 +7,8 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entidades",
-        "cartaoCredito": "Cartao Credito",
-        "cartaoRecompensa": "Cartao Recompensa",
+        "cartaoCredito": "Cartão de Crédito",
+        "cartaoRecompensa": "Cartão Recompensa",
         "menu": "Menu",
         "produto": "Produto",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
@@ -138,5 +138,5 @@
     "idexists": "Novo(a) {{entityName}} não pode ter um identificador",
     "idnull": "Identificador inválido"
   },
-  "footer": "Este é o rodapé da página"
+  "footer": "BestMeal - Sua melhor refeição"
 }

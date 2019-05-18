@@ -3,7 +3,7 @@
     "menu": {
       "home": {
         "title": "Menus",
-        "createLabel": "Criar novo Menu",
+        "createLabel": "Criar um novo menu",
         "createOrEditLabel": "Criar ou editar Menu"
       },
       "created": "Um novo Menu foi criado com o identificador {{ param }}",
@@ -19,7 +19,7 @@
       "grupo": "Grupo",
       "valorNormal": "Valor Normal",
       "tempoPreparo": "Tempo Preparo",
-      "isDisponivel": "Is Disponivel",
+      "isDisponivel": "Disponível?",
       "valorReduzido": "Valor Reduzido"
     }
   }

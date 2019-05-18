@@ -15,13 +15,13 @@
       "detail": {
         "title": "Produto"
       },
-      "codigo": "Codigo",
-      "nome": "Nome",
-      "unidade": "Unidade",
-      "estoqueMinimo": "Estoque Minimo",
+      "codigo": "Codigo Externo",
+      "nome": "Nome do produto",
+      "unidade": "Unidade de medida",
+      "estoqueMinimo": "Estoque Mínimo",
       "estoqueAtual": "Estoque Atual",
-      "dataUltimaCompra": "Data Ultima Compra",
-      "valorUltimaCompra": "Valor Ultima Compra"
+      "dataUltimaCompra": "Data da última Compra",
+      "valorUltimaCompra": "Valor da última Compra"
     }
   }
 }
