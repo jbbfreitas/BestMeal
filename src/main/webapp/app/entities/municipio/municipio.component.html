@@ -1,0 +1,65 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="bestMealApp.municipio.home.title">Municipios</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-municipio"
+            [routerLink]="['/municipio/new']" ngbTooltip="{{'bestMealApp.municipio.home.createLabel' | translate }}">
+            <fa-icon [icon]="'plus'"></fa-icon>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br />
+    <div class="table-responsive" *ngIf="municipios">
+        <table class="table table-striped">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+                    <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span>
+                        <fa-icon [icon]="'sort'"></fa-icon>
+                    </th>
+                    <th jhiSortBy="nomeMunicipio"><span jhiTranslate="bestMealApp.municipio.nomeMunicipio">Nome
+                            Municipio</span>
+                        <fa-icon [icon]="'sort'"></fa-icon>
+                    </th>
+                    <th jhiSortBy="uf"><span jhiTranslate="bestMealApp.municipio.uf">Uf</span>
+                        <fa-icon [icon]="'sort'"></fa-icon>
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let municipio of municipios ;trackBy: trackId">
+                    <td><a [routerLink]="['/municipio', municipio.id, 'view' ]">{{municipio.id}}</a></td>
+                    <td>{{municipio.nomeMunicipio}}</td>
+                    <td jhiTranslate="{{'bestMealApp.UF.' + municipio.uf}}">{{municipio.uf}}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit" [routerLink]="['/municipio', municipio.id, 'view' ]"
+                                class="btn btn-info btn-sm" ngbTooltip="{{'entity.action.view' | translate}}">
+                                <fa-icon [icon]="'eye'"></fa-icon>
+                            </button>
+                            <button type="submit" [routerLink]="['/municipio', municipio.id, 'edit']"
+                                class="btn btn-primary btn-sm" ngbTooltip="{{'entity.action.edit' | translate}}">
+                                <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            </button>
+                            <button type="submit"
+                                [routerLink]="['/', 'municipio', { outlets: { popup: municipio.id + '/delete'} }]"
+                                replaceUrl="true" queryParamsHandling="merge" class="btn btn-danger btn-sm"
+                                ngbTooltip="{{'entity.action.delete' | translate}}">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="municipios && municipios.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage">
+            </jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5"
+                [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

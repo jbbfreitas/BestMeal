@@ -1,0 +1,22 @@
+{
+  "bestMealApp": {
+    "municipio": {
+      "home": {
+        "title": "Municipios",
+        "createLabel": "Criar novo Municipio",
+        "createOrEditLabel": "Criar ou editar Municipio"
+      },
+      "created": "Um novo Municipio foi criado com o identificador {{ param }}",
+      "updated": "Um Municipio foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Municipio foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Municipio {{ id }}?"
+      },
+      "detail": {
+        "title": "Município"
+      },
+      "nomeMunicipio": "Nome do Município",
+      "uf": "UF"
+    }
+  }
+}

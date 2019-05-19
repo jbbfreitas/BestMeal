@@ -1,0 +1,82 @@
+<div class="row justify-content-center">
+    <div class="col-sm-6">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-municipio-heading" jhiTranslate="bestMealApp.municipio.home.createOrEditLabel">Create or edit a
+                Municipio</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="row">
+
+                    <div class="form-group col-sm-3" [hidden]="!municipio.id">
+                        <label for="id" jhiTranslate="global.field.id">ID</label>
+                        <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-9">
+                        <label class="form-control-label" jhiTranslate="bestMealApp.municipio.nomeMunicipio"
+                            for="field_nomeMunicipio">Nome Municipio</label>
+                        <input type="text" class="form-control" name="nomeMunicipio" id="field_nomeMunicipio"
+                            formControlName="nomeMunicipio" />
+                        <div
+                            *ngIf="editForm.get('nomeMunicipio').invalid && (editForm.get('nomeMunicipio').dirty || editForm.get('nomeMunicipio').touched)">
+                            <small class="form-text text-danger" *ngIf="editForm.get('nomeMunicipio').errors.required"
+                                jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                            <small class="form-text text-danger" *ngIf="editForm.get('nomeMunicipio').errors.minlength"
+                                jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 5 }">
+                                This field is required to be at least 5 characters.
+                            </small>
+                            <small class="form-text text-danger" *ngIf="editForm.get('nomeMunicipio').errors.maxlength"
+                                jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 100 }">
+                                This field cannot be longer than 100 characters.
+                            </small>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label class="form-control-label" jhiTranslate="bestMealApp.municipio.uf"
+                            for="field_uf">Uf</label>
+                        <select class="form-control" name="uf" formControlName="uf" id="field_uf">
+                            <option value="MT">{{'bestMealApp.UF.MT' | translate}}</option>
+                            <option value="GO">{{'bestMealApp.UF.GO' | translate}}</option>
+                            <option value="MS">{{'bestMealApp.UF.MS' | translate}}</option>
+                            <option value="AM">{{'bestMealApp.UF.AM' | translate}}</option>
+                            <option value="PA">{{'bestMealApp.UF.PA' | translate}}</option>
+                            <option value="PR">{{'bestMealApp.UF.PR' | translate}}</option>
+                            <option value="RN">{{'bestMealApp.UF.RN' | translate}}</option>
+                            <option value="RS">{{'bestMealApp.UF.RS' | translate}}</option>
+                            <option value="MG">{{'bestMealApp.UF.MG' | translate}}</option>
+                            <option value="DF">{{'bestMealApp.UF.DF' | translate}}</option>
+                            <option value="PB">{{'bestMealApp.UF.PB' | translate}}</option>
+                            <option value="AL">{{'bestMealApp.UF.AL' | translate}}</option>
+                            <option value="SE">{{'bestMealApp.UF.SE' | translate}}</option>
+                            <option value="PI">{{'bestMealApp.UF.PI' | translate}}</option>
+                            <option value="MA">{{'bestMealApp.UF.MA' | translate}}</option>
+                            <option value="RO">{{'bestMealApp.UF.RO' | translate}}</option>
+                            <option value="RR">{{'bestMealApp.UF.RR' | translate}}</option>
+                            <option value="RJ">{{'bestMealApp.UF.RJ' | translate}}</option>
+                            <option value="AP">{{'bestMealApp.UF.AP' | translate}}</option>
+                            <option value="SP">{{'bestMealApp.UF.SP' | translate}}</option>
+                            <option value="AC">{{'bestMealApp.UF.AC' | translate}}</option>
+                            <option value="TO">{{'bestMealApp.UF.TO' | translate}}</option>
+                            <option value="ES">{{'bestMealApp.UF.ES' | translate}}</option>
+                            <option value="SC">{{'bestMealApp.UF.SC' | translate}}</option>
+                            <option value="BA">{{'bestMealApp.UF.BA' | translate}}</option>
+                            <option value="PE">{{'bestMealApp.UF.PE' | translate}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving"
+                    class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

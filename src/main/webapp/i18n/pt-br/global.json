@@ -11,6 +11,7 @@
         "cartaoRecompensa": "Cartão Recompensa",
         "menu": "Menu",
         "produto": "Produto",
+        "municipio": "Municipio",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

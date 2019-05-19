@@ -1,0 +1,33 @@
+{
+  "bestMealApp": {
+    "UF": {
+      "null": "",
+      "MT": "MT",
+      "GO": "GO",
+      "MS": "MS",
+      "AM": "AM",
+      "PA": "PA",
+      "PR": "PR",
+      "RN": "RN",
+      "RS": "RS",
+      "MG": "MG",
+      "DF": "DF",
+      "PB": "PB",
+      "AL": "AL",
+      "SE": "SE",
+      "PI": "PI",
+      "MA": "MA",
+      "RO": "RO",
+      "RR": "RR",
+      "RJ": "RJ",
+      "AP": "AP",
+      "SP": "SP",
+      "AC": "AC",
+      "TO": "TO",
+      "ES": "ES",
+      "SC": "SC",
+      "BA": "BA",
+      "PE": "PE"
+    }
+  }
+}

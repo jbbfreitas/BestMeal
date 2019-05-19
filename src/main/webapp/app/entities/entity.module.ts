@@ -23,6 +23,18 @@ import { RouterModule } from '@angular/router';
       {
         path: 'produto',
         loadChildren: './produto/produto.module#BestMealProdutoModule'
+      },
+      {
+        path: 'municipio',
+        loadChildren: './municipio/municipio.module#BestMealMunicipioModule'
+      },
+      {
+        path: 'municipio',
+        loadChildren: './municipio/municipio.module#BestMealMunicipioModule'
+      },
+      {
+        path: 'municipio',
+        loadChildren: './municipio/municipio.module#BestMealMunicipioModule'
       }
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ])
