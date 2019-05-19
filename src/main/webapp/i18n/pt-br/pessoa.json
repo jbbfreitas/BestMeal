@@ -1,0 +1,33 @@
+{
+  "bestMealApp": {
+    "pessoa": {
+      "home": {
+        "title": "Pessoas",
+        "createLabel": "Criar novo Pessoa",
+        "createOrEditLabel": "Criar ou editar Pessoa"
+      },
+      "created": "Um novo Pessoa foi criado com o identificador {{ param }}",
+      "updated": "Um Pessoa foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Pessoa foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Pessoa {{ id }}?"
+      },
+      "detail": {
+        "title": "Pessoa"
+      },
+      "tipo": "Tipo",
+      "cpf": "Cpf",
+      "cnpj": "Cnpj",
+      "primeiroNome": "Primeiro Nome",
+      "nomeMeio": "Nome Meio",
+      "sobreNome": "Sobre Nome",
+      "saudacao": "Saudacao",
+      "titulo": "Titulo",
+      "cep": "Cep",
+      "tipoLogradouro": "Tipo Logradouro",
+      "nomeLogradouro": "Nome Logradouro",
+      "complemento": "Complemento",
+      "municipio": "Municipio"
+    }
+  }
+}

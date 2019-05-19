@@ -16,6 +16,8 @@
     <include file="config/liquibase/changelog/20190505174757_added_entity_Menu.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190505175957_added_entity_Produto.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190519181358_added_entity_Municipio.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190519003537_added_entity_Pessoa.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20190519003537_added_entity_constraints_Pessoa.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

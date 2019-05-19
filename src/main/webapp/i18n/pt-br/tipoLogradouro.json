@@ -1,0 +1,22 @@
+{
+  "bestMealApp": {
+    "TipoLogradouro": {
+      "null": "",
+      "RUA": "RUA",
+      "AVENIDA": "AVENIDA",
+      "TRAVESSA": "TRAVESSA",
+      "QUADRA": "QUADRA",
+      "BECO": "BECO",
+      "ESTRADA": "ESTRADA",
+      "CHACARA": "CHACARA",
+      "RODOVIA": "RODOVIA",
+      "VIADUTO": "VIADUTO",
+      "SITIO": "SITIO",
+      "FEIRA": "FEIRA",
+      "SETOR": "SETOR",
+      "MORRO": "MORRO",
+      "LARGO": "LARGO",
+      "FAZENDA": "FAZENDA"
+    }
+  }
+}

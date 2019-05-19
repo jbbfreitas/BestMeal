@@ -1,0 +1,9 @@
+{
+  "bestMealApp": {
+    "TipoPessoa": {
+      "null": "",
+      "FISICA": "FISICA",
+      "JURIDICA": "JURIDICA"
+    }
+  }
+}

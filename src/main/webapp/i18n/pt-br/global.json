@@ -12,6 +12,7 @@
         "menu": "Menu",
         "produto": "Produto",
         "municipio": "Municipio",
+        "pessoa": "Pessoa",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

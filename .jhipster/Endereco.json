@@ -3,12 +3,6 @@
     "clientRootFolder": "",
     "relationships": [
         {
-            "relationshipName": "logradouro",
-            "otherEntityName": "logradouro",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "nome"
-        },
-        {
             "relationshipName": "municipio",
             "otherEntityName": "municipio",
             "relationshipType": "many-to-one",
@@ -25,6 +19,22 @@
             "fieldValidateRulesPattern": "^[0-9]{2}.[0-9]{3}-[0-9]{3}$"
         },
         {
+            "fieldName": "tipoLogradouro",
+            "fieldType": "TipoLogradouro",
+            "fieldValues": "RUA,AVENIDA,TRAVESSA,QUADRA,BECO,ESTRADA,CHACARA,RODOVIA,VIADUTO,SITIO,FEIRA,SETOR,MORRO,LARGO,FAZENDA"
+        },
+        {
+            "fieldName": "nomeLogradouro",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": "5",
+            "fieldValidateRulesMaxlength": "100"
+        },
+        {
             "fieldName": "complemento",
             "fieldType": "String",
             "fieldValidateRules": [
@@ -36,7 +46,7 @@
             "fieldValidateRulesMaxlength": "30"
         }
     ],
-    "changelogDate": "20190505184446",
+    "changelogDate": "20190519184446",
     "dto": "no",
     "searchEngine": false,
     "service": "serviceImpl",
