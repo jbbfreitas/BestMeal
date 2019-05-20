@@ -3,7 +3,7 @@
     "pessoa": {
       "home": {
         "title": "Pessoas",
-        "createLabel": "Criar novo Pessoa",
+        "createLabel": "Criar uma nova Pessoa",
         "createOrEditLabel": "Criar ou editar Pessoa"
       },
       "created": "Um novo Pessoa foi criado com o identificador {{ param }}",
@@ -20,14 +20,18 @@
       "cnpj": "Cnpj",
       "primeiroNome": "Primeiro Nome",
       "nomeMeio": "Nome Meio",
-      "sobreNome": "Sobre Nome",
+      "sobreNome": "Sobrenome",
       "saudacao": "Saudacao",
       "titulo": "Titulo",
       "cep": "Cep",
       "tipoLogradouro": "Tipo Logradouro",
       "nomeLogradouro": "Nome Logradouro",
       "complemento": "Complemento",
-      "municipio": "Municipio"
+      "municipio": "Municipio",
+      "nomePessoa": "Nome da Pessoa",
+      "endereco": "Dados do Endereço:",
+      "dadosGerais": "Dados Gerais:",
+      "nomeFantasia": "Nome de Fantasia"
     }
   }
 }

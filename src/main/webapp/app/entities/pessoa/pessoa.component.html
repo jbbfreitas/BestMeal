@@ -16,17 +16,8 @@
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="tipo"><span jhiTranslate="bestMealApp.pessoa.tipo">Tipo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="cpf"><span jhiTranslate="bestMealApp.pessoa.cpf">Cpf</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="cnpj"><span jhiTranslate="bestMealApp.pessoa.cnpj">Cnpj</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="primeiroNome"><span jhiTranslate="bestMealApp.pessoa.primeiroNome">Primeiro Nome</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="nomeMeio"><span jhiTranslate="bestMealApp.pessoa.nomeMeio">Nome Meio</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="sobreNome"><span jhiTranslate="bestMealApp.pessoa.sobreNome">Sobre Nome</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="saudacao"><span jhiTranslate="bestMealApp.pessoa.saudacao">Saudacao</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="titulo"><span jhiTranslate="bestMealApp.pessoa.titulo">Titulo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="cep"><span jhiTranslate="bestMealApp.pessoa.cep">Cep</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="tipoLogradouro"><span jhiTranslate="bestMealApp.pessoa.tipoLogradouro">Tipo Logradouro</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="nomeLogradouro"><span jhiTranslate="bestMealApp.pessoa.nomeLogradouro">Nome Logradouro</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="complemento"><span jhiTranslate="bestMealApp.pessoa.complemento">Complemento</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="sobreNome"><span jhiTranslate="bestMealApp.pessoa.nomePessoa">Nome da Pessoa</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="municipio.nomeMunicipio"><span jhiTranslate="bestMealApp.pessoa.municipio">Municipio</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
@@ -35,20 +26,11 @@
             <tr *ngFor="let pessoa of pessoas ;trackBy: trackId">
                 <td><a [routerLink]="['/pessoa', pessoa.id, 'view' ]">{{pessoa.id}}</a></td>
                 <td jhiTranslate="{{'bestMealApp.TipoPessoa.' + pessoa.tipo}}">{{pessoa.tipo}}</td>
-                <td>{{pessoa.cpf}}</td>
-                <td>{{pessoa.cnpj}}</td>
-                <td>{{pessoa.primeiroNome}}</td>
-                <td>{{pessoa.nomeMeio}}</td>
-                <td>{{pessoa.sobreNome}}</td>
-                <td>{{pessoa.saudacao}}</td>
                 <td>{{pessoa.titulo}}</td>
-                <td>{{pessoa.cep}}</td>
-                <td jhiTranslate="{{'bestMealApp.TipoLogradouro.' + pessoa.tipoLogradouro}}">{{pessoa.tipoLogradouro}}</td>
-                <td>{{pessoa.nomeLogradouro}}</td>
-                <td>{{pessoa.complemento}}</td>
+                <td>{{pessoa.sobreNome}}, {{pessoa.primeiroNome}}</td>
                 <td>
                     <div *ngIf="pessoa.municipio">
-                        <a [routerLink]="['../municipio', pessoa.municipio?.id, 'view' ]" >{{pessoa.municipio?.nomeMunicipio}}</a>
+                        <a [routerLink]="['../municipio', pessoa.municipio?.id, 'view' ]" >{{pessoa.municipio?.nomeMunicipio+"-"+pessoa.municipio?.uf}}</a>
                     </div>
                 </td>
                 <td class="text-right">

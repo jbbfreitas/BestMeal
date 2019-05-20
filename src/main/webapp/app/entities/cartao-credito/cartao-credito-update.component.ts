@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { ICartaoCredito, CartaoCredito } from '../../shared/model/cartao-credito.model';
 import { CartaoCreditoService } from './cartao-credito.service';
 import { CustomNameValidatorService } from '../../shared/validators/custom-name.service';
-import { CustomDateValidatorService } from '../../shared/validators/custom-date-service';
+import { CustomDateValidatorService } from '../../shared/validators/custom-date.service';
 import * as moment from 'moment';
 
 @Component({

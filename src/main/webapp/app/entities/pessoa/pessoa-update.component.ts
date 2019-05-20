@@ -9,6 +9,7 @@ import { IPessoa, Pessoa } from 'app/shared/model/pessoa.model';
 import { PessoaService } from './pessoa.service';
 import { IMunicipio } from 'app/shared/model/municipio.model';
 import { MunicipioService } from 'app/entities/municipio';
+import { CustomCPFCNPJValidatorService } from 'app/shared/validators/cpf-cnpj-validators.service';
 
 @Component({
   selector: 'jhi-pessoa-update',
@@ -23,8 +24,11 @@ export class PessoaUpdateComponent implements OnInit {
   editForm = this.fb.group({
     id: [],
     tipo: [],
-    cpf: [],
-    cnpj: [],
+    cpf: [null, [Validators.pattern('^[0-9]{3}.?[0-9]{3}.?[0-9]{3}-?[0-9]{2}$'), this.customCPFCNPJValidatorService.isValidCpf()]],
+    cnpj: [
+      null,
+      [this.customCPFCNPJValidatorService.isValidCnpj(), Validators.pattern('^[0-9]{2}.?[0-9]{3}.?[0-9]{3}/?[0-9]{4}-?[0-9]{2}$')]
+    ],
     primeiroNome: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
     nomeMeio: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(30)]],
     sobreNome: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(30)]],
@@ -42,7 +46,8 @@ export class PessoaUpdateComponent implements OnInit {
     protected pessoaService: PessoaService,
     protected municipioService: MunicipioService,
     protected activatedRoute: ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    protected customCPFCNPJValidatorService: CustomCPFCNPJValidatorService
   ) {}
 
   ngOnInit() {

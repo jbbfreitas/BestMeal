@@ -121,12 +121,14 @@
       "max": "Este campo não pode ser maior que {{ max }}.",
       "minbytes": "Este campo deve ter pelo menos {{ min }} bytes.",
       "maxbytes": "Este campo não pode ter mais de {{ max }} bytes.",
-      "pattern": "Este campo deve estar dentro do seguinte padrão {{ pattern }}.",
+      "pattern": "Este campo deve obedecer ao padrão {{ pattern }}.",
       "number": "Este campo é do tipo numérico.",
       "datetimelocal": "Este campo é do tipo data/hora.",
       "patternLogin": "Este campo só pode conter letras, números e e-mail.",
       "forbiddenName": "Este campo não pode conter a palavra {{forbiddenName}}",
-      "validadeCart": "Mês e ano tem que ter um valor maior ou igual a {{mesanoMin}}"
+      "validadeCart": "Mês e ano tem que ter um valor maior ou igual a {{mesanoMin}}",
+      "cpfdigit": "Digito do CPF é inválido",
+      "cnpjdigit": "Digito do CNPJ é inválido"
     }
   },
   "error": {

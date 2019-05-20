@@ -56,7 +56,7 @@
                 <dt><span jhiTranslate="bestMealApp.pessoa.municipio">Municipio</span></dt>
                 <dd>
                     <div *ngIf="pessoa.municipio">
-                        <a [routerLink]="['/municipio', pessoa.municipio?.id, 'view']">{{pessoa.municipio?.nomeMunicipio}}</a>
+                        <a [routerLink]="['/municipio', pessoa.municipio?.id, 'view']">{{pessoa.municipio?.nomeMunicipio+"-"+pessoa.municipio?.uf}}</a>
                     </div>
                 </dd>
             </dl>
