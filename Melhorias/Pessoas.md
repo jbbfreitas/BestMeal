@@ -127,7 +127,7 @@
 ```
 
 
-####2. Exibir nome do município e a UF na combo
+#### 2. Exibir nome do município e a UF na combo
 
 > Se você verificar a combo que exibe a relação de municípios, constatará que a UF não é exibida. Vamos melhorar a aplicação para exibir na combo o nome do município e a UF.
 
@@ -184,7 +184,7 @@
                     </div>
 
 ```
-####3. Validação de CPF e CNPJ
+#### 3. Validação de CPF e CNPJ
 
 1. Na pasta `src/main/webapp/app/shared/validators`, crie um arquivo denominado `cpf-cnpj-validators.service.ts`  para fazer as validações dos dígitos verificadores dp CPF e CNPJ. 
 
@@ -377,7 +377,7 @@ constructor(
   ) {}
 
 ```
-####4. Lay out do formulário
+#### 4. Lay out do formulário
 
 > Para melhorar a usabilidade do formulário, altere o arquivo  `pessoa-update.component.ts` para que fique conforme a Listagem 3 
 
