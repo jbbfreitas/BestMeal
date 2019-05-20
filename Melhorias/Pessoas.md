@@ -708,7 +708,7 @@ constructor(
 5. Testando a aplicação
 
 <p align="center">
-  <img src="images/Pessoas.png" alt="Novo lay-out do formulário pessoas">
+  <img src="images/Pessoa.png" alt="Novo lay-out do formulário pessoas">
 </p>
 <p align="center">
    <strong>Figura 1- Novo lay-out do formulário pessoas</strong> 
