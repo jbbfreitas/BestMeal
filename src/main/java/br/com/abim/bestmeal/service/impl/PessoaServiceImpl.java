@@ -83,5 +83,19 @@ public class PessoaServiceImpl implements PessoaService {
         return pessoaRepository.countWithCpf(cpf,id);
     }
 
+    @Override
+    public Long countWithCnpj(String cnpj, Long id) {
+        return pessoaRepository.countWithCnpj(cnpj,id);
+    }
+
+    @Override
+    public Long countWithCpf(String cpf) {
+        return pessoaRepository.countWithCpfIdNull(cpf);
+    }
+
+    @Override
+    public Long countWithCnpj(String cnpj) {
+        return pessoaRepository.countWithCnpjIdNull(cnpj);
+    }
     
 }

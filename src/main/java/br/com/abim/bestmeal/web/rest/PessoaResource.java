@@ -50,7 +50,9 @@ public class PessoaResource {
      * {@code POST  /pessoas} : Create a new pessoa.
      *
      * @param pessoa the pessoa to create.
-     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new pessoa, or with status {@code 400 (Bad Request)} if the pessoa has already an ID.
+     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with
+     *         body the new pessoa, or with status {@code 400 (Bad Request)} if the
+     *         pessoa has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/pessoas")
@@ -60,18 +62,21 @@ public class PessoaResource {
             throw new BadRequestAlertException("A new pessoa cannot already have an ID", ENTITY_NAME, "idexists");
         }
         Pessoa result = pessoaService.save(pessoa);
-        return ResponseEntity.created(new URI("/api/pessoas/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
-            .body(result);
+        return ResponseEntity
+                .created(new URI("/api/pessoas/" + result.getId())).headers(HeaderUtil
+                        .createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
+                .body(result);
     }
 
     /**
      * {@code PUT  /pessoas} : Updates an existing pessoa.
      *
      * @param pessoa the pessoa to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated pessoa,
-     * or with status {@code 400 (Bad Request)} if the pessoa is not valid,
-     * or with status {@code 500 (Internal Server Error)} if the pessoa couldn't be updated.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
+     *         the updated pessoa, or with status {@code 400 (Bad Request)} if the
+     *         pessoa is not valid, or with status
+     *         {@code 500 (Internal Server Error)} if the pessoa couldn't be
+     *         updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/pessoas")
@@ -81,19 +86,21 @@ public class PessoaResource {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
         Pessoa result = pessoaService.save(pessoa);
-        return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, pessoa.getId().toString()))
-            .body(result);
+        return ResponseEntity.ok().headers(
+                HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, pessoa.getId().toString()))
+                .body(result);
     }
 
     /**
      * {@code GET  /pessoas} : get all the pessoas.
      *
      * @param pageable the pagination information.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of pessoas in body.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list
+     *         of pessoas in body.
      */
     @GetMapping("/pessoas")
-    public ResponseEntity<List<Pessoa>> getAllPessoas(Pageable pageable, @RequestParam MultiValueMap<String, String> queryParams, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<List<Pessoa>> getAllPessoas(Pageable pageable,
+            @RequestParam MultiValueMap<String, String> queryParams, UriComponentsBuilder uriBuilder) {
         log.debug("REST request to get a page of Pessoas");
         Page<Pessoa> page = pessoaService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(uriBuilder.queryParams(queryParams), page);
@@ -104,7 +111,8 @@ public class PessoaResource {
      * {@code GET  /pessoas/:id} : get the "id" pessoa.
      *
      * @param id the id of the pessoa to retrieve.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the pessoa, or with status {@code 404 (Not Found)}.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
+     *         the pessoa, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/pessoas/{id}")
     public ResponseEntity<Pessoa> getPessoa(@PathVariable Long id) {
@@ -123,24 +131,51 @@ public class PessoaResource {
     public ResponseEntity<Void> deletePessoa(@PathVariable Long id) {
         log.debug("REST request to delete Pessoa : {}", id);
         pessoaService.delete(id);
-        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
+        return ResponseEntity.noContent()
+                .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
+                .build();
     }
 
     @GetMapping("/pessoas/withcpf")
     public ResponseEntity<Long> countAllPessoasWithCPF(@RequestParam MultiValueMap<String, String> queryParams) {
         log.debug("REST request to get Pessoas with  same CPF");
-        log.debug("--->O valor do id é:"+queryParams.get("id").get(0));
+        log.debug("--->O valor do id é:" + queryParams.get("id").get(0));
         Long numero = 0L;
-        try{
-        String  cpf = queryParams.get("cpf").get(0);
-        Long id = Long.parseLong(queryParams.get("id").get(0));
+        try {
+            String cpf = queryParams.get("cpf").get(0);
+            Long id = Long.parseLong(queryParams.get("id").get(0));
 
-        log.debug("REST request to get Pessoas with  same CPF");
-        numero = pessoaService.countWithCpf(cpf,id);
+            log.debug("REST request to get Pessoas with  same CPF");
+            if (id == 0) {
+                numero = pessoaService.countWithCpf(cpf);
+            } else {
+                numero = pessoaService.countWithCpf(cpf, id);
+            }
         } catch (Exception e) {
-          numero = 0L; 
+            numero = 0L;
         }
         return ResponseEntity.ok(numero);
+    }
+
+    @GetMapping("/pessoas/withcnpj")
+    public ResponseEntity<Long> countAllPessoasWithCNPJ(@RequestParam MultiValueMap<String, String> queryParams) {
+        log.debug("REST request to get Pessoas with  same CNPJ");
+        log.debug("--->O valor do id é:" + queryParams.get("id").get(0));
+        Long numero = 0L;
+        try {
+            String cnpj = queryParams.get("cnpj").get(0);
+            Long id = Long.parseLong(queryParams.get("id").get(0));
+
+            log.debug("REST request to get Pessoas with  same CNPJ");
+            if (id == 0) {
+                numero = pessoaService.countWithCnpj(cnpj);
+            } else {
+                numero = pessoaService.countWithCnpj(cnpj, id);
+            }
+        } catch (Exception e) {
+            numero = 0L;
         }
-    
+        return ResponseEntity.ok(numero);
+    }
+
 }

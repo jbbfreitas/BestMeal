@@ -21,4 +21,13 @@ public interface PessoaRepository extends JpaRepository<Pessoa, Long> {
     @Query("SELECT count(p) FROM Pessoa p WHERE p.cpf = :cpf and p.id <> :id")
 	Long countWithCpf(@Param("cpf") String cpf, @Param("id") Long id);
 
+    @Query("SELECT count(p) FROM Pessoa p WHERE p.cnpj = :cnpj and p.id <> :id")
+	Long countWithCnpj(@Param("cnpj") String cnpj, @Param("id") Long id);
+
+    @Query("SELECT count(p) FROM Pessoa p WHERE p.cpf = :cpf ")
+	Long countWithCpfIdNull(@Param("cpf") String cpf);
+
+    @Query("SELECT count(p) FROM Pessoa p WHERE p.cnpj = :cnpj ")
+	Long countWithCnpjIdNull(@Param("cnpj") String cnpj);
+
 }

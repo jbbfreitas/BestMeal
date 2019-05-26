@@ -45,22 +45,19 @@ public class Pessoa implements Serializable {
     @Column(name = "primeiro_nome", length = 20, nullable = false)
     private String primeiroNome;
 
-    @NotNull
     @Size(min = 2, max = 30)
-    @Column(name = "nome_meio", length = 30, nullable = false)
+    @Column(name = "nome_meio", length = 30)
     private String nomeMeio;
 
-    @NotNull
     @Size(min = 2, max = 30)
-    @Column(name = "sobre_nome", length = 30, nullable = false)
+    @Column(name = "sobre_nome", length = 30)
     private String sobreNome;
 
     @Column(name = "saudacao")
     private String saudacao;
 
-    @NotNull
     @Size(min = 3, max = 15)
-    @Column(name = "titulo", length = 15, nullable = false)
+    @Column(name = "titulo", length = 15)
     private String titulo;
 
     @Pattern(regexp = "^[0-9]{2}.[0-9]{3}-[0-9]{3}$")

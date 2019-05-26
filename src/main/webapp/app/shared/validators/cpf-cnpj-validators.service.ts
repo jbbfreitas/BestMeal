@@ -1,11 +1,10 @@
-import { AbstractControl, ValidatorFn, AsyncValidatorFn, ValidationErrors, FormGroup } from '@angular/controls';
 import { Injectable } from '@angular/core';
 import { PessoaService } from 'app/entities/pessoa';
 import { Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { IPessoa } from '../model/pessoa.model';
-import { AbstractControl } from '@angular/forms';
+import { AsyncValidatorFn, AbstractControl, ValidatorFn, ValidationErrors } from '@angular/forms';
 
 /**
  * Classe para fazer validações no dv de cpf e cnpj
@@ -144,6 +143,18 @@ export class CustomCPFCNPJValidatorService {
       return pessoaService
         .findWithCpf(control.value)
         .pipe(map(res => (control.value && res && res.body > 0 ? { cpfAlreadyInUse: { value: control.value } } : null)));
+    };
+  }
+
+  /**
+   *
+   * @param pessoaService
+   */
+  existingCnpjValidator(pessoaService: PessoaService): AsyncValidatorFn {
+    return (control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
+      return pessoaService
+        .findWithCnpj(control.value)
+        .pipe(map(res => (control.value && res && res.body > 0 ? { cnpjAlreadyInUse: { value: control.value } } : null)));
     };
   }
 }
