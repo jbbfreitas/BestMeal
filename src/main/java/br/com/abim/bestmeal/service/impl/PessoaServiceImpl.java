@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -53,7 +54,6 @@ public class PessoaServiceImpl implements PessoaService {
         return pessoaRepository.findAll(pageable);
     }
 
-
     /**
      * Get one pessoa by id.
      *
@@ -77,4 +77,11 @@ public class PessoaServiceImpl implements PessoaService {
         log.debug("Request to delete Pessoa : {}", id);
         pessoaRepository.deleteById(id);
     }
+
+    @Override
+    public Long countWithCpf(String cpf, Long id) {
+        return pessoaRepository.countWithCpf(cpf,id);
+    }
+
+    
 }

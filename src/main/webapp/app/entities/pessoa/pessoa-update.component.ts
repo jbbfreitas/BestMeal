@@ -10,6 +10,7 @@ import { PessoaService } from './pessoa.service';
 import { IMunicipio } from 'app/shared/model/municipio.model';
 import { MunicipioService } from 'app/entities/municipio';
 import { CustomCPFCNPJValidatorService } from 'app/shared/validators/cpf-cnpj-validators.service';
+type EntityArrayResponseType = HttpResponse<IPessoa[]>;
 
 @Component({
   selector: 'jhi-pessoa-update',
@@ -18,13 +19,17 @@ import { CustomCPFCNPJValidatorService } from 'app/shared/validators/cpf-cnpj-va
 export class PessoaUpdateComponent implements OnInit {
   pessoa: IPessoa;
   isSaving: boolean;
-
+  idPessoa = '0';
   municipios: IMunicipio[];
 
   editForm = this.fb.group({
     id: [],
     tipo: [],
-    cpf: [null, [Validators.pattern('^[0-9]{3}.?[0-9]{3}.?[0-9]{3}-?[0-9]{2}$'), this.customCPFCNPJValidatorService.isValidCpf()]],
+    cpf: [
+      null,
+      [Validators.pattern('^[0-9]{3}.?[0-9]{3}.?[0-9]{3}-?[0-9]{2}$'), this.customCPFCNPJValidatorService.isValidCpf()],
+      [this.customCPFCNPJValidatorService.existingCpfValidator(this.pessoaService)]
+    ],
     cnpj: [
       null,
       [this.customCPFCNPJValidatorService.isValidCnpj(), Validators.pattern('^[0-9]{2}.?[0-9]{3}.?[0-9]{3}/?[0-9]{4}-?[0-9]{2}$')]
@@ -55,7 +60,9 @@ export class PessoaUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ pessoa }) => {
       this.updateForm(pessoa);
       this.pessoa = pessoa;
+      this.idPessoa = String(this.pessoa.id);
     });
+
     this.municipioService
       .query()
       .pipe(
@@ -82,6 +89,10 @@ export class PessoaUpdateComponent implements OnInit {
       complemento: pessoa.complemento,
       municipio: pessoa.municipio
     });
+    // this.editForm.get('cpf').setAsyncValidators([ (this.customCPFCNPJValidatorService.existingCpfValidator(this.idPessoa, this.pessoaService))
+    // ]);
+    //  this.customCPFCNPJValidatorService.existingCpfValidator(this.idPessoa, this.pessoaService).bind(this);
+    this.pessoaService.setPessoa(pessoa);
   }
 
   previousState() {
@@ -96,6 +107,11 @@ export class PessoaUpdateComponent implements OnInit {
     } else {
       this.subscribeToSaveResponse(this.pessoaService.create(pessoa));
     }
+    //  this.pessoaService.findWithCpf('715.947.367-15').subscribe(
+    //    (res: HttpResponse<IPessoa[]>) => console.log(res.body.length),
+    //    (res: HttpErrorResponse) => this.onError(res.message)
+    //  );
+    //  this.pessoaService.findWithCpf('715.947.367-15');
   }
 
   private createFromForm(): IPessoa {
@@ -122,6 +138,9 @@ export class PessoaUpdateComponent implements OnInit {
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IPessoa>>) {
     result.subscribe((res: HttpResponse<IPessoa>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
   }
+  // protected lixo(result: Observable<EntityArrayResponseType>) {
+  //   result.subscribe((res: HttpResponse<IPessoa>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+  // }
 
   protected onSaveSuccess() {
     this.isSaving = false;

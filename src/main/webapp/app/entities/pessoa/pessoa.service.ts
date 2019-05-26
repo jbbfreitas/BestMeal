@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared';
 import { IPessoa } from 'app/shared/model/pessoa.model';
+import { map } from 'rxjs/operators';
+import { pessoaPopupRoute } from './pessoa.route';
 
 type EntityResponseType = HttpResponse<IPessoa>;
 type EntityArrayResponseType = HttpResponse<IPessoa[]>;
@@ -12,6 +14,7 @@ type EntityArrayResponseType = HttpResponse<IPessoa[]>;
 @Injectable({ providedIn: 'root' })
 export class PessoaService {
   public resourceUrl = SERVER_API_URL + 'api/pessoas';
+  pessoa: IPessoa;
 
   constructor(protected http: HttpClient) {}
 
@@ -34,5 +37,18 @@ export class PessoaService {
 
   delete(id: number): Observable<HttpResponse<any>> {
     return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });
+  }
+  findWithCpf(cpf: string): Observable<EntityResponseType> {
+    let parametros: HttpParams = new HttpParams();
+    const id = this.pessoa ? String(this.pessoa.id) : '0';
+    parametros = parametros.set('cpf', cpf);
+    parametros = parametros.append('id', id);
+    const withcpf = 'withcpf';
+    const url = `${this.resourceUrl}/${withcpf}`;
+    const retorno = this.http.get<any>(url, { params: parametros, observe: 'response' });
+    return retorno;
+  }
+  setPessoa(pessoa: IPessoa) {
+    this.pessoa = pessoa;
   }
 }

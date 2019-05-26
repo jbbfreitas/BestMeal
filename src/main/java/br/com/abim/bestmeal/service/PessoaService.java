@@ -5,6 +5,7 @@ import br.com.abim.bestmeal.domain.Pessoa;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -43,4 +44,6 @@ public interface PessoaService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+	Long countWithCpf(String cpf, Long id);
 }

@@ -44,6 +44,10 @@
                                         jhiTranslate="entity.validation.cpfdigit">
                                         Digito do CPF é inválido.
                                     </small>
+                                    <small class="form-text text-danger" *ngIf="editForm.get('cpf').errors.cpfAlreadyInUse"
+                                        jhiTranslate="entity.validation.cpfAlreadyInUse">
+                                        CPF já está em uso.
+                                    </small>
                                 </div>
                             </div>
                         </div>
