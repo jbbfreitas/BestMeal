@@ -89,7 +89,7 @@ export class PessoaUpdateComponent implements OnInit {
       complemento: pessoa.complemento,
       municipio: pessoa.municipio
     });
-    this.pessoaService.setPessoa(pessoa); //Grava o valor de pessoa em service para ser usado na validação
+    this.pessoaService.setPessoa(pessoa); // Grava o valor de pessoa em service para ser usado na validação
   }
 
   previousState() {
@@ -104,6 +104,11 @@ export class PessoaUpdateComponent implements OnInit {
     } else {
       this.subscribeToSaveResponse(this.pessoaService.create(pessoa));
     }
+    //  this.pessoaService.findWithCpf('715.947.367-15').subscribe(
+    //    (res: HttpResponse<IPessoa[]>) => console.log(res.body.length),
+    //    (res: HttpErrorResponse) => this.onError(res.message)
+    //  );
+    //  this.pessoaService.findWithCpf('715.947.367-15');
   }
 
   private createFromForm(): IPessoa {
@@ -130,6 +135,9 @@ export class PessoaUpdateComponent implements OnInit {
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IPessoa>>) {
     result.subscribe((res: HttpResponse<IPessoa>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
   }
+  // protected lixo(result: Observable<EntityArrayResponseType>) {
+  //   result.subscribe((res: HttpResponse<IPessoa>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+  // }
 
   protected onSaveSuccess() {
     this.isSaving = false;
