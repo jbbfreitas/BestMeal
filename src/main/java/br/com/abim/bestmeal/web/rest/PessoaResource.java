@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
-
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -125,4 +125,22 @@ public class PessoaResource {
         pessoaService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
+
+    @GetMapping("/pessoas/withcpf")
+    public ResponseEntity<Long> countAllPessoasWithCPF(@RequestParam MultiValueMap<String, String> queryParams) {
+        log.debug("REST request to get Pessoas with  same CPF");
+        log.debug("--->O valor do id é:"+queryParams.get("id").get(0));
+        Long numero = 0L;
+        try{
+        String  cpf = queryParams.get("cpf").get(0);
+        Long id = Long.parseLong(queryParams.get("id").get(0));
+
+        log.debug("REST request to get Pessoas with  same CPF");
+        numero = pessoaService.countWithCpf(cpf,id);
+        } catch (Exception e) {
+          numero = 0L; 
+        }
+        return ResponseEntity.ok(numero);
+        }
+    
 }
