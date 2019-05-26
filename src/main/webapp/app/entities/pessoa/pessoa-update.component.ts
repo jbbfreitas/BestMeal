@@ -89,7 +89,7 @@ export class PessoaUpdateComponent implements OnInit {
       complemento: pessoa.complemento,
       municipio: pessoa.municipio
     });
-    this.pessoaService.setPessoa(pessoa); //Grava o valor de pessoa em service para ser usado na validação
+    this.pessoaService.setPessoa(pessoa); // Grava o valor de pessoa em service para ser usado na validação
   }
 
   previousState() {
