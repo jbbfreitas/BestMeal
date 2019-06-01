@@ -1,0 +1,37 @@
+{
+  "bestMealApp": {
+    "fornecedor": {
+      "home": {
+        "title": "Fornecedores",
+        "createLabel": "Criar novo Fornecedor",
+        "createOrEditLabel": "Criar ou editar Fornecedor"
+      },
+      "created": "Um novo Fornecedor foi criado com o identificador {{ param }}",
+      "updated": "Um Fornecedor foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Fornecedor foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Fornecedor {{ id }}?"
+      },
+      "detail": {
+        "title": "Fornecedor"
+      },
+      "tipo": "Tipo",
+      "cpf": "Cpf",
+      "cnpj": "Cnpj",
+      "primeiroNome": "Primeiro Nome",
+      "nomeMeio": "Nome Meio",
+      "sobreNome": "Sobrenome",
+      "saudacao": "Saudacao",
+      "titulo": "Titulo",
+      "cep": "Cep",
+      "tipoLogradouro": "Tipo Logradouro",
+      "nomeLogradouro": "Nome Logradouro",
+      "complemento": "Complemento",
+      "municipio": "Municipio",
+      "nomePessoa": "Nome da Pessoa",
+      "endereco": "Dados do Endereço:",
+      "dadosGerais": "Dados Gerais:",
+      "nomeFantasia": "Nome de Fantasia"
+    }
+  }
+}

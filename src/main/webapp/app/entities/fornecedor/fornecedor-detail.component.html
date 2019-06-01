@@ -1,0 +1,77 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="fornecedor">
+            <h2><span jhiTranslate="bestMealApp.fornecedor.detail.title">Fornecedor</span> {{fornecedor.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="bestMealApp.fornecedor.tipo">Tipo</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'bestMealApp.TipoPessoa.' + fornecedor.tipo}}">{{fornecedor.tipo}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestMealApp.fornecedor.cpf">Cpf</span></dt>
+                <dd>
+                    <span>{{fornecedor.cpf}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestMealApp.fornecedor.cnpj">Cnpj</span></dt>
+                <dd>
+                    <span>{{fornecedor.cnpj}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestMealApp.fornecedor.primeiroNome">Primeiro Nome</span></dt>
+                <dd>
+                    <span>{{fornecedor.primeiroNome}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestMealApp.fornecedor.nomeMeio">Nome Meio</span></dt>
+                <dd>
+                    <span>{{fornecedor.nomeMeio}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestMealApp.fornecedor.sobreNome">Sobre Nome</span></dt>
+                <dd>
+                    <span>{{fornecedor.sobreNome}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestMealApp.fornecedor.saudacao">Saudacao</span></dt>
+                <dd>
+                    <span>{{fornecedor.saudacao}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestMealApp.fornecedor.titulo">Titulo</span></dt>
+                <dd>
+                    <span>{{fornecedor.titulo}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestMealApp.fornecedor.cep">Cep</span></dt>
+                <dd>
+                    <span>{{fornecedor.cep}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestMealApp.fornecedor.tipoLogradouro">Tipo Logradouro</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'bestMealApp.TipoLogradouro.' + fornecedor.tipoLogradouro}}">{{fornecedor.tipoLogradouro}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestMealApp.fornecedor.nomeLogradouro">Nome Logradouro</span></dt>
+                <dd>
+                    <span>{{fornecedor.nomeLogradouro}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestMealApp.fornecedor.complemento">Complemento</span></dt>
+                <dd>
+                    <span>{{fornecedor.complemento}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestMealApp.fornecedor.municipio">Municipio</span></dt>
+                <dd>
+                    <div *ngIf="fornecedor.municipio">
+                        <a [routerLink]="['/municipio', fornecedor.municipio?.id, 'view']">{{fornecedor.municipio?.nomeMunicipio}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/fornecedor', fornecedor.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
