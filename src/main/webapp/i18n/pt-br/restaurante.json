@@ -28,7 +28,11 @@
       "tipoLogradouro": "Tipo Logradouro",
       "nomeLogradouro": "Nome Logradouro",
       "complemento": "Complemento",
-      "municipio": "Municipio"
+      "municipio": "Municipio",
+      "nomePessoa": "Nome da Pessoa",
+      "endereco": "Dados do Endereço:",
+      "dadosGerais": "Dados Gerais:",
+      "nomeFantasia": "Nome de Fantasia"
     }
   }
 }

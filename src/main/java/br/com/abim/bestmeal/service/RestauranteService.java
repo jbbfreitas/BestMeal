@@ -43,4 +43,11 @@ public interface RestauranteService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+    Long countWithCpf(String cpf, Long id);
+
+	Long countWithCnpj(String cnpj, Long id);
+	Long countWithCpf(String cpf);
+
+	Long countWithCnpj(String cnpj);
+
 }

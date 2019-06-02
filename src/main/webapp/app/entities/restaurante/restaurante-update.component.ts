@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
@@ -9,6 +9,7 @@ import { IRestaurante, Restaurante } from 'app/shared/model/restaurante.model';
 import { RestauranteService } from './restaurante.service';
 import { IMunicipio } from 'app/shared/model/municipio.model';
 import { MunicipioService } from 'app/entities/municipio';
+import { PessoaValidityCommonService } from 'app/shared/reuse/pessoa-validity.common.service';
 
 @Component({
   selector: 'jhi-restaurante-update',
@@ -19,25 +20,11 @@ export class RestauranteUpdateComponent implements OnInit {
   isSaving: boolean;
 
   municipios: IMunicipio[];
-
-  editForm = this.fb.group({
-    id: [],
-    logo: [null, [Validators.required]],
+  /*
+logo: [null, [Validators.required]],
     logoContentType: [],
-    tipo: [],
-    cpf: [],
-    cnpj: [],
-    primeiroNome: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
-    nomeMeio: [null, [Validators.minLength(2), Validators.maxLength(30)]],
-    sobreNome: [null, [Validators.minLength(2), Validators.maxLength(30)]],
-    saudacao: [],
-    titulo: [null, [Validators.minLength(3), Validators.maxLength(15)]],
-    cep: [null, [Validators.pattern('^[0-9]{2}.[0-9]{3}-[0-9]{3}$')]],
-    tipoLogradouro: [],
-    nomeLogradouro: [null, [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
-    complemento: [null, [Validators.required, Validators.minLength(0), Validators.maxLength(30)]],
-    municipio: []
-  });
+*/
+  editForm = this.pessoaValidityCommonService.createEditForm(this.fb);
 
   constructor(
     protected dataUtils: JhiDataUtils,
@@ -46,7 +33,8 @@ export class RestauranteUpdateComponent implements OnInit {
     protected municipioService: MunicipioService,
     protected elementRef: ElementRef,
     protected activatedRoute: ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    protected pessoaValidityCommonService: PessoaValidityCommonService
   ) {}
 
   ngOnInit() {
@@ -62,6 +50,15 @@ export class RestauranteUpdateComponent implements OnInit {
         map((response: HttpResponse<IMunicipio[]>) => response.body)
       )
       .subscribe((res: IMunicipio[]) => (this.municipios = res), (res: HttpErrorResponse) => this.onError(res.message));
+    /*
+      Use next line if you want to add new controls do a descendant component
+      */
+    this.editForm.addControl('logo', new FormControl('', Validators.required));
+    this.editForm.addControl('logoContentType', new FormControl(''));
+    this.editForm.get('logo').updateValueAndValidity();
+    this.editForm.get('logoContentType').updateValueAndValidity();
+
+    this.editForm = this.pessoaValidityCommonService.setPessoaReValidity(this.editForm);
   }
 
   updateForm(restaurante: IRestaurante) {
@@ -83,6 +80,8 @@ export class RestauranteUpdateComponent implements OnInit {
       complemento: restaurante.complemento,
       municipio: restaurante.municipio
     });
+    this.pessoaValidityCommonService.setPessoa(restaurante); // Grava o valor de restaurante em service para ser usado na validação
+    this.pessoaValidityCommonService.setTipoPessoa('restaurante'); // Grava o valor de restaurante em service para ser usado na validação
   }
 
   byteSize(field) {

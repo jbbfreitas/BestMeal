@@ -77,4 +77,24 @@ public class RestauranteServiceImpl implements RestauranteService {
         log.debug("Request to delete Restaurante : {}", id);
         restauranteRepository.deleteById(id);
     }
+    @Override
+    public Long countWithCpf(String cpf, Long id) {
+        return restauranteRepository.countWithCpf(cpf,id);
+    }
+
+    @Override
+    public Long countWithCnpj(String cnpj, Long id) {
+        return restauranteRepository.countWithCnpj(cnpj,id);
+    }
+
+    @Override
+    public Long countWithCpf(String cpf) {
+        return restauranteRepository.countWithCpfIdNull(cpf);
+    }
+
+    @Override
+    public Long countWithCnpj(String cnpj) {
+        return restauranteRepository.countWithCnpjIdNull(cnpj);
+    }
+    
 }

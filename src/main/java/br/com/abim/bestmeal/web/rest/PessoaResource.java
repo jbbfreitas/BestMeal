@@ -3,6 +3,7 @@ package br.com.abim.bestmeal.web.rest;
 import br.com.abim.bestmeal.domain.Pessoa;
 import br.com.abim.bestmeal.service.FornecedorService;
 import br.com.abim.bestmeal.service.PessoaService;
+import br.com.abim.bestmeal.service.RestauranteService;
 import br.com.abim.bestmeal.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -43,10 +44,14 @@ public class PessoaResource {
 
     private final PessoaService pessoaService;
     private final FornecedorService fornecedorService;
+    private final RestauranteService restauranteService;
 
-    public PessoaResource(PessoaService pessoaService, FornecedorService fornecedorService) {
+    public PessoaResource(PessoaService pessoaService, 
+    FornecedorService fornecedorService, 
+    RestauranteService restauranteService) {
         this.pessoaService = pessoaService;
         this.fornecedorService = fornecedorService;
+        this.restauranteService = restauranteService;
     }
 
     /**
@@ -160,6 +165,12 @@ public class PessoaResource {
                     numero = fornecedorService.countWithCpf(cpf);
                 } else {
                     numero = fornecedorService.countWithCpf(cpf, id);
+                }
+            } else if (tipoPessoa.equals("restaurante")) {
+                if (id == 0) {
+                    numero = restauranteService.countWithCpf(cpf);
+                } else {
+                    numero = restauranteService.countWithCpf(cpf, id);
                 }
             }
 

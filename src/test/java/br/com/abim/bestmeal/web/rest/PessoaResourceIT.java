@@ -5,6 +5,7 @@ import br.com.abim.bestmeal.domain.Pessoa;
 import br.com.abim.bestmeal.repository.PessoaRepository;
 import br.com.abim.bestmeal.service.FornecedorService;
 import br.com.abim.bestmeal.service.PessoaService;
+import br.com.abim.bestmeal.service.RestauranteService;
 import br.com.abim.bestmeal.web.rest.errors.ExceptionTranslator;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -82,6 +83,8 @@ public class PessoaResourceIT {
     @Autowired
     private FornecedorService fornecedorService;
 
+    @Autowired
+    private RestauranteService restauranteService;
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -105,7 +108,7 @@ public class PessoaResourceIT {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final PessoaResource pessoaResource = new PessoaResource(pessoaService, fornecedorService);
+        final PessoaResource pessoaResource = new PessoaResource(pessoaService, fornecedorService, restauranteService);
         this.restPessoaMockMvc = MockMvcBuilders.standaloneSetup(pessoaResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
