@@ -1,0 +1,86 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="restaurante">
+            <h2><span jhiTranslate="bestMealApp.restaurante.detail.title">Restaurante</span> {{restaurante.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="bestMealApp.restaurante.logo">Logo</span></dt>
+                <dd>
+                    <div *ngIf="restaurante.logo">
+                        <a (click)="openFile(restaurante.logoContentType, restaurante.logo)">
+                            <img [src]="'data:' + restaurante.logoContentType + ';base64,' + restaurante.logo" style="max-width: 100%;" alt="restaurante image"/>
+                        </a>
+                        {{restaurante.logoContentType}}, {{byteSize(restaurante.logo)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="bestMealApp.restaurante.tipo">Tipo</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'bestMealApp.TipoPessoa.' + restaurante.tipo}}">{{restaurante.tipo}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestMealApp.restaurante.cpf">Cpf</span></dt>
+                <dd>
+                    <span>{{restaurante.cpf}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestMealApp.restaurante.cnpj">Cnpj</span></dt>
+                <dd>
+                    <span>{{restaurante.cnpj}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestMealApp.restaurante.primeiroNome">Primeiro Nome</span></dt>
+                <dd>
+                    <span>{{restaurante.primeiroNome}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestMealApp.restaurante.nomeMeio">Nome Meio</span></dt>
+                <dd>
+                    <span>{{restaurante.nomeMeio}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestMealApp.restaurante.sobreNome">Sobre Nome</span></dt>
+                <dd>
+                    <span>{{restaurante.sobreNome}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestMealApp.restaurante.saudacao">Saudacao</span></dt>
+                <dd>
+                    <span>{{restaurante.saudacao}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestMealApp.restaurante.titulo">Titulo</span></dt>
+                <dd>
+                    <span>{{restaurante.titulo}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestMealApp.restaurante.cep">Cep</span></dt>
+                <dd>
+                    <span>{{restaurante.cep}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestMealApp.restaurante.tipoLogradouro">Tipo Logradouro</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'bestMealApp.TipoLogradouro.' + restaurante.tipoLogradouro}}">{{restaurante.tipoLogradouro}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestMealApp.restaurante.nomeLogradouro">Nome Logradouro</span></dt>
+                <dd>
+                    <span>{{restaurante.nomeLogradouro}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestMealApp.restaurante.complemento">Complemento</span></dt>
+                <dd>
+                    <span>{{restaurante.complemento}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestMealApp.restaurante.municipio">Municipio</span></dt>
+                <dd>
+                    <div *ngIf="restaurante.municipio">
+                        <a [routerLink]="['/municipio', restaurante.municipio?.id, 'view']">{{restaurante.municipio?.nomeMunicipio}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/restaurante', restaurante.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

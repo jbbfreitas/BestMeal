@@ -1,0 +1,34 @@
+{
+  "bestMealApp": {
+    "restaurante": {
+      "home": {
+        "title": "Restaurantes",
+        "createLabel": "Criar novo Restaurante",
+        "createOrEditLabel": "Criar ou editar Restaurante"
+      },
+      "created": "Um novo Restaurante foi criado com o identificador {{ param }}",
+      "updated": "Um Restaurante foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Restaurante foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Restaurante {{ id }}?"
+      },
+      "detail": {
+        "title": "Restaurante"
+      },
+      "logo": "Logo",
+      "tipo": "Tipo",
+      "cpf": "Cpf",
+      "cnpj": "Cnpj",
+      "primeiroNome": "Primeiro Nome",
+      "nomeMeio": "Nome Meio",
+      "sobreNome": "Sobre Nome",
+      "saudacao": "Saudacao",
+      "titulo": "Titulo",
+      "cep": "Cep",
+      "tipoLogradouro": "Tipo Logradouro",
+      "nomeLogradouro": "Nome Logradouro",
+      "complemento": "Complemento",
+      "municipio": "Municipio"
+    }
+  }
+}
