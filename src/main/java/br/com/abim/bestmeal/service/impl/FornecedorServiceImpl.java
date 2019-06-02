@@ -77,4 +77,24 @@ public class FornecedorServiceImpl implements FornecedorService {
         log.debug("Request to delete Fornecedor : {}", id);
         fornecedorRepository.deleteById(id);
     }
+
+    @Override
+    public Long countWithCpf(String cpf, Long id) {
+        return fornecedorRepository.countWithCpf(cpf,id);
+    }
+
+    @Override
+    public Long countWithCnpj(String cnpj, Long id) {
+        return fornecedorRepository.countWithCnpj(cnpj,id);
+    }
+
+    @Override
+    public Long countWithCpf(String cpf) {
+        return fornecedorRepository.countWithCpfIdNull(cpf);
+    }
+
+    @Override
+    public Long countWithCnpj(String cnpj) {
+        return fornecedorRepository.countWithCnpjIdNull(cnpj);
+    }
 }

@@ -65,7 +65,8 @@ export class FornecedorUpdateComponent implements OnInit {
       complemento: fornecedor.complemento,
       municipio: fornecedor.municipio
     });
-    this.fornecedorService.setFornecedor(fornecedor); // Grava o valor de pessoa em service para ser usado na validação
+    this.pessoaValidityCommonService.setPessoa(fornecedor); // Grava o valor de pessoa em service para ser usado na validação
+    this.pessoaValidityCommonService.setTipoPessoa('fornecedor'); // Grava o valor de pessoa em service para ser usado na validação
   }
 
   previousState() {

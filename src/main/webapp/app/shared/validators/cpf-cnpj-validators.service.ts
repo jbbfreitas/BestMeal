@@ -5,6 +5,7 @@ import { map, catchError } from 'rxjs/operators';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { IPessoa } from '../model/pessoa.model';
 import { AsyncValidatorFn, AbstractControl, ValidatorFn, ValidationErrors } from '@angular/forms';
+import { PessoaValidityCommonService } from '../reuse/pessoa-validity.common.service';
 
 /**
  * Classe para fazer validações no dv de cpf e cnpj
@@ -134,13 +135,13 @@ export class CustomCPFCNPJValidatorService {
   }
   /**
    *
-   * @param pessoaService
+   * @param pessoaValidityCommonService
    * Test if cpf is already in use by another person
    */
 
-  existingCpfValidator(pessoaService: PessoaService): AsyncValidatorFn {
+  existingCpfValidator(pessoaValidityCommonService: PessoaValidityCommonService): AsyncValidatorFn {
     return (control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
-      return pessoaService
+      return pessoaValidityCommonService
         .findWithCpf(control.value)
         .pipe(map(res => (control.value && res && res.body > 0 ? { cpfAlreadyInUse: { value: control.value } } : null)));
     };
@@ -148,11 +149,11 @@ export class CustomCPFCNPJValidatorService {
 
   /**
    *
-   * @param pessoaService
+   * @param pessoaValidityCommonService
    */
-  existingCnpjValidator(pessoaService: PessoaService): AsyncValidatorFn {
+  existingCnpjValidator(pessoaValidityCommonService: PessoaValidityCommonService): AsyncValidatorFn {
     return (control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
-      return pessoaService
+      return pessoaValidityCommonService
         .findWithCnpj(control.value)
         .pipe(map(res => (control.value && res && res.body > 0 ? { cnpjAlreadyInUse: { value: control.value } } : null)));
     };

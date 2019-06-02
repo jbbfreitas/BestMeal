@@ -1,6 +1,7 @@
 package br.com.abim.bestmeal.web.rest;
 
 import br.com.abim.bestmeal.domain.Pessoa;
+import br.com.abim.bestmeal.service.FornecedorService;
 import br.com.abim.bestmeal.service.PessoaService;
 import br.com.abim.bestmeal.web.rest.errors.BadRequestAlertException;
 
@@ -41,9 +42,11 @@ public class PessoaResource {
     private String applicationName;
 
     private final PessoaService pessoaService;
+    private final FornecedorService fornecedorService;
 
-    public PessoaResource(PessoaService pessoaService) {
+    public PessoaResource(PessoaService pessoaService, FornecedorService fornecedorService) {
         this.pessoaService = pessoaService;
+        this.fornecedorService = fornecedorService;
     }
 
     /**
@@ -144,13 +147,22 @@ public class PessoaResource {
         try {
             String cpf = queryParams.get("cpf").get(0);
             Long id = Long.parseLong(queryParams.get("id").get(0));
-
+            String tipoPessoa = queryParams.get("tipoPessoa").get(0);
             log.debug("REST request to get Pessoas with  same CPF");
-            if (id == 0) {
-                numero = pessoaService.countWithCpf(cpf);
-            } else {
-                numero = pessoaService.countWithCpf(cpf, id);
+            if (tipoPessoa.equals("pessoa")) {
+                if (id == 0) {
+                    numero = pessoaService.countWithCpf(cpf);
+                } else {
+                    numero = pessoaService.countWithCpf(cpf, id);
+                }
+            } else if (tipoPessoa.equals("fornecedor")) {
+                if (id == 0) {
+                    numero = fornecedorService.countWithCpf(cpf);
+                } else {
+                    numero = fornecedorService.countWithCpf(cpf, id);
+                }
             }
+
         } catch (Exception e) {
             numero = 0L;
         }
@@ -165,12 +177,20 @@ public class PessoaResource {
         try {
             String cnpj = queryParams.get("cnpj").get(0);
             Long id = Long.parseLong(queryParams.get("id").get(0));
-
+            String tipoPessoa = queryParams.get("tipoPessoa").get(0);
             log.debug("REST request to get Pessoas with  same CNPJ");
-            if (id == 0) {
-                numero = pessoaService.countWithCnpj(cnpj);
-            } else {
-                numero = pessoaService.countWithCnpj(cnpj, id);
+            if (tipoPessoa.equals("pessoa")) {
+                if (id == 0) {
+                    numero = pessoaService.countWithCpf(cnpj);
+                } else {
+                    numero = pessoaService.countWithCpf(cnpj, id);
+                }
+            } else if (tipoPessoa.equals("fornecedor")) {
+                if (id == 0) {
+                    numero = fornecedorService.countWithCpf(cnpj);
+                } else {
+                    numero = fornecedorService.countWithCpf(cnpj, id);
+                }
             }
         } catch (Exception e) {
             numero = 0L;

@@ -43,4 +43,12 @@ public interface FornecedorService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+    public Long countWithCpf(String cpf, Long id);
+
+    public Long countWithCnpj(String cnpj, Long id);
+
+    public Long countWithCpf(String cpf);
+
+    public Long countWithCnpj(String cnpj);
 }

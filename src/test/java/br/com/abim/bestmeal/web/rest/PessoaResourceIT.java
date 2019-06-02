@@ -3,6 +3,7 @@ package br.com.abim.bestmeal.web.rest;
 import br.com.abim.bestmeal.BestMealApp;
 import br.com.abim.bestmeal.domain.Pessoa;
 import br.com.abim.bestmeal.repository.PessoaRepository;
+import br.com.abim.bestmeal.service.FornecedorService;
 import br.com.abim.bestmeal.service.PessoaService;
 import br.com.abim.bestmeal.web.rest.errors.ExceptionTranslator;
 
@@ -79,6 +80,10 @@ public class PessoaResourceIT {
     private PessoaService pessoaService;
 
     @Autowired
+    private FornecedorService fornecedorService;
+
+
+    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -100,7 +105,7 @@ public class PessoaResourceIT {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final PessoaResource pessoaResource = new PessoaResource(pessoaService);
+        final PessoaResource pessoaResource = new PessoaResource(pessoaService, fornecedorService);
         this.restPessoaMockMvc = MockMvcBuilders.standaloneSetup(pessoaResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
