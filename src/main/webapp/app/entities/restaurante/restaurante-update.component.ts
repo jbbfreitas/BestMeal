@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
-import { FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, Validators, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
@@ -20,11 +20,7 @@ export class RestauranteUpdateComponent implements OnInit {
   isSaving: boolean;
 
   municipios: IMunicipio[];
-  /*
-logo: [null, [Validators.required]],
-    logoContentType: [],
-*/
-  editForm = this.pessoaValidityCommonService.createEditForm(this.fb);
+  editForm: FormGroup; // Só declarar
 
   constructor(
     protected dataUtils: JhiDataUtils,
@@ -35,7 +31,11 @@ logo: [null, [Validators.required]],
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
     protected pessoaValidityCommonService: PessoaValidityCommonService
-  ) {}
+  ) {
+    this.editForm = this.pessoaValidityCommonService.createEditForm(this.fb); // criar
+    this.editForm.addControl('logo', new FormControl('', Validators.required)); // adicionar
+    this.editForm.addControl('logoContentType', new FormControl('', Validators.required)); // adicionar
+  }
 
   ngOnInit() {
     this.isSaving = false;
@@ -50,14 +50,6 @@ logo: [null, [Validators.required]],
         map((response: HttpResponse<IMunicipio[]>) => response.body)
       )
       .subscribe((res: IMunicipio[]) => (this.municipios = res), (res: HttpErrorResponse) => this.onError(res.message));
-    /*
-      Use next line if you want to add new controls do a descendant component
-      */
-    this.editForm.addControl('logo', new FormControl('', Validators.required));
-    this.editForm.addControl('logoContentType', new FormControl(''));
-    this.editForm.get('logo').updateValueAndValidity();
-    this.editForm.get('logoContentType').updateValueAndValidity();
-
     this.editForm = this.pessoaValidityCommonService.setPessoaReValidity(this.editForm);
   }
 
