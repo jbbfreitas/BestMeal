@@ -35,6 +35,7 @@ export class RestauranteUpdateComponent implements OnInit {
     this.editForm = this.pessoaValidityCommonService.createEditForm(this.fb); // criar
     this.editForm.addControl('logo', new FormControl('', Validators.required)); // adicionar
     this.editForm.addControl('logoContentType', new FormControl('', Validators.required)); // adicionar
+    this.editForm.get('tipo').setValue('JURIDICA');
   }
 
   ngOnInit() {
