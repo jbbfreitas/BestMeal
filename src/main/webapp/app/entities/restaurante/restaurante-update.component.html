@@ -1,7 +1,8 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-            <h2 id="jhi-restaurante-heading" jhiTranslate="bestMealApp.restaurante.home.createOrEditLabel">Create or edit a Restaurante</h2>
+            <h2 id="jhi-restaurante-heading" jhiTranslate="bestMealApp.restaurante.home.createOrEditLabel">Create or
+                edit a Restaurante</h2>
             <div>
                 <jhi-alert-error></jhi-alert-error>
                 <div class="row">
@@ -11,30 +12,34 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="bestMealApp.restaurante.logo" for="field_logo">Logo</label>
+                    <label class="form-control-label" jhiTranslate="bestMealApp.restaurante.logo"
+                        for="field_logo">Logo</label>
                     <div>
-                        <img [src]="'data:' + editForm.get('logoContentType').value + ';base64,' + editForm.get('logo').value" style="max-height: 100px;" *ngIf="editForm.get('logo').value" alt="restaurante image"/>
+                        <img [src]="'data:' + editForm.get('logoContentType').value + ';base64,' + editForm.get('logo').value"
+                            style="max-height: 100px;" *ngIf="editForm.get('logo').value" alt="restaurante image" />
                         <div *ngIf="editForm.get('logo').value" class="form-text text-danger clearfix">
-                            <span class="pull-left">{{editForm.get('logoContentType').value}}, {{byteSize(editForm.get('logo').value)}}</span>
-                            <button type="button" (click)="clearInputImage('logo', 'logoContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                            <button type="button" (click)="clearInputImage('logo', 'logoContentType', 'fileImage')"
+                                class="btn btn-primary btn-sm pull-right">
                                 <fa-icon [icon]="'times'"></fa-icon>
                             </button>
                         </div>
-                        <input type="file" id="file_logo" (change)="setFileData($event, 'logo', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                        <input type="file" id="file_logo" (change)="setFileData($event, 'logo', true)" accept="image/*"
+                            jhiTranslate="entity.action.addimage" />
                     </div>
-                    <input type="hidden" class="form-control" name="logo" id="field_logo"
-                           formControlName="logo"/>
+                    <input type="hidden" class="form-control" name="logo" id="field_logo" formControlName="logo" />
                     <input type="hidden" class="form-control" name="logoContentType" id="field_logoContentType"
-                           formControlName="logoContentType" />
-                    <div *ngIf="editForm.get('logo').invalid && (editForm.get('logo').dirty || editForm.get('logo').touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('logo').errors.required" jhiTranslate="entity.validation.required">
-                        This field is required.
+                        formControlName="logoContentType" />
+                    <div
+                        *ngIf="editForm.get('logo').invalid && (editForm.get('logo').dirty || editForm.get('logo').touched)">
+                        <small class="form-text text-danger" *ngIf="editForm.get('logo').errors.required"
+                            jhiTranslate="entity.validation.required">
+                            This field is required.
                         </small>
                     </div>
                 </div>
+                <span><hr/></span>
 
-                
+
                 <div>
                     <small class="form-text text-primary" jhiTranslate="bestMealApp.restaurante.dadosGerais">
                         Dados Gerais:
@@ -42,39 +47,7 @@
                     <hr class="half-rule" />
                 </div>
                 <div class="row">
-                    <div class="form-group col-md-6">
-                        <label class="form-control-label" jhiTranslate="bestMealApp.restaurante.tipo"
-                            for="field_tipo">Tipo</label>
-                        <select class="form-control" name="tipo" formControlName="tipo" id="field_tipo">
-                            <option value="FISICA">{{'bestMealApp.TipoPessoa.FISICA' | translate}}</option>
-                            <option value="JURIDICA">{{'bestMealApp.TipoPessoa.JURIDICA' | translate}}</option>
-                        </select>
-                    </div>
                     <div class="col-md-6">
-                        <div *ngIf="(editForm.get(['tipo']).value === 'FISICA')">
-                            <div class="form-group">
-                                <label class="form-control-label" jhiTranslate="bestMealApp.restaurante.cpf"
-                                    for="field_cpf">Cpf</label>
-                                <input type="text" class="form-control" name="cpf" id="field_cpf"
-                                    formControlName="cpf" />
-                                <div
-                                    *ngIf="editForm.get('cpf').invalid && (editForm.get('cpf').dirty || editForm.get('cpf').touched)">
-                                    <small class="form-text text-danger" *ngIf="editForm.get('cpf').errors.pattern"
-                                        jhiTranslate="entity.validation.pattern" [translateValues]="{ pattern: 'CPF' }">
-                                        This field should follow pattern for "CPF".
-                                    </small>
-                                    <small class="form-text text-danger" *ngIf="editForm.get('cpf').errors.cpfNotValid"
-                                        jhiTranslate="entity.validation.cpfdigit">
-                                        Digito do CPF é inválido.
-                                    </small>
-                                    <small class="form-text text-danger"
-                                        *ngIf="editForm.get('cpf').errors.cpfAlreadyInUse"
-                                        jhiTranslate="entity.validation.cpfAlreadyInUse">
-                                        CPF já está em uso.
-                                    </small>
-                                </div>
-                            </div>
-                        </div>
                         <div *ngIf="(editForm.get(['tipo']).value === 'JURIDICA')">
                             <div class="form-group">
                                 <label class="form-control-label" jhiTranslate="bestMealApp.restaurante.cnpj"
@@ -104,236 +77,126 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div *ngIf="(editForm.get(['tipo']).value === 'JURIDICA')">
-
-                    <div class="row">
-                        <div class="form-group col-md-12">
-                            <label class="form-control-label" jhiTranslate="bestMealApp.restaurante.nomeFantasia"
-                                for="field_primeiroNome">Primeiro Nome</label>
-                            <input type="text" class="form-control" name="primeiroNome" id="field_primeiroNome"
-                                formControlName="primeiroNome" />
-                            <div
-                                *ngIf="editForm.get('primeiroNome').invalid && (editForm.get('primeiroNome').dirty || editForm.get('primeiroNome').touched)">
-                                <small class="form-text text-danger"
-                                    *ngIf="editForm.get('primeiroNome').errors.required"
-                                    jhiTranslate="entity.validation.required">
-                                    This field is required.
-                                </small>
-                                <small class="form-text text-danger"
-                                    *ngIf="editForm.get('primeiroNome').errors.minlength"
-                                    jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 2 }">
-                                    This field is required to be at least 2 characters.
-                                </small>
-                                <small class="form-text text-danger"
-                                    *ngIf="editForm.get('primeiroNome').errors.maxlength"
-                                    jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 20 }">
-                                    This field cannot be longer than 20 characters.
-                                </small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div *ngIf="(editForm.get(['tipo']).value === 'FISICA')">
-
-                    <div class="row">
-                        <div class="form-group col-md-4">
-                            <label class="form-control-label" jhiTranslate="bestMealApp.restaurante.primeiroNome"
-                                for="field_primeiroNome">Primeiro Nome</label>
-                            <input type="text" class="form-control" name="primeiroNome" id="field_primeiroNome"
-                                formControlName="primeiroNome" />
-                            <div
-                                *ngIf="editForm.get('primeiroNome').invalid && (editForm.get('primeiroNome').dirty || editForm.get('primeiroNome').touched)">
-                                <small class="form-text text-danger"
-                                    *ngIf="editForm.get('primeiroNome').errors.required"
-                                    jhiTranslate="entity.validation.required">
-                                    This field is required.
-                                </small>
-                                <small class="form-text text-danger"
-                                    *ngIf="editForm.get('primeiroNome').errors.minlength"
-                                    jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 2 }">
-                                    This field is required to be at least 2 characters.
-                                </small>
-                                <small class="form-text text-danger"
-                                    *ngIf="editForm.get('primeiroNome').errors.maxlength"
-                                    jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 20 }">
-                                    This field cannot be longer than 20 characters.
-                                </small>
-                            </div>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label class="form-control-label" jhiTranslate="bestMealApp.restaurante.nomeMeio"
-                                for="field_nomeMeio">Nome Meio</label>
-                            <input type="text" class="form-control" name="nomeMeio" id="field_nomeMeio"
-                                formControlName="nomeMeio" />
-                            <div
-                                *ngIf="editForm.get('nomeMeio').invalid && (editForm.get('nomeMeio').dirty || editForm.get('nomeMeio').touched)">
-                                <small class="form-text text-danger" *ngIf="editForm.get('nomeMeio').errors.required"
-                                    jhiTranslate="entity.validation.required">
-                                    This field is required.
-                                </small>
-                                <small class="form-text text-danger" *ngIf="editForm.get('nomeMeio').errors.minlength"
-                                    jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 2 }">
-                                    This field is required to be at least 2 characters.
-                                </small>
-                                <small class="form-text text-danger" *ngIf="editForm.get('nomeMeio').errors.maxlength"
-                                    jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 30 }">
-                                    This field cannot be longer than 30 characters.
-                                </small>
-                            </div>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label class="form-control-label" jhiTranslate="bestMealApp.restaurante.sobreNome"
-                                for="field_sobreNome">Sobre Nome</label>
-                            <input type="text" class="form-control" name="sobreNome" id="field_sobreNome"
-                                formControlName="sobreNome" />
-                            <div
-                                *ngIf="editForm.get('sobreNome').invalid && (editForm.get('sobreNome').dirty || editForm.get('sobreNome').touched)">
-                                <small class="form-text text-danger" *ngIf="editForm.get('sobreNome').errors.required"
-                                    jhiTranslate="entity.validation.required">
-                                    This field is required.
-                                </small>
-                                <small class="form-text text-danger" *ngIf="editForm.get('sobreNome').errors.minlength"
-                                    jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 2 }">
-                                    This field is required to be at least 2 characters.
-                                </small>
-                                <small class="form-text text-danger" *ngIf="editForm.get('sobreNome').errors.maxlength"
-                                    jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 30 }">
-                                    This field cannot be longer than 30 characters.
-                                </small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label class="form-control-label" jhiTranslate="bestMealApp.restaurante.saudacao"
-                                for="field_saudacao">Saudacao</label>
-                            <input type="text" class="form-control" name="saudacao" id="field_saudacao"
-                                formControlName="saudacao" />
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label class="form-control-label" jhiTranslate="bestMealApp.restaurante.titulo"
-                                for="field_titulo">Titulo</label>
-                            <input type="text" class="form-control" name="titulo" id="field_titulo"
-                                formControlName="titulo" />
-
-                            <div
-                                *ngIf="editForm.get('titulo').invalid && (editForm.get('titulo').dirty || editForm.get('titulo').touched)">
-                                <small class="form-text text-danger" *ngIf="editForm.get('titulo').errors.required"
-                                    jhiTranslate="entity.validation.required">
-                                    This field is required.
-                                </small>
-                                <small class="form-text text-danger" *ngIf="editForm.get('titulo').errors.minlength"
-                                    jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 3 }">
-                                    This field is required to be at least 3 characters.
-                                </small>
-                                <small class="form-text text-danger" *ngIf="editForm.get('titulo').errors.maxlength"
-                                    jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 15 }">
-                                    This field cannot be longer than 15 characters.
-                                </small>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div>
-                    <small class="form-text text-primary" jhiTranslate="bestMealApp.restaurante.endereco">
-                        Dados do Endereço:
-                    </small>
-                    <hr class="half-rule" />
-                </div>
-                <div class="row">
-                    <div class="form-group col-md-6">
-                        <label class="form-control-label" jhiTranslate="bestMealApp.restaurante.cep"
-                            for="field_cep">Cep</label>
-                        <input type="text" class="form-control" name="cep" id="field_cep" formControlName="cep" />
+                    <div class="col-md-6">
+                        <label class="form-control-label" jhiTranslate="bestMealApp.restaurante.nomeFantasia"
+                            for="field_primeiroNome">Primeiro Nome</label>
+                        <input type="text" class="form-control" name="primeiroNome" id="field_primeiroNome"
+                            formControlName="primeiroNome" />
                         <div
-                            *ngIf="editForm.get('cep').invalid && (editForm.get('cep').dirty || editForm.get('cep').touched)">
-                            <small class="form-text text-danger" *ngIf="editForm.get('cep').errors.pattern"
-                                jhiTranslate="entity.validation.pattern" [translateValues]="{ pattern: 'Cep' }">
-                                This field should follow pattern for "Cep".
-                            </small>
-                        </div>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label class="form-control-label" jhiTranslate="bestMealApp.restaurante.tipoLogradouro"
-                            for="field_tipoLogradouro">Tipo Logradouro</label>
-                        <select class="form-control" name="tipoLogradouro" formControlName="tipoLogradouro"
-                            id="field_tipoLogradouro">
-                            <option value="RUA">{{'bestMealApp.TipoLogradouro.RUA' | translate}}</option>
-                            <option value="AVENIDA">{{'bestMealApp.TipoLogradouro.AVENIDA' | translate}}</option>
-                            <option value="TRAVESSA">{{'bestMealApp.TipoLogradouro.TRAVESSA' | translate}}</option>
-                            <option value="QUADRA">{{'bestMealApp.TipoLogradouro.QUADRA' | translate}}</option>
-                            <option value="BECO">{{'bestMealApp.TipoLogradouro.BECO' | translate}}</option>
-                            <option value="ESTRADA">{{'bestMealApp.TipoLogradouro.ESTRADA' | translate}}</option>
-                            <option value="CHACARA">{{'bestMealApp.TipoLogradouro.CHACARA' | translate}}</option>
-                            <option value="RODOVIA">{{'bestMealApp.TipoLogradouro.RODOVIA' | translate}}</option>
-                            <option value="VIADUTO">{{'bestMealApp.TipoLogradouro.VIADUTO' | translate}}</option>
-                            <option value="SITIO">{{'bestMealApp.TipoLogradouro.SITIO' | translate}}</option>
-                            <option value="FEIRA">{{'bestMealApp.TipoLogradouro.FEIRA' | translate}}</option>
-                            <option value="SETOR">{{'bestMealApp.TipoLogradouro.SETOR' | translate}}</option>
-                            <option value="MORRO">{{'bestMealApp.TipoLogradouro.MORRO' | translate}}</option>
-                            <option value="LARGO">{{'bestMealApp.TipoLogradouro.LARGO' | translate}}</option>
-                            <option value="FAZENDA">{{'bestMealApp.TipoLogradouro.FAZENDA' | translate}}</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="bestMealApp.restaurante.nomeLogradouro"
-                        for="field_nomeLogradouro">Nome Logradouro</label>
-                    <input type="text" class="form-control" name="nomeLogradouro" id="field_nomeLogradouro"
-                        formControlName="nomeLogradouro" />
-                    <div
-                        *ngIf="editForm.get('nomeLogradouro').invalid && (editForm.get('nomeLogradouro').dirty || editForm.get('nomeLogradouro').touched)">
-                        <small class="form-text text-danger" *ngIf="editForm.get('nomeLogradouro').errors.required"
-                            jhiTranslate="entity.validation.required">
-                            This field is required.
-                        </small>
-                        <small class="form-text text-danger" *ngIf="editForm.get('nomeLogradouro').errors.minlength"
-                            jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 5 }">
-                            This field is required to be at least 5 characters.
-                        </small>
-                        <small class="form-text text-danger" *ngIf="editForm.get('nomeLogradouro').errors.maxlength"
-                            jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 100 }">
-                            This field cannot be longer than 100 characters.
-                        </small>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="form-group col-md-6">
-                        <label class="form-control-label" jhiTranslate="bestMealApp.restaurante.complemento"
-                            for="field_complemento">Complemento</label>
-                        <input type="text" class="form-control" name="complemento" id="field_complemento"
-                            formControlName="complemento" />
-                        <div
-                            *ngIf="editForm.get('complemento').invalid && (editForm.get('complemento').dirty || editForm.get('complemento').touched)">
-                            <small class="form-text text-danger" *ngIf="editForm.get('complemento').errors.required"
+                            *ngIf="editForm.get('primeiroNome').invalid && (editForm.get('primeiroNome').dirty || editForm.get('primeiroNome').touched)">
+                            <small class="form-text text-danger" *ngIf="editForm.get('primeiroNome').errors.required"
                                 jhiTranslate="entity.validation.required">
                                 This field is required.
                             </small>
-                            <small class="form-text text-danger" *ngIf="editForm.get('complemento').errors.minlength"
-                                jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 0 }">
-                                This field is required to be at least 0 characters.
+                            <small class="form-text text-danger" *ngIf="editForm.get('primeiroNome').errors.minlength"
+                                jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 2 }">
+                                This field is required to be at least 2 characters.
                             </small>
-                            <small class="form-text text-danger" *ngIf="editForm.get('complemento').errors.maxlength"
-                                jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 30 }">
-                                This field cannot be longer than 30 characters.
+                            <small class="form-text text-danger" *ngIf="editForm.get('primeiroNome').errors.maxlength"
+                                jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 20 }">
+                                This field cannot be longer than 20 characters.
                             </small>
                         </div>
                     </div>
+                </div>
+            </div>
 
-                    <div class="form-group col-md-6">
-                        <label class="form-control-label" jhiTranslate="bestMealApp.restaurante.municipio"
-                            for="field_municipio">Municipio</label>
-                        <select class="form-control" id="field_municipio" name="municipio" formControlName="municipio">
-                            <option [ngValue]="null"></option>
-                            <option
-                                [ngValue]="municipioOption.id === editForm.get('municipio').value?.id ? editForm.get('municipio').value : municipioOption"
-                                *ngFor="let municipioOption of municipios; trackBy: trackMunicipioById">
-                                {{municipioOption.nomeMunicipio+"-"+municipioOption.uf}}</option>
-                        </select>
+            <div>
+                <small class="form-text text-primary" jhiTranslate="bestMealApp.restaurante.endereco">
+                    Dados do Endereço:
+                </small>
+                <hr class="half-rule" />
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label class="form-control-label" jhiTranslate="bestMealApp.restaurante.cep"
+                        for="field_cep">Cep</label>
+                    <input type="text" class="form-control" name="cep" id="field_cep" formControlName="cep" />
+                    <div
+                        *ngIf="editForm.get('cep').invalid && (editForm.get('cep').dirty || editForm.get('cep').touched)">
+                        <small class="form-text text-danger" *ngIf="editForm.get('cep').errors.pattern"
+                            jhiTranslate="entity.validation.pattern" [translateValues]="{ pattern: 'Cep' }">
+                            This field should follow pattern for "Cep".
+                        </small>
                     </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="form-control-label" jhiTranslate="bestMealApp.restaurante.tipoLogradouro"
+                        for="field_tipoLogradouro">Tipo Logradouro</label>
+                    <select class="form-control" name="tipoLogradouro" formControlName="tipoLogradouro"
+                        id="field_tipoLogradouro">
+                        <option value="RUA">{{'bestMealApp.TipoLogradouro.RUA' | translate}}</option>
+                        <option value="AVENIDA">{{'bestMealApp.TipoLogradouro.AVENIDA' | translate}}</option>
+                        <option value="TRAVESSA">{{'bestMealApp.TipoLogradouro.TRAVESSA' | translate}}</option>
+                        <option value="QUADRA">{{'bestMealApp.TipoLogradouro.QUADRA' | translate}}</option>
+                        <option value="BECO">{{'bestMealApp.TipoLogradouro.BECO' | translate}}</option>
+                        <option value="ESTRADA">{{'bestMealApp.TipoLogradouro.ESTRADA' | translate}}</option>
+                        <option value="CHACARA">{{'bestMealApp.TipoLogradouro.CHACARA' | translate}}</option>
+                        <option value="RODOVIA">{{'bestMealApp.TipoLogradouro.RODOVIA' | translate}}</option>
+                        <option value="VIADUTO">{{'bestMealApp.TipoLogradouro.VIADUTO' | translate}}</option>
+                        <option value="SITIO">{{'bestMealApp.TipoLogradouro.SITIO' | translate}}</option>
+                        <option value="FEIRA">{{'bestMealApp.TipoLogradouro.FEIRA' | translate}}</option>
+                        <option value="SETOR">{{'bestMealApp.TipoLogradouro.SETOR' | translate}}</option>
+                        <option value="MORRO">{{'bestMealApp.TipoLogradouro.MORRO' | translate}}</option>
+                        <option value="LARGO">{{'bestMealApp.TipoLogradouro.LARGO' | translate}}</option>
+                        <option value="FAZENDA">{{'bestMealApp.TipoLogradouro.FAZENDA' | translate}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-control-label" jhiTranslate="bestMealApp.restaurante.nomeLogradouro"
+                    for="field_nomeLogradouro">Nome Logradouro</label>
+                <input type="text" class="form-control" name="nomeLogradouro" id="field_nomeLogradouro"
+                    formControlName="nomeLogradouro" />
+                <div
+                    *ngIf="editForm.get('nomeLogradouro').invalid && (editForm.get('nomeLogradouro').dirty || editForm.get('nomeLogradouro').touched)">
+                    <small class="form-text text-danger" *ngIf="editForm.get('nomeLogradouro').errors.required"
+                        jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                    <small class="form-text text-danger" *ngIf="editForm.get('nomeLogradouro').errors.minlength"
+                        jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 5 }">
+                        This field is required to be at least 5 characters.
+                    </small>
+                    <small class="form-text text-danger" *ngIf="editForm.get('nomeLogradouro').errors.maxlength"
+                        jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 100 }">
+                        This field cannot be longer than 100 characters.
+                    </small>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label class="form-control-label" jhiTranslate="bestMealApp.restaurante.complemento"
+                        for="field_complemento">Complemento</label>
+                    <input type="text" class="form-control" name="complemento" id="field_complemento"
+                        formControlName="complemento" />
+                    <div
+                        *ngIf="editForm.get('complemento').invalid && (editForm.get('complemento').dirty || editForm.get('complemento').touched)">
+                        <small class="form-text text-danger" *ngIf="editForm.get('complemento').errors.required"
+                            jhiTranslate="entity.validation.required">
+                            This field is required.
+                        </small>
+                        <small class="form-text text-danger" *ngIf="editForm.get('complemento').errors.minlength"
+                            jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 0 }">
+                            This field is required to be at least 0 characters.
+                        </small>
+                        <small class="form-text text-danger" *ngIf="editForm.get('complemento').errors.maxlength"
+                            jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 30 }">
+                            This field cannot be longer than 30 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label class="form-control-label" jhiTranslate="bestMealApp.restaurante.municipio"
+                        for="field_municipio">Municipio</label>
+                    <select class="form-control" id="field_municipio" name="municipio" formControlName="municipio">
+                        <option [ngValue]="null"></option>
+                        <option
+                            [ngValue]="municipioOption.id === editForm.get('municipio').value?.id ? editForm.get('municipio').value : municipioOption"
+                            *ngFor="let municipioOption of municipios; trackBy: trackMunicipioById">
+                            {{municipioOption.nomeMunicipio+"-"+municipioOption.uf}}</option>
+                    </select>
                 </div>
             </div>
 

@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { JhiAlertService, JhiDataUtils } from 'ng-jhipster';
-import { IRestaurante, Restaurante } from 'app/shared/model/restaurante.model';
+import { IRestaurante, Restaurante, TipoPessoa } from 'app/shared/model/restaurante.model';
 import { RestauranteService } from './restaurante.service';
 import { IMunicipio } from 'app/shared/model/municipio.model';
 import { MunicipioService } from 'app/entities/municipio';
@@ -52,6 +52,7 @@ export class RestauranteUpdateComponent implements OnInit {
       )
       .subscribe((res: IMunicipio[]) => (this.municipios = res), (res: HttpErrorResponse) => this.onError(res.message));
     this.editForm = this.pessoaValidityCommonService.setPessoaReValidity(this.editForm);
+    this.editForm.get('tipo').setValue(TipoPessoa.JURIDICA); // Setando o valor fixo
   }
 
   updateForm(restaurante: IRestaurante) {
