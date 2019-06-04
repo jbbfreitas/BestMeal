@@ -1,3 +1,5 @@
+import { ICliente } from 'app/shared/model/cliente.model';
+
 export const enum Bandeira {
   AMERICAN = 'AMERICAN',
   DINERS = 'DINERS',
@@ -13,6 +15,7 @@ export interface ICartaoCredito {
   numero?: string;
   cvv?: string;
   validade?: string;
+  cliente?: ICliente;
 }
 
 export class CartaoCredito implements ICartaoCredito {
@@ -22,6 +25,7 @@ export class CartaoCredito implements ICartaoCredito {
     public bandeira?: Bandeira,
     public numero?: string,
     public cvv?: string,
-    public validade?: string
+    public validade?: string,
+    public cliente?: ICliente
   ) {}
 }

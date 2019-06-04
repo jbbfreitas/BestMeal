@@ -1,6 +1,7 @@
 package br.com.abim.bestmeal.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -50,6 +51,10 @@ public class CartaoRecompensa implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "situacao")
     private SituacaoCartao situacao;
+
+    @ManyToOne
+    @JsonIgnoreProperties("cartaoRecompensas")
+    private Cliente cliente;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -123,6 +128,19 @@ public class CartaoRecompensa implements Serializable {
 
     public void setSituacao(SituacaoCartao situacao) {
         this.situacao = situacao;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public CartaoRecompensa cliente(Cliente Cliente) {
+        this.cliente = Cliente;
+        return this;
+    }
+
+    public void setCliente(Cliente Cliente) {
+        this.cliente = Cliente;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

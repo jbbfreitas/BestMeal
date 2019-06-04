@@ -15,6 +15,9 @@
         "pessoa": "Pessoa",
         "fornecedor": "Fornecedor",
         "restaurante": "Restaurante",
+        "cliente": "Cliente",
+        "cartaoCredito": "Cartao Credito",
+        "cartaoRecompensa": "Cartao Recompensa",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

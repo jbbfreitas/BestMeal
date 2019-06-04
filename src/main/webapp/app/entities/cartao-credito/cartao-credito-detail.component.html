@@ -25,6 +25,12 @@
                 <dd>
                     <span>{{cartaoCredito.validade}}</span>
                 </dd>
+                <dt><span jhiTranslate="bestMealApp.cartaoCredito.cliente">Cliente</span></dt>
+                <dd>
+                    <div *ngIf="cartaoCredito.cliente">
+                        <a [routerLink]="['/cliente', cartaoCredito.cliente?.id, 'view']">{{cartaoCredito.cliente?.primeiroNome}}</a>
+                    </div>
+                </dd>
             </dl>
 
             <button type="submit"

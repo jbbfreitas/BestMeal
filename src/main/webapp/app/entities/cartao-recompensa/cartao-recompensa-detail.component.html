@@ -25,6 +25,12 @@
                 <dd>
                     <span jhiTranslate="{{'bestMealApp.SituacaoCartao.' + cartaoRecompensa.situacao}}">{{cartaoRecompensa.situacao}}</span>
                 </dd>
+                <dt><span jhiTranslate="bestMealApp.cartaoRecompensa.cliente">Cliente</span></dt>
+                <dd>
+                    <div *ngIf="cartaoRecompensa.cliente">
+                        <a [routerLink]="['/cliente', cartaoRecompensa.cliente?.id, 'view']">{{cartaoRecompensa.cliente?.primeiroNome}}</a>
+                    </div>
+                </dd>
             </dl>
 
             <button type="submit"

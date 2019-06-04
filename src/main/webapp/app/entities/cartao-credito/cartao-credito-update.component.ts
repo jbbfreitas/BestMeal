@@ -3,8 +3,12 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { ICartaoCredito, CartaoCredito } from '../../shared/model/cartao-credito.model';
+import { filter, map } from 'rxjs/operators';
+import { JhiAlertService } from 'ng-jhipster';
+import { ICartaoCredito, CartaoCredito } from 'app/shared/model/cartao-credito.model';
 import { CartaoCreditoService } from './cartao-credito.service';
+import { ICliente } from 'app/shared/model/cliente.model';
+import { ClienteService } from 'app/entities/cliente';
 import { CustomNameValidatorService } from '../../shared/validators/custom-name.service';
 import { CustomDateValidatorService } from '../../shared/validators/custom-date.service';
 import * as moment from 'moment';
@@ -16,6 +20,8 @@ import * as moment from 'moment';
 export class CartaoCreditoUpdateComponent implements OnInit {
   cartaoCredito: ICartaoCredito;
   isSaving: boolean;
+
+  clientes: ICliente[];
   mesano: string = moment().format('MM/YYYY');
 
   editForm = this.fb.group({
@@ -37,11 +43,14 @@ export class CartaoCreditoUpdateComponent implements OnInit {
     validade: [
       null,
       [Validators.required, Validators.pattern('^(0[1-9]|1[0-2])/?([0-9]{4})$'), this.dateValidateService.expireDateValidator(this.mesano)]
-    ]
+    ],
+    cliente: []
   });
 
   constructor(
+    protected jhiAlertService: JhiAlertService,
     protected cartaoCreditoService: CartaoCreditoService,
+    protected clienteService: ClienteService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
     protected nameValidatorService: CustomNameValidatorService,
@@ -54,6 +63,13 @@ export class CartaoCreditoUpdateComponent implements OnInit {
       this.updateForm(cartaoCredito);
       this.cartaoCredito = cartaoCredito;
     });
+    this.clienteService
+      .query()
+      .pipe(
+        filter((mayBeOk: HttpResponse<ICliente[]>) => mayBeOk.ok),
+        map((response: HttpResponse<ICliente[]>) => response.body)
+      )
+      .subscribe((res: ICliente[]) => (this.clientes = res), (res: HttpErrorResponse) => this.onError(res.message));
   }
 
   updateForm(cartaoCredito: ICartaoCredito) {
@@ -63,7 +79,8 @@ export class CartaoCreditoUpdateComponent implements OnInit {
       bandeira: cartaoCredito.bandeira,
       numero: cartaoCredito.numero,
       cvv: cartaoCredito.cvv,
-      validade: cartaoCredito.validade
+      validade: cartaoCredito.validade,
+      cliente: cartaoCredito.cliente
     });
   }
 
@@ -89,7 +106,8 @@ export class CartaoCreditoUpdateComponent implements OnInit {
       bandeira: this.editForm.get(['bandeira']).value,
       numero: this.editForm.get(['numero']).value,
       cvv: this.editForm.get(['cvv']).value,
-      validade: this.editForm.get(['validade']).value
+      validade: this.editForm.get(['validade']).value,
+      cliente: this.editForm.get(['cliente']).value
     };
     return entity;
   }
@@ -105,5 +123,12 @@ export class CartaoCreditoUpdateComponent implements OnInit {
 
   protected onSaveError() {
     this.isSaving = false;
+  }
+  protected onError(errorMessage: string) {
+    this.jhiAlertService.error(errorMessage, null, null);
+  }
+
+  trackClienteById(index: number, item: ICliente) {
+    return item.id;
   }
 }

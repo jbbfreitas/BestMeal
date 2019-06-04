@@ -1,3 +1,5 @@
+import { ICliente } from 'app/shared/model/cliente.model';
+
 export const enum SituacaoCartao {
   ATIVO = 'ATIVO',
   INATIVO = 'INATIVO',
@@ -12,6 +14,7 @@ export interface ICartaoRecompensa {
   validade?: string;
   pontuacao?: number;
   situacao?: SituacaoCartao;
+  cliente?: ICliente;
 }
 
 export class CartaoRecompensa implements ICartaoRecompensa {
@@ -21,6 +24,7 @@ export class CartaoRecompensa implements ICartaoRecompensa {
     public numero?: string,
     public validade?: string,
     public pontuacao?: number,
-    public situacao?: SituacaoCartao
+    public situacao?: SituacaoCartao,
+    public cliente?: ICliente
   ) {}
 }

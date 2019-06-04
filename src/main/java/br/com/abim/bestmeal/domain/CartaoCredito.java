@@ -1,6 +1,7 @@
 package br.com.abim.bestmeal.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -36,7 +37,7 @@ public class CartaoCredito implements Serializable {
     @Column(name = "bandeira")
     private Bandeira bandeira;
 
-    @Pattern(regexp = "^(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\\\\d{3})\\\\d{11})$")
+    @Pattern(regexp = "(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\\d{3})\\d{11})$")
     @Column(name = "numero")
     private String numero;
 
@@ -46,9 +47,13 @@ public class CartaoCredito implements Serializable {
     private String cvv;
 
     @NotNull
-    @Pattern(regexp = "^(0[1-9]|1[0-2])\\/?([0-9]{4})$")
+    @Pattern(regexp = "^(0[1-9]|1[0-2])/?([0-9]{4})$")
     @Column(name = "validade", nullable = false)
     private String validade;
+
+    @ManyToOne
+    @JsonIgnoreProperties("cliente")
+    private Cliente cliente;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -122,6 +127,19 @@ public class CartaoCredito implements Serializable {
 
     public void setValidade(String validade) {
         this.validade = validade;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public CartaoCredito cliente(Cliente Cliente) {
+        this.cliente = Cliente;
+        return this;
+    }
+
+    public void setCliente(Cliente Cliente) {
+        this.cliente = Cliente;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

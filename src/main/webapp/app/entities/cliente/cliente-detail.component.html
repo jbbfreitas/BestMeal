@@ -1,0 +1,77 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="cliente">
+            <h2><span jhiTranslate="bestMealApp.cliente.detail.title">Cliente</span> {{cliente.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="bestMealApp.cliente.tipo">Tipo</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'bestMealApp.TipoPessoa.' + cliente.tipo}}">{{cliente.tipo}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestMealApp.cliente.cpf">Cpf</span></dt>
+                <dd>
+                    <span>{{cliente.cpf}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestMealApp.cliente.cnpj">Cnpj</span></dt>
+                <dd>
+                    <span>{{cliente.cnpj}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestMealApp.cliente.primeiroNome">Primeiro Nome</span></dt>
+                <dd>
+                    <span>{{cliente.primeiroNome}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestMealApp.cliente.nomeMeio">Nome Meio</span></dt>
+                <dd>
+                    <span>{{cliente.nomeMeio}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestMealApp.cliente.sobreNome">Sobre Nome</span></dt>
+                <dd>
+                    <span>{{cliente.sobreNome}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestMealApp.cliente.saudacao">Saudacao</span></dt>
+                <dd>
+                    <span>{{cliente.saudacao}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestMealApp.cliente.titulo">Titulo</span></dt>
+                <dd>
+                    <span>{{cliente.titulo}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestMealApp.cliente.cep">Cep</span></dt>
+                <dd>
+                    <span>{{cliente.cep}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestMealApp.cliente.tipoLogradouro">Tipo Logradouro</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'bestMealApp.TipoLogradouro.' + cliente.tipoLogradouro}}">{{cliente.tipoLogradouro}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestMealApp.cliente.nomeLogradouro">Nome Logradouro</span></dt>
+                <dd>
+                    <span>{{cliente.nomeLogradouro}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestMealApp.cliente.complemento">Complemento</span></dt>
+                <dd>
+                    <span>{{cliente.complemento}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestMealApp.cliente.municipio">Municipio</span></dt>
+                <dd>
+                    <div *ngIf="cliente.municipio">
+                        <a [routerLink]="['/municipio', cliente.municipio?.id, 'view']">{{cliente.municipio?.nomeMunicipio}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/cliente', cliente.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

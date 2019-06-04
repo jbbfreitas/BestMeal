@@ -3,8 +3,12 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
+import { JhiAlertService } from 'ng-jhipster';
 import { ICartaoRecompensa, CartaoRecompensa } from 'app/shared/model/cartao-recompensa.model';
 import { CartaoRecompensaService } from './cartao-recompensa.service';
+import { ICliente } from 'app/shared/model/cliente.model';
+import { ClienteService } from 'app/entities/cliente';
 
 @Component({
   selector: 'jhi-cartao-recompensa-update',
@@ -14,17 +18,22 @@ export class CartaoRecompensaUpdateComponent implements OnInit {
   cartaoRecompensa: ICartaoRecompensa;
   isSaving: boolean;
 
+  clientes: ICliente[];
+
   editForm = this.fb.group({
     id: [],
     nomeCartao: [null, [Validators.required, Validators.minLength(10), Validators.maxLength(40)]],
     numero: [null, [Validators.required]],
     validade: [null, [Validators.required, Validators.pattern('^(0[1-9]|1[0-2])/?([0-9]{4}|[0-9]{2})$')]],
     pontuacao: [null, [Validators.required, Validators.min(0), Validators.max(100)]],
-    situacao: []
+    situacao: [],
+    cliente: []
   });
 
   constructor(
+    protected jhiAlertService: JhiAlertService,
     protected cartaoRecompensaService: CartaoRecompensaService,
+    protected ClienteService: ClienteService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -35,6 +44,12 @@ export class CartaoRecompensaUpdateComponent implements OnInit {
       this.updateForm(cartaoRecompensa);
       this.cartaoRecompensa = cartaoRecompensa;
     });
+    this.ClienteService.query()
+      .pipe(
+        filter((mayBeOk: HttpResponse<ICliente[]>) => mayBeOk.ok),
+        map((response: HttpResponse<ICliente[]>) => response.body)
+      )
+      .subscribe((res: ICliente[]) => (this.clientes = res), (res: HttpErrorResponse) => this.onError(res.message));
   }
 
   updateForm(cartaoRecompensa: ICartaoRecompensa) {
@@ -44,7 +59,8 @@ export class CartaoRecompensaUpdateComponent implements OnInit {
       numero: cartaoRecompensa.numero,
       validade: cartaoRecompensa.validade,
       pontuacao: cartaoRecompensa.pontuacao,
-      situacao: cartaoRecompensa.situacao
+      situacao: cartaoRecompensa.situacao,
+      cliente: cartaoRecompensa.cliente
     });
   }
 
@@ -70,7 +86,8 @@ export class CartaoRecompensaUpdateComponent implements OnInit {
       numero: this.editForm.get(['numero']).value,
       validade: this.editForm.get(['validade']).value,
       pontuacao: this.editForm.get(['pontuacao']).value,
-      situacao: this.editForm.get(['situacao']).value
+      situacao: this.editForm.get(['situacao']).value,
+      cliente: this.editForm.get(['cliente']).value
     };
     return entity;
   }
@@ -86,5 +103,12 @@ export class CartaoRecompensaUpdateComponent implements OnInit {
 
   protected onSaveError() {
     this.isSaving = false;
+  }
+  protected onError(errorMessage: string) {
+    this.jhiAlertService.error(errorMessage, null, null);
+  }
+
+  trackClienteById(index: number, item: ICliente) {
+    return item.id;
   }
 }

@@ -1,8 +1,14 @@
 {
     "fluentMethods": true,
     "clientRootFolder": "",
-    "relationships": [],
-    "fields": [
+    "relationships": [
+            {
+            "relationshipName": "cliente",
+            "otherEntityName": "Cliente",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "primeiroNome"
+        }
+    ],    "fields": [
         {
             "fieldName": "nomeCartao",
             "fieldType": "String",

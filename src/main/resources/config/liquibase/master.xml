@@ -19,9 +19,13 @@
     <include file="config/liquibase/changelog/20190519003537_added_entity_Pessoa.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190601145300_added_entity_Fornecedor.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190602180859_added_entity_Restaurante.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190603205331_added_entity_Cliente.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20190519003537_added_entity_constraints_Pessoa.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190601145300_added_entity_constraints_Fornecedor.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190602180859_added_entity_constraints_Restaurante.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190603205331_added_entity_constraints_Cliente.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190513200539_added_entity_constraints_CartaoCredito.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190513203550_added_entity_constraints_CartaoRecompensa.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

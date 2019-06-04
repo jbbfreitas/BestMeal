@@ -1,0 +1,90 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="bestMealApp.cliente.home.title">Clientes</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-cliente" [routerLink]="['/cliente/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="bestMealApp.cliente.home.createLabel">
+            Create new Cliente
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="clientes">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="tipo"><span jhiTranslate="bestMealApp.cliente.tipo">Tipo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="cpf"><span jhiTranslate="bestMealApp.cliente.cpf">Cpf</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="cnpj"><span jhiTranslate="bestMealApp.cliente.cnpj">Cnpj</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="primeiroNome"><span jhiTranslate="bestMealApp.cliente.primeiroNome">Primeiro Nome</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nomeMeio"><span jhiTranslate="bestMealApp.cliente.nomeMeio">Nome Meio</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="sobreNome"><span jhiTranslate="bestMealApp.cliente.sobreNome">Sobre Nome</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="saudacao"><span jhiTranslate="bestMealApp.cliente.saudacao">Saudacao</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="titulo"><span jhiTranslate="bestMealApp.cliente.titulo">Titulo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="cep"><span jhiTranslate="bestMealApp.cliente.cep">Cep</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="tipoLogradouro"><span jhiTranslate="bestMealApp.cliente.tipoLogradouro">Tipo Logradouro</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nomeLogradouro"><span jhiTranslate="bestMealApp.cliente.nomeLogradouro">Nome Logradouro</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="complemento"><span jhiTranslate="bestMealApp.cliente.complemento">Complemento</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="municipio.nomeMunicipio"><span jhiTranslate="bestMealApp.cliente.municipio">Municipio</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let cliente of clientes ;trackBy: trackId">
+                <td><a [routerLink]="['/cliente', cliente.id, 'view' ]">{{cliente.id}}</a></td>
+                <td jhiTranslate="{{'bestMealApp.TipoPessoa.' + cliente.tipo}}">{{cliente.tipo}}</td>
+                <td>{{cliente.cpf}}</td>
+                <td>{{cliente.cnpj}}</td>
+                <td>{{cliente.primeiroNome}}</td>
+                <td>{{cliente.nomeMeio}}</td>
+                <td>{{cliente.sobreNome}}</td>
+                <td>{{cliente.saudacao}}</td>
+                <td>{{cliente.titulo}}</td>
+                <td>{{cliente.cep}}</td>
+                <td jhiTranslate="{{'bestMealApp.TipoLogradouro.' + cliente.tipoLogradouro}}">{{cliente.tipoLogradouro}}</td>
+                <td>{{cliente.nomeLogradouro}}</td>
+                <td>{{cliente.complemento}}</td>
+                <td>
+                    <div *ngIf="cliente.municipio">
+                        <a [routerLink]="['../municipio', cliente.municipio?.id, 'view' ]" >{{cliente.municipio?.nomeMunicipio}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/cliente', cliente.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/cliente', cliente.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'cliente', { outlets: { popup: cliente.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="clientes && clientes.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

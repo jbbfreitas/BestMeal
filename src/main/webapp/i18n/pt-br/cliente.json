@@ -1,0 +1,33 @@
+{
+  "bestMealApp": {
+    "cliente": {
+      "home": {
+        "title": "Clientes",
+        "createLabel": "Criar novo Cliente",
+        "createOrEditLabel": "Criar ou editar Cliente"
+      },
+      "created": "Um novo Cliente foi criado com o identificador {{ param }}",
+      "updated": "Um Cliente foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Cliente foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Cliente {{ id }}?"
+      },
+      "detail": {
+        "title": "Cliente"
+      },
+      "tipo": "Tipo",
+      "cpf": "Cpf",
+      "cnpj": "Cnpj",
+      "primeiroNome": "Primeiro Nome",
+      "nomeMeio": "Nome Meio",
+      "sobreNome": "Sobre Nome",
+      "saudacao": "Saudacao",
+      "titulo": "Titulo",
+      "cep": "Cep",
+      "tipoLogradouro": "Tipo Logradouro",
+      "nomeLogradouro": "Nome Logradouro",
+      "complemento": "Complemento",
+      "municipio": "Municipio"
+    }
+  }
+}
