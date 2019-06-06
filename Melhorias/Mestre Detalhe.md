@@ -142,11 +142,125 @@
    <strong>Listagem 1 - Arquivo Cliente.json </strong> 
 </p>
 
-2. Execute a seguinte instrução no prompt de comandos, para o jhipster gerar essa entidade:
+2. Para que o jhipster gere essa entidade, execute a seguinte instrução no prompt de comandos :
 
 ```prompt
 jhipster entity Cliente
 ```
 
+3. Gerar a entidade CartaoCredito usando o arquivo da Listagem 2.
 
+>Calma! Já sei que você vai dizer, 'nós já geramos a entidade CartaoCredito!'. Essa é justamente a beleza do jhipster: poder regerar e melhorar!
+
+```json
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+            {
+            "relationshipName": "cliente",
+            "otherEntityName": "Cliente",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "primeiroNome"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nomeCartao",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": "10",
+            "fieldValidateRulesMaxlength": "40"
+        },
+        {
+            "fieldName": "bandeira",
+            "fieldType": "Bandeira",
+            "fieldValues": "AMERICAN,DINERS,ELO,MASTER,VISA"
+        },
+        {
+            "fieldName": "numero",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "pattern"
+            ],
+            "fieldValidateRulesPattern": "^(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\\d{3})\\d{11})$"
+        },
+        {
+            "fieldName": "cvv",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "pattern"
+            ],
+            "fieldValidateRulesPattern": "^[0-9]{3,4}$"
+        },
+        {
+            "fieldName": "validade",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "pattern"
+            ],
+            "fieldValidateRulesPattern": "^(0[1-9]|1[0-2])\\/?([0-9]{4}|[0-9]{2})$"
+        }
+    ],
+    "changelogDate": "20190513200539",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "serviceImpl",
+    "entityTableName": "cartao_credito",
+    "databaseType": "sql",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}
+
+```
+<p align="center">
+   <strong>Listagem 2 - Arquivo CartaoCredito.json </strong> 
+</p>
+
+::: :pushpin: Importante :::
+ 
+>Observe que estamos fazendo um relacionamento N:1 com a entidade Cliente
+```json
+    "relationships": [
+            {
+            "relationshipName": "cliente",
+            "otherEntityName": "Cliente",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "primeiroNome"
+        }
+    ],
+
+```
+4. Faça as seguintes alterações, conforme listagem 3 a 
+
+```typescript
+
+<!-- Exclua as linhas abaixo -->
+              <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bestMealApp.cartaoCredito.cliente" for="field_cliente">Cliente</label>
+                    <select class="form-control" id="field_cliente" name="cliente" formControlName="cliente">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="ClienteOption.id === editForm.get('cliente').value?.id ? editForm.get('cliente').value : ClienteOption" *ngFor="let ClienteOption of clientes; trackBy: trackClienteById">{{ClienteOption.primeiroNome}}</option>
+                    </select>
+                </div>
+```
+
+<p align="center">
+   <strong>Listagem 3 - cartao-credito-update.component.html </strong> 
+</p>
+
+```typescript
+
+<!-- Exclua as linhas abaixo -->
+```
+
+<p align="center">
+   <strong>Listagem 4 - cartao-credito-update.component.html </strong> 
+</p>
 
