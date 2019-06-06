@@ -77,4 +77,10 @@ public class CartaoCreditoServiceImpl implements CartaoCreditoService {
         log.debug("Request to delete CartaoCredito : {}", id);
         cartaoCreditoRepository.deleteById(id);
     }
+
+    @Override
+    public Page<CartaoCredito> findAllClienteCartaoCredito(Long id, Pageable pageable) {
+        log.debug("Request to get all  CartaoCredito of Cliente: {}", id);
+        return cartaoCreditoRepository.findAllClienteCartaoCredito(id, pageable);
+    }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { JhiAlertService } from 'ng-jhipster';
@@ -9,6 +9,8 @@ import { ICliente, Cliente } from 'app/shared/model/cliente.model';
 import { ClienteService } from './cliente.service';
 import { IMunicipio } from 'app/shared/model/municipio.model';
 import { MunicipioService } from 'app/entities/municipio';
+import { ICartaoCredito } from 'app/shared/model/cartao-credito.model';
+import { PessoaValidityCommonService } from 'app/shared/reuse/pessoa-validity.common.service';
 
 @Component({
   selector: 'jhi-cliente-update',
@@ -19,30 +21,36 @@ export class ClienteUpdateComponent implements OnInit {
   isSaving: boolean;
 
   municipios: IMunicipio[];
+  cartoes: ICartaoCredito[];
+  idCliente = 0;
 
-  editForm = this.fb.group({
-    id: [],
-    tipo: [],
-    cpf: [],
-    cnpj: [],
-    primeiroNome: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
-    nomeMeio: [null, [Validators.minLength(2), Validators.maxLength(30)]],
-    sobreNome: [null, [Validators.minLength(2), Validators.maxLength(30)]],
-    saudacao: [],
-    titulo: [null, [Validators.minLength(3), Validators.maxLength(15)]],
-    cep: [null, [Validators.pattern('^[0-9]{2}.[0-9]{3}-[0-9]{3}$')]],
-    tipoLogradouro: [],
-    nomeLogradouro: [null, [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
-    complemento: [null, [Validators.required, Validators.minLength(0), Validators.maxLength(30)]],
-    municipio: []
-  });
+  // editForm = this.fb.group({
+  //   id: [],
+  //   tipo: [],
+  //   cpf: [],
+  //   cnpj: [],
+  //   primeiroNome: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
+  //   nomeMeio: [null, [Validators.minLength(2), Validators.maxLength(30)]],
+  //   sobreNome: [null, [Validators.minLength(2), Validators.maxLength(30)]],
+  //   saudacao: [],
+  //   titulo: [null, [Validators.minLength(3), Validators.maxLength(15)]],
+  //   cep: [null, [Validators.pattern('^[0-9]{2}.[0-9]{3}-[0-9]{3}$')]],
+  //   tipoLogradouro: [],
+  //   nomeLogradouro: [null, [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
+  //   complemento: [null, [Validators.required, Validators.minLength(0), Validators.maxLength(30)]],
+  //   municipio: []
+
+  // });
+  editForm = this.pessoaValidityCommonService.createEditForm(this.fb);
 
   constructor(
     protected jhiAlertService: JhiAlertService,
     protected clienteService: ClienteService,
     protected municipioService: MunicipioService,
     protected activatedRoute: ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    public router: Router,
+    protected pessoaValidityCommonService: PessoaValidityCommonService
   ) {}
 
   ngOnInit() {
@@ -50,7 +58,9 @@ export class ClienteUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ cliente }) => {
       this.updateForm(cliente);
       this.cliente = cliente;
+      this.clienteService.setCliente(this.cliente);
     });
+
     this.municipioService
       .query()
       .pipe(
@@ -58,6 +68,11 @@ export class ClienteUpdateComponent implements OnInit {
         map((response: HttpResponse<IMunicipio[]>) => response.body)
       )
       .subscribe((res: IMunicipio[]) => (this.municipios = res), (res: HttpErrorResponse) => this.onError(res.message));
+    this.editForm = this.pessoaValidityCommonService.setPessoaReValidity(this.editForm);
+    if (this.cliente && this.cliente.id !== undefined) {
+      // Navega automaticamente para mostrar os cartões
+      this.router.navigate(['/', 'cliente', { outlets: { popup: this.cliente.id + '/cartao' } }]);
+    }
   }
 
   updateForm(cliente: ICliente) {
@@ -77,6 +92,8 @@ export class ClienteUpdateComponent implements OnInit {
       complemento: cliente.complemento,
       municipio: cliente.municipio
     });
+    this.pessoaValidityCommonService.setPessoa(cliente); // Grava o valor de pessoa em service para ser usado na validação
+    this.pessoaValidityCommonService.setTipoPessoa('cliente'); // Grava o valor de pessoa em service para ser usado na validação
   }
 
   previousState() {

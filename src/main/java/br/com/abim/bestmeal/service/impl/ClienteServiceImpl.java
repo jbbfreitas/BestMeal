@@ -77,4 +77,24 @@ public class ClienteServiceImpl implements ClienteService {
         log.debug("Request to delete Cliente : {}", id);
         clienteRepository.deleteById(id);
     }
+
+    @Override
+    public Long countWithCpf(String cpf, Long id) {
+        return clienteRepository.countWithCpf(cpf,id);
+    }
+
+    @Override
+    public Long countWithCnpj(String cnpj, Long id) {
+        return clienteRepository.countWithCnpj(cnpj,id);
+    }
+
+    @Override
+    public Long countWithCpf(String cpf) {
+        return clienteRepository.countWithCpfIdNull(cpf);
+    }
+
+    @Override
+    public Long countWithCnpj(String cnpj) {
+        return clienteRepository.countWithCnpjIdNull(cnpj);
+    }
 }

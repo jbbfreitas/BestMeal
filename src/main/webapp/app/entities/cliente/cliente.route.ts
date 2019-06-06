@@ -12,6 +12,7 @@ import { ClienteDetailComponent } from './cliente-detail.component';
 import { ClienteUpdateComponent } from './cliente-update.component';
 import { ClienteDeletePopupComponent } from './cliente-delete-dialog.component';
 import { ICliente } from 'app/shared/model/cliente.model';
+import { ClienteCartaoComponent } from './cliente-cartao.component';
 
 @Injectable({ providedIn: 'root' })
 export class ClienteResolve implements Resolve<ICliente> {
@@ -90,6 +91,21 @@ export const clientePopupRoute: Routes = [
     },
     data: {
       authorities: ['ROLE_USER'],
+      pageTitle: 'bestMealApp.cliente.home.title'
+    },
+    canActivate: [UserRouteAccessService],
+    outlet: 'popup'
+  },
+  {
+    path: ':id/cartao',
+    component: ClienteCartaoComponent,
+    resolve: {
+      pagingParams: JhiResolvePagingParams,
+      cliente: ClienteResolve
+    },
+    data: {
+      authorities: ['ROLE_USER'],
+      defaultSort: 'id,asc',
       pageTitle: 'bestMealApp.cliente.home.title'
     },
     canActivate: [UserRouteAccessService],

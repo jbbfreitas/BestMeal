@@ -1,6 +1,7 @@
 package br.com.abim.bestmeal.web.rest;
 
 import br.com.abim.bestmeal.domain.Pessoa;
+import br.com.abim.bestmeal.service.ClienteService;
 import br.com.abim.bestmeal.service.FornecedorService;
 import br.com.abim.bestmeal.service.PessoaService;
 import br.com.abim.bestmeal.service.RestauranteService;
@@ -45,13 +46,14 @@ public class PessoaResource {
     private final PessoaService pessoaService;
     private final FornecedorService fornecedorService;
     private final RestauranteService restauranteService;
+    private final ClienteService clienteService;
 
-    public PessoaResource(PessoaService pessoaService, 
-    FornecedorService fornecedorService, 
-    RestauranteService restauranteService) {
+    public PessoaResource(PessoaService pessoaService, FornecedorService fornecedorService,
+            RestauranteService restauranteService, ClienteService clienteService) {
         this.pessoaService = pessoaService;
         this.fornecedorService = fornecedorService;
         this.restauranteService = restauranteService;
+        this.clienteService = clienteService;
     }
 
     /**
@@ -166,7 +168,7 @@ public class PessoaResource {
                 } else {
                     numero = fornecedorService.countWithCpf(cpf, id);
                 }
-            } else if (tipoPessoa.equals("restaurante")) {
+            } else if (tipoPessoa.equals("cliente")) {
                 if (id == 0) {
                     numero = restauranteService.countWithCpf(cpf);
                 } else {
@@ -201,6 +203,18 @@ public class PessoaResource {
                     numero = fornecedorService.countWithCpf(cnpj);
                 } else {
                     numero = fornecedorService.countWithCpf(cnpj, id);
+                }
+            } else if (tipoPessoa.equals("restaurante")) {
+                if (id == 0) {
+                    numero = fornecedorService.countWithCnpj(cnpj);
+                } else {
+                    numero = fornecedorService.countWithCnpj(cnpj, id);
+                }
+            } else if (tipoPessoa.equals("cliente")) {
+                if (id == 0) {
+                    numero = clienteService.countWithCpf(cnpj);
+                } else {
+                    numero = clienteService.countWithCpf(cnpj, id);
                 }
             }
         } catch (Exception e) {

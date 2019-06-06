@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared';
 import { ICliente } from 'app/shared/model/cliente.model';
+import { ICartaoCredito } from 'app/shared/model/cartao-credito.model';
 
 type EntityResponseType = HttpResponse<ICliente>;
 type EntityArrayResponseType = HttpResponse<ICliente[]>;
@@ -12,6 +13,8 @@ type EntityArrayResponseType = HttpResponse<ICliente[]>;
 @Injectable({ providedIn: 'root' })
 export class ClienteService {
   public resourceUrl = SERVER_API_URL + 'api/clientes';
+
+  cliente: ICliente;
 
   constructor(protected http: HttpClient) {}
 
@@ -34,5 +37,16 @@ export class ClienteService {
 
   delete(id: number): Observable<HttpResponse<any>> {
     return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });
+  }
+  queryAllCartaoCredito(req?: any): Observable<EntityArrayResponseType> {
+    const options = createRequestOption(req);
+    return this.http.get<ICartaoCredito[]>(`${this.resourceUrl}/cartao-creditos`, { params: options, observe: 'response' });
+  }
+
+  setCliente(cliente: ICliente) {
+    this.cliente = cliente;
+  }
+  getCliente(): ICliente {
+    return this.cliente;
   }
 }

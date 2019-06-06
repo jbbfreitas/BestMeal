@@ -1,6 +1,8 @@
 package br.com.abim.bestmeal.web.rest;
 
+import br.com.abim.bestmeal.domain.CartaoCredito;
 import br.com.abim.bestmeal.domain.Cliente;
+import br.com.abim.bestmeal.service.CartaoCreditoService;
 import br.com.abim.bestmeal.service.ClienteService;
 import br.com.abim.bestmeal.web.rest.errors.BadRequestAlertException;
 
@@ -41,9 +43,11 @@ public class ClienteResource {
     private String applicationName;
 
     private final ClienteService clienteService;
+    private final CartaoCreditoService cartaoCreditoService;
 
-    public ClienteResource(ClienteService clienteService) {
+    public ClienteResource(ClienteService clienteService, CartaoCreditoService cartaoCreditoService) {
         this.clienteService = clienteService;
+        this.cartaoCreditoService = cartaoCreditoService;
     }
 
     /**
@@ -125,4 +129,18 @@ public class ClienteResource {
         clienteService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
+
+
+
+    @GetMapping("/clientes/cartao-creditos")
+    public ResponseEntity<List<CartaoCredito>> getAllCartaoCreditos(Pageable pageable, @RequestParam MultiValueMap<String, String> queryParams, UriComponentsBuilder uriBuilder) {
+        Long id = Long.parseLong(queryParams.get("id").get(0));
+        log.debug("REST request to get all Credit Cards of Cliente {} ", id);
+        Page<CartaoCredito> page = cartaoCreditoService.findAllClienteCartaoCredito(id, pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(uriBuilder.queryParams(queryParams), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
+
+
 }

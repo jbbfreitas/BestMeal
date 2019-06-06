@@ -21,8 +21,9 @@ export class CartaoCreditoUpdateComponent implements OnInit {
   cartaoCredito: ICartaoCredito;
   isSaving: boolean;
 
-  clientes: ICliente[];
+  //  clientes: ICliente[];
   mesano: string = moment().format('MM/YYYY');
+  //  cliente: ICliente;
 
   editForm = this.fb.group({
     id: [],
@@ -63,13 +64,13 @@ export class CartaoCreditoUpdateComponent implements OnInit {
       this.updateForm(cartaoCredito);
       this.cartaoCredito = cartaoCredito;
     });
-    this.clienteService
-      .query()
-      .pipe(
-        filter((mayBeOk: HttpResponse<ICliente[]>) => mayBeOk.ok),
-        map((response: HttpResponse<ICliente[]>) => response.body)
-      )
-      .subscribe((res: ICliente[]) => (this.clientes = res), (res: HttpErrorResponse) => this.onError(res.message));
+    // this.clienteService
+    //   .query()
+    //   .pipe(
+    //     filter((mayBeOk: HttpResponse<ICliente[]>) => mayBeOk.ok),
+    //     map((response: HttpResponse<ICliente[]>) => response.body)
+    //   )
+    //   .subscribe((res: ICliente[]) => (this.clientes = res), (res: HttpErrorResponse) => this.onError(res.message));
   }
 
   updateForm(cartaoCredito: ICartaoCredito) {
@@ -80,7 +81,8 @@ export class CartaoCreditoUpdateComponent implements OnInit {
       numero: cartaoCredito.numero,
       cvv: cartaoCredito.cvv,
       validade: cartaoCredito.validade,
-      cliente: cartaoCredito.cliente
+      //     cliente: cartaoCredito.cliente
+      cliente: this.clienteService.getCliente()
     });
   }
 
@@ -107,7 +109,8 @@ export class CartaoCreditoUpdateComponent implements OnInit {
       numero: this.editForm.get(['numero']).value,
       cvv: this.editForm.get(['cvv']).value,
       validade: this.editForm.get(['validade']).value,
-      cliente: this.editForm.get(['cliente']).value
+      //     cliente: this.editForm.get(['cliente']).value
+      cliente: this.clienteService.getCliente()
     };
     return entity;
   }
