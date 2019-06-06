@@ -188,7 +188,7 @@ export class CustomCPFCNPJValidatorService {
 ```
 
 <p align="center">
-   <strong>Liustagem 1 - cpf-cnpj-validators.service.ts </strong> 
+   <strong>Listagem 1 - cpf-cnpj-validators.service.ts </strong> 
 </p>
 
 ::: :pushpin: Importante :::
