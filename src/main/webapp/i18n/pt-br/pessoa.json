@@ -31,7 +31,8 @@
       "nomePessoa": "Nome da Pessoa",
       "endereco": "Dados do Endereço:",
       "dadosGerais": "Dados Gerais:",
-      "nomeFantasia": "Nome de Fantasia"
+      "nomeFantasia": "Nome de Fantasia",
+      "gerenciarCartoes": "Gerenciamento de Cartões"
     }
   }
 }

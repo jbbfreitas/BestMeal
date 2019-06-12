@@ -7,12 +7,6 @@
                 [routerLink]="['/cartao-credito/new']" ngbTooltip="{{ 'bestMealApp.cartaoCredito.home.createLabel' | translate }}">
                 <fa-icon [icon]="'plus'"></fa-icon>
             </button>
-
-
-
-
-
-
         </h2>
         <jhi-alert></jhi-alert>
         <br />
@@ -55,7 +49,7 @@
                                     <fa-icon [icon]="'pencil-alt'"></fa-icon>
                                 </button>
                                 <button type="submit"
-                                    [routerLink]="['/', 'cartao-credito', { outlets: { popup: cartaoCredito.id + '/delete'} }]"
+                                    [routerLink]="['/', 'cliente', { outlets: { popup: cartaoCredito.id + '/delete/cartao'} }]"
                                     replaceUrl="true" queryParamsHandling="merge" class="btn btn-danger btn-sm"
                                     ngbTooltip="{{ 'entity.action.delete' | translate }}">
                                     <fa-icon [icon]="'times'"></fa-icon>

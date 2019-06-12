@@ -12,7 +12,12 @@ import {
   ClienteDeleteDialogComponent,
   clienteRoute,
   clientePopupRoute,
-  ClienteCartaoComponent
+  ClienteCartaoComponent,
+  ClienteCartaoRecompensaComponent,
+  ClienteCartaoCreditoDeleteDialogComponent,
+  ClienteCartaoCreditoDeletePopupComponent,
+  ClienteCartaoRecompensaDeleteDialogComponent,
+  ClienteCartaoRecompensaDeletePopupComponent
 } from './';
 
 const ENTITY_STATES = [...clienteRoute, ...clientePopupRoute];
@@ -25,14 +30,24 @@ const ENTITY_STATES = [...clienteRoute, ...clientePopupRoute];
     ClienteUpdateComponent,
     ClienteDeleteDialogComponent,
     ClienteDeletePopupComponent,
-    ClienteCartaoComponent
+    ClienteCartaoComponent,
+    ClienteCartaoRecompensaComponent,
+    ClienteCartaoCreditoDeleteDialogComponent,
+    ClienteCartaoCreditoDeletePopupComponent,
+    ClienteCartaoRecompensaDeleteDialogComponent,
+    ClienteCartaoRecompensaDeletePopupComponent
   ],
   entryComponents: [
     ClienteComponent,
     ClienteUpdateComponent,
     ClienteDeleteDialogComponent,
     ClienteDeletePopupComponent,
-    ClienteCartaoComponent
+    ClienteCartaoComponent,
+    ClienteCartaoRecompensaComponent,
+    ClienteCartaoCreditoDeleteDialogComponent,
+    ClienteCartaoCreditoDeletePopupComponent,
+    ClienteCartaoRecompensaDeleteDialogComponent,
+    ClienteCartaoRecompensaDeletePopupComponent
   ],
   providers: [{ provide: JhiLanguageService, useClass: JhiLanguageService }],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

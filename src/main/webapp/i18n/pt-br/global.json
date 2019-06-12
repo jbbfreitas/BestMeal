@@ -109,7 +109,9 @@
       "edit": "Editar",
       "open": "Abrir",
       "save": "Salvar",
-      "view": "Visualizar"
+      "view": "Visualizar",
+      "managecredit": "C. Crédito",
+      "managereward": "C. Recompensa"
     },
     "detail": {
       "field": "Campo",

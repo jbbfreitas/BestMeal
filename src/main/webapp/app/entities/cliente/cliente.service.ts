@@ -6,6 +6,7 @@ import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared';
 import { ICliente } from 'app/shared/model/cliente.model';
 import { ICartaoCredito } from 'app/shared/model/cartao-credito.model';
+import { ICartaoRecompensa } from 'app/shared/model/cartao-recompensa.model';
 
 type EntityResponseType = HttpResponse<ICliente>;
 type EntityArrayResponseType = HttpResponse<ICliente[]>;
@@ -41,6 +42,11 @@ export class ClienteService {
   queryAllCartaoCredito(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http.get<ICartaoCredito[]>(`${this.resourceUrl}/cartao-creditos`, { params: options, observe: 'response' });
+  }
+
+  queryAllCartaoRecompensa(req?: any): Observable<EntityArrayResponseType> {
+    const options = createRequestOption(req);
+    return this.http.get<ICartaoRecompensa[]>(`${this.resourceUrl}/cartao-recompensa`, { params: options, observe: 'response' });
   }
 
   setCliente(cliente: ICliente) {

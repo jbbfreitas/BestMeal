@@ -1,8 +1,10 @@
 package br.com.abim.bestmeal.web.rest;
 
 import br.com.abim.bestmeal.domain.CartaoCredito;
+import br.com.abim.bestmeal.domain.CartaoRecompensa;
 import br.com.abim.bestmeal.domain.Cliente;
 import br.com.abim.bestmeal.service.CartaoCreditoService;
+import br.com.abim.bestmeal.service.CartaoRecompensaService;
 import br.com.abim.bestmeal.service.ClienteService;
 import br.com.abim.bestmeal.web.rest.errors.BadRequestAlertException;
 
@@ -45,9 +47,15 @@ public class ClienteResource {
     private final ClienteService clienteService;
     private final CartaoCreditoService cartaoCreditoService;
 
-    public ClienteResource(ClienteService clienteService, CartaoCreditoService cartaoCreditoService) {
+    private final CartaoRecompensaService cartaoRecompensaService;
+
+    public ClienteResource(ClienteService clienteService, 
+    CartaoCreditoService cartaoCreditoService,
+    CartaoRecompensaService cartaoRecompensaService)
+     {
         this.clienteService = clienteService;
         this.cartaoCreditoService = cartaoCreditoService;
+        this.cartaoRecompensaService  = cartaoRecompensaService;
     }
 
     /**
@@ -141,6 +149,14 @@ public class ClienteResource {
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
+    @GetMapping("/clientes/cartao-recompensa")
+    public ResponseEntity<List<CartaoRecompensa>> getAllCartaoRecompensa(Pageable pageable, @RequestParam MultiValueMap<String, String> queryParams, UriComponentsBuilder uriBuilder) {
+        Long id = Long.parseLong(queryParams.get("id").get(0));
+        log.debug("REST request to get all Revenew Cards of Cliente {} ", id);
+        Page<CartaoRecompensa> page = cartaoRecompensaService.findAllClienteCartaoRecompensa(id, pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(uriBuilder.queryParams(queryParams), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
 
 
 }

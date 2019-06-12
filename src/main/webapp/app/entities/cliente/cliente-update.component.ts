@@ -24,23 +24,6 @@ export class ClienteUpdateComponent implements OnInit {
   cartoes: ICartaoCredito[];
   idCliente = 0;
 
-  // editForm = this.fb.group({
-  //   id: [],
-  //   tipo: [],
-  //   cpf: [],
-  //   cnpj: [],
-  //   primeiroNome: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
-  //   nomeMeio: [null, [Validators.minLength(2), Validators.maxLength(30)]],
-  //   sobreNome: [null, [Validators.minLength(2), Validators.maxLength(30)]],
-  //   saudacao: [],
-  //   titulo: [null, [Validators.minLength(3), Validators.maxLength(15)]],
-  //   cep: [null, [Validators.pattern('^[0-9]{2}.[0-9]{3}-[0-9]{3}$')]],
-  //   tipoLogradouro: [],
-  //   nomeLogradouro: [null, [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
-  //   complemento: [null, [Validators.required, Validators.minLength(0), Validators.maxLength(30)]],
-  //   municipio: []
-
-  // });
   editForm = this.pessoaValidityCommonService.createEditForm(this.fb);
 
   constructor(
@@ -69,10 +52,11 @@ export class ClienteUpdateComponent implements OnInit {
       )
       .subscribe((res: IMunicipio[]) => (this.municipios = res), (res: HttpErrorResponse) => this.onError(res.message));
     this.editForm = this.pessoaValidityCommonService.setPessoaReValidity(this.editForm);
-    if (this.cliente && this.cliente.id !== undefined) {
-      // Navega automaticamente para mostrar os cartões
-      this.router.navigate(['/', 'cliente', { outlets: { popup: this.cliente.id + '/cartao' } }]);
-    }
+    //  if (this.cliente && this.cliente.id !== undefined) {
+    // Navega automaticamente para mostrar os cartões
+    //      this.router.navigate(['/', 'cliente', { outlets: { popup: this.cliente.id + '/cartao' } }]);
+    //      this.router.navigate(['/', 'cliente', { outlets: { popup: this.cliente.id + '/cartaoRecompensa' } }]);
+    // }
   }
 
   updateForm(cliente: ICliente) {
@@ -150,4 +134,8 @@ export class ClienteUpdateComponent implements OnInit {
   trackMunicipioById(index: number, item: IMunicipio) {
     return item.id;
   }
+  // cartaoCreditoClick() {
+  //   this.router.navigate(['/', 'cliente', { outlets: { popup: this.cliente.id + '/cartao' } }]);
+  // }
+  //      this.router.navigate(['/', 'cliente', { outlets: { popup: this.cliente.id + '/cartaoRecompensa' } }]);
 }

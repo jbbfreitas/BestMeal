@@ -18,8 +18,6 @@ export class CartaoRecompensaUpdateComponent implements OnInit {
   cartaoRecompensa: ICartaoRecompensa;
   isSaving: boolean;
 
-  clientes: ICliente[];
-
   editForm = this.fb.group({
     id: [],
     nomeCartao: [null, [Validators.required, Validators.minLength(10), Validators.maxLength(40)]],
@@ -33,7 +31,7 @@ export class CartaoRecompensaUpdateComponent implements OnInit {
   constructor(
     protected jhiAlertService: JhiAlertService,
     protected cartaoRecompensaService: CartaoRecompensaService,
-    protected ClienteService: ClienteService,
+    protected clienteService: ClienteService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -44,12 +42,6 @@ export class CartaoRecompensaUpdateComponent implements OnInit {
       this.updateForm(cartaoRecompensa);
       this.cartaoRecompensa = cartaoRecompensa;
     });
-    this.ClienteService.query()
-      .pipe(
-        filter((mayBeOk: HttpResponse<ICliente[]>) => mayBeOk.ok),
-        map((response: HttpResponse<ICliente[]>) => response.body)
-      )
-      .subscribe((res: ICliente[]) => (this.clientes = res), (res: HttpErrorResponse) => this.onError(res.message));
   }
 
   updateForm(cartaoRecompensa: ICartaoRecompensa) {
@@ -60,7 +52,7 @@ export class CartaoRecompensaUpdateComponent implements OnInit {
       validade: cartaoRecompensa.validade,
       pontuacao: cartaoRecompensa.pontuacao,
       situacao: cartaoRecompensa.situacao,
-      cliente: cartaoRecompensa.cliente
+      cliente: this.clienteService.getCliente()
     });
   }
 
@@ -87,7 +79,7 @@ export class CartaoRecompensaUpdateComponent implements OnInit {
       validade: this.editForm.get(['validade']).value,
       pontuacao: this.editForm.get(['pontuacao']).value,
       situacao: this.editForm.get(['situacao']).value,
-      cliente: this.editForm.get(['cliente']).value
+      cliente: this.clienteService.getCliente()
     };
     return entity;
   }

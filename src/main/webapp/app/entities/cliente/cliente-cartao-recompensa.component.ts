@@ -12,16 +12,17 @@ import { ITEMS_PER_PAGE } from 'app/shared';
 import { CartaoCreditoService } from '../cartao-credito';
 import { ClienteService } from './cliente.service';
 import { ICliente } from 'app/shared/model/cliente.model';
+import { ICartaoRecompensa } from 'app/shared/model/cartao-recompensa.model';
 
 @Component({
-  selector: 'jhi-cliente-cartao',
-  templateUrl: './cliente-cartao.component.html'
+  selector: 'jhi-cliente-cartao-recompensa',
+  templateUrl: './cliente-cartao-recompensa.component.html'
 })
-export class ClienteCartaoComponent implements OnInit, OnDestroy {
+export class ClienteCartaoRecompensaComponent implements OnInit, OnDestroy {
   cliente: ICliente;
 
   currentAccount: any;
-  cartaoCreditos: ICartaoCredito[];
+  cartaoRecompensas: ICartaoRecompensa[];
   error: any;
   success: any;
   eventSubscriber: Subscription;
@@ -55,14 +56,14 @@ export class ClienteCartaoComponent implements OnInit, OnDestroy {
 
   loadAll() {
     this.clienteService
-      .queryAllCartaoCredito({
+      .queryAllCartaoRecompensa({
         page: this.page - 1,
         size: this.itemsPerPage,
         sort: this.sort(),
         id: this.cliente.id
       })
       .subscribe(
-        (res: HttpResponse<ICartaoCredito[]>) => this.paginateCartaoCreditos(res.body, res.headers),
+        (res: HttpResponse<ICartaoRecompensa[]>) => this.paginateCartaoRecompensas(res.body, res.headers),
         (res: HttpErrorResponse) => this.onError(res.message)
       );
   }
@@ -75,7 +76,7 @@ export class ClienteCartaoComponent implements OnInit, OnDestroy {
   }
 
   transition() {
-    this.router.navigate(['/cartao-credito'], {
+    this.router.navigate(['/cliente', this.cliente.id, 'cartaoRecompensa'], {
       queryParams: {
         page: this.page,
         size: this.itemsPerPage,
@@ -88,7 +89,7 @@ export class ClienteCartaoComponent implements OnInit, OnDestroy {
   clear() {
     this.page = 0;
     this.router.navigate([
-      '/cartao-credito',
+      '/cartao-recompensa',
       {
         page: this.page,
         sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
@@ -122,7 +123,7 @@ export class ClienteCartaoComponent implements OnInit, OnDestroy {
   }
 
   registerChangeInCartaoCreditos() {
-    this.eventSubscriber = this.eventManager.subscribe('cartaoCreditoListModification', response => this.loadAll());
+    this.eventSubscriber = this.eventManager.subscribe('cartaoRecompensaListModification', response => this.loadAll());
   }
 
   sort() {
@@ -133,10 +134,10 @@ export class ClienteCartaoComponent implements OnInit, OnDestroy {
     return result;
   }
 
-  protected paginateCartaoCreditos(data: ICartaoCredito[], headers: HttpHeaders) {
+  protected paginateCartaoRecompensas(data: ICartaoRecompensa[], headers: HttpHeaders) {
     this.links = this.parseLinks.parse(headers.get('link'));
     this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
-    this.cartaoCreditos = data;
+    this.cartaoRecompensas = data;
   }
 
   protected onError(errorMessage: string) {

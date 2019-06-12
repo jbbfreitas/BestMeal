@@ -5,3 +5,6 @@ export * from './cliente-detail.component';
 export * from './cliente.component';
 export * from './cliente.route';
 export * from './cliente-cartao.component';
+export * from './cliente-cartao-recompensa.component';
+export * from './cliente-cartao-credito-delete-dialog.component';
+export * from './cliente-cartao-recompensa-delete-dialog.component';

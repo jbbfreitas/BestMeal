@@ -77,4 +77,10 @@ public class CartaoRecompensaServiceImpl implements CartaoRecompensaService {
         log.debug("Request to delete CartaoRecompensa : {}", id);
         cartaoRecompensaRepository.deleteById(id);
     }
+
+    @Override
+    public Page<CartaoRecompensa> findAllClienteCartaoRecompensa(Long id, Pageable pageable) {
+        log.debug("Request to get all  CartaoRecompensa of Cliente: {}", id);
+        return cartaoRecompensaRepository.findAllClienteCartaoRecompensa(id, pageable);
+    }
 }

@@ -1,5 +1,6 @@
 package br.com.abim.bestmeal.service;
 
+import br.com.abim.bestmeal.domain.CartaoCredito;
 import br.com.abim.bestmeal.domain.CartaoRecompensa;
 
 import org.springframework.data.domain.Page;
@@ -43,4 +44,6 @@ public interface CartaoRecompensaService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+	Page<CartaoRecompensa> findAllClienteCartaoRecompensa(Long id, Pageable pageable);
 }
