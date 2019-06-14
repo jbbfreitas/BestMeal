@@ -2,24 +2,24 @@
   "bestMealApp": {
     "cartaoRecompensa": {
       "home": {
-        "title": "Cartao Recompensas",
-        "createLabel": "Criar novo Cartao Recompensa",
-        "createOrEditLabel": "Criar ou editar Cartao Recompensa"
+        "title": "Cartão de Recompensas",
+        "createLabel": "Criar novo Cartão de Recompensas",
+        "createOrEditLabel": "Criar ou editar Cartão de Recompensas"
       },
-      "created": "Um novo Cartao Recompensa foi criado com o identificador {{ param }}",
-      "updated": "Um Cartao Recompensa foi atualizado com o identificador {{ param }}",
-      "deleted": "Um Cartao Recompensa foi excluído com o identificador {{ param }}",
+      "created": "Um novo Cartão de Recompensas foi criado com o identificador {{ param }}",
+      "updated": "Um Cartão de Recompensas foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Cartão de Recompensas foi excluído com o identificador {{ param }}",
       "delete": {
-        "question": "Tem certeza de que deseja excluir Cartao Recompensa {{ id }}?"
+        "question": "Tem certeza de que deseja excluir Cartão de Recompensas {{ id }}?"
       },
       "detail": {
-        "title": "Cartao Recompensa"
+        "title": "Cartão de Recompensas"
       },
-      "nomeCartao": "Nome Cartao",
-      "numero": "Numero",
+      "nomeCartao": "Nome no Cartão",
+      "numero": "Número",
       "validade": "Validade",
-      "pontuacao": "Pontuacao",
-      "situacao": "Situacao",
+      "pontuacao": "Pontuação",
+      "situacao": "Situação",
       "cliente": "Cliente"
     }
   }

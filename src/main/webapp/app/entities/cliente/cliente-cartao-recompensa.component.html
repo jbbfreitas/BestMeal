@@ -1,5 +1,5 @@
 <div class="row justify-content-center">
-    <div class="col-md-6">
+    <div class="col-md-12">
         <h2 id="page-heading">
             <span jhiTranslate="bestMealApp.cartaoRecompensa.home.title">Cartao Recompensas</span>
 
@@ -14,7 +14,6 @@
             <table class="table table-striped">
                 <thead>
                     <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-                        <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                         <th jhiSortBy="nomeCartao"><span jhiTranslate="bestMealApp.cartaoRecompensa.nomeCartao">Nome Cartao</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                         <th jhiSortBy="numero"><span jhiTranslate="bestMealApp.cartaoRecompensa.numero">Numero</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                         <th jhiSortBy="validade"><span jhiTranslate="bestMealApp.cartaoRecompensa.validade">Validade</span> <fa-icon [icon]="'sort'"></fa-icon></th>
@@ -52,6 +51,7 @@
                 </tbody>
             </table>
         </div>
+<!--Descomente aqui para paginar
         <div *ngIf="cartaoRecompensas && cartaoRecompensas.length">
             <div class="row justify-content-center">
                 <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage">
@@ -62,5 +62,7 @@
                     [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
             </div>
         </div>
+
+-->        
     </div>
 </div>
