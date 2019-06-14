@@ -3,6 +3,8 @@ package br.com.abim.bestmeal.web.rest;
 import br.com.abim.bestmeal.BestMealApp;
 import br.com.abim.bestmeal.domain.Cliente;
 import br.com.abim.bestmeal.repository.ClienteRepository;
+import br.com.abim.bestmeal.service.CartaoCreditoService;
+import br.com.abim.bestmeal.service.CartaoRecompensaService;
 import br.com.abim.bestmeal.service.ClienteService;
 import br.com.abim.bestmeal.web.rest.errors.ExceptionTranslator;
 
@@ -97,10 +99,16 @@ public class ClienteResourceIT {
 
     private Cliente cliente;
 
+
+    @Autowired
+    private  CartaoCreditoService cartaoCreditoService;
+    @Autowired
+    private  CartaoRecompensaService cartaoRecompensaService;
+
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final ClienteResource clienteResource = new ClienteResource(clienteService);
+        final ClienteResource clienteResource = new ClienteResource(clienteService,cartaoCreditoService, cartaoRecompensaService);
         this.restClienteMockMvc = MockMvcBuilders.standaloneSetup(clienteResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

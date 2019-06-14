@@ -7,10 +7,7 @@ import { Observable, of } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { CartaoRecompensa } from 'app/shared/model/cartao-recompensa.model';
 import { CartaoRecompensaService } from './cartao-recompensa.service';
-import { CartaoRecompensaComponent } from './cartao-recompensa.component';
-import { CartaoRecompensaDetailComponent } from './cartao-recompensa-detail.component';
 import { CartaoRecompensaUpdateComponent } from './cartao-recompensa-update.component';
-import { CartaoRecompensaDeletePopupComponent } from './cartao-recompensa-delete-dialog.component';
 import { ICartaoRecompensa } from 'app/shared/model/cartao-recompensa.model';
 
 @Injectable({ providedIn: 'root' })
@@ -30,31 +27,6 @@ export class CartaoRecompensaResolve implements Resolve<ICartaoRecompensa> {
 }
 
 export const cartaoRecompensaRoute: Routes = [
-  {
-    path: '',
-    component: CartaoRecompensaComponent,
-    resolve: {
-      pagingParams: JhiResolvePagingParams
-    },
-    data: {
-      authorities: ['ROLE_USER'],
-      defaultSort: 'id,asc',
-      pageTitle: 'bestMealApp.cartaoRecompensa.home.title'
-    },
-    canActivate: [UserRouteAccessService]
-  },
-  {
-    path: ':id/view',
-    component: CartaoRecompensaDetailComponent,
-    resolve: {
-      cartaoRecompensa: CartaoRecompensaResolve
-    },
-    data: {
-      authorities: ['ROLE_USER'],
-      pageTitle: 'bestMealApp.cartaoRecompensa.home.title'
-    },
-    canActivate: [UserRouteAccessService]
-  },
   {
     path: 'new',
     component: CartaoRecompensaUpdateComponent,
@@ -78,21 +50,5 @@ export const cartaoRecompensaRoute: Routes = [
       pageTitle: 'bestMealApp.cartaoRecompensa.home.title'
     },
     canActivate: [UserRouteAccessService]
-  }
-];
-
-export const cartaoRecompensaPopupRoute: Routes = [
-  {
-    path: ':id/delete',
-    component: CartaoRecompensaDeletePopupComponent,
-    resolve: {
-      cartaoRecompensa: CartaoRecompensaResolve
-    },
-    data: {
-      authorities: ['ROLE_USER'],
-      pageTitle: 'bestMealApp.cartaoRecompensa.home.title'
-    },
-    canActivate: [UserRouteAccessService],
-    outlet: 'popup'
   }
 ];

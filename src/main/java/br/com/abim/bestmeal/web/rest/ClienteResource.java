@@ -46,8 +46,7 @@ public class ClienteResource {
 
     private final ClienteService clienteService;
     private final CartaoCreditoService cartaoCreditoService;
-
-    private final CartaoRecompensaService cartaoRecompensaService;
+   private final CartaoRecompensaService cartaoRecompensaService;
 
     public ClienteResource(ClienteService clienteService, 
     CartaoCreditoService cartaoCreditoService,

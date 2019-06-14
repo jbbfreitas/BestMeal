@@ -4,33 +4,14 @@ import { JhiLanguageService } from 'ng-jhipster';
 import { JhiLanguageHelper } from 'app/core';
 
 import { BestMealSharedModule } from 'app/shared';
-import {
-  CartaoCreditoComponent,
-  CartaoCreditoDetailComponent,
-  CartaoCreditoUpdateComponent,
-  CartaoCreditoDeletePopupComponent,
-  CartaoCreditoDeleteDialogComponent,
-  cartaoCreditoRoute,
-  cartaoCreditoPopupRoute
-} from './';
+import { CartaoCreditoUpdateComponent, cartaoCreditoRoute } from './';
 
-const ENTITY_STATES = [...cartaoCreditoRoute, ...cartaoCreditoPopupRoute];
+const ENTITY_STATES = [...cartaoCreditoRoute];
 
 @NgModule({
   imports: [BestMealSharedModule, RouterModule.forChild(ENTITY_STATES)],
-  declarations: [
-    CartaoCreditoComponent,
-    CartaoCreditoDetailComponent,
-    CartaoCreditoUpdateComponent,
-    CartaoCreditoDeleteDialogComponent,
-    CartaoCreditoDeletePopupComponent
-  ],
-  entryComponents: [
-    CartaoCreditoComponent,
-    CartaoCreditoUpdateComponent,
-    CartaoCreditoDeleteDialogComponent,
-    CartaoCreditoDeletePopupComponent
-  ],
+  declarations: [CartaoCreditoUpdateComponent],
+  entryComponents: [CartaoCreditoUpdateComponent],
   providers: [{ provide: JhiLanguageService, useClass: JhiLanguageService }],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
