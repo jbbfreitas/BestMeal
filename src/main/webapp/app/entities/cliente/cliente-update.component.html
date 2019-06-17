@@ -1,7 +1,8 @@
 <div class="row justify-content-center">
     <div class="col-md-6">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-            <h2 id="jhi-cliente-heading" jhiTranslate="bestMealApp.cliente.home.createOrEditLabel">Create or edit a Pessoa
+            <h2 id="jhi-cliente-heading" jhiTranslate="bestMealApp.cliente.home.createOrEditLabel">Create or edit a
+                Pessoa
             </h2>
             <div>
                 <jhi-alert-error></jhi-alert-error>
@@ -326,25 +327,31 @@
             <div class="form-group col-md-6">
             </div>
         </form>
-        <div>
-            <div>
-                <small class="form-text text-primary" jhiTranslate="bestMealApp.pessoa.gerenciarCartoes">
-                    Gerenciamento de Cartões:
-                </small>
-                <hr class="half-rule" />
-            </div>
+        <div class="row justify-content-center">
+
+        <div class="col-md-12">
+                <h5>
+                <div> 
+                    <span class="form-text text-primary" jhiTranslate="bestMealApp.pessoa.gerenciarCartoes">
+                        Gerenciamento de Cartões:
+                    </span>
+                    <hr class="rule" />
+                </div>
+            </h5>
+
             <button type="button" [routerLink]="['/', 'cliente', { outlets: { popup: cliente.id + '/cartao'} }]"
                 replaceUrl="true" queryParamsHandling="merge" class="btn btn-info">
-                <fa-icon [icon]="'credit-card'"></fa-icon>&nbsp;<span
-                    jhiTranslate="entity.action.managecredit">C. Credito</span>
+                <fa-icon [icon]="'credit-card'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.managecredit">C.
+                    Credito</span>
             </button>
             <button type="button"
                 [routerLink]="['/', 'cliente', { outlets: { popup: cliente.id + '/cartaoRecompensa'} }]"
                 replaceUrl="true" queryParamsHandling="merge" class="btn btn-info">
-                <fa-icon [icon]="'money-check'"></fa-icon>&nbsp;<span
-                    jhiTranslate="entity.action.managereward">C. Recompensa</span>
+                <fa-icon [icon]="'money-check'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.managereward">C.
+                    Recompensa</span>
             </button>
         </div>
-    <hr>
+        </div>
+        <hr>
     </div>
 </div>

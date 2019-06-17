@@ -1,13 +1,16 @@
 <div class="row justify-content-center">
     <div class="col-md-12">
+            <div class="text-center" >
+
         <h2 id="page-heading">
             <span jhiTranslate="bestMealApp.cartaoRecompensa.home.title">Cartao Recompensas</span>
 
-            <button id="jh-create-entity" class="btn btn-info float-right jh-create-entity create-cartao-recompensa"
+            <button id="jh-create-entity" class="btn btn-info float-center jh-create-entity create-cartao-recompensa"
                 [routerLink]="['/cartao-recompensa/new']" ngbTooltip="{{ 'bestMealApp.cartaoRecompensa.home.createLabel' | translate }}">
                 <fa-icon [icon]="'plus'"></fa-icon>
             </button>
         </h2>
+        </div>
         <jhi-alert></jhi-alert>
         <br />
         <div class="table-responsive" *ngIf="cartaoRecompensas">
